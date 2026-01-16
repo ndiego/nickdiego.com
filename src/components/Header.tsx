@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   return (
@@ -45,7 +44,6 @@ export function Header() {
           >
             Talks
           </Link>
-          <ThemeToggle />
         </nav>
       </div>
       <hr className="mt-8 border-border" />

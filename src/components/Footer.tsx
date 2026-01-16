@@ -1,19 +1,21 @@
 import Link from 'next/link';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border mt-16">
+    <footer className="mt-16">
       <div className="max-w-2xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+        <div className="flex justify-between items-start gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
           <div>
             <h3 className="font-medium mb-4">Explore</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 text-sm">
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   About
                 </Link>
@@ -21,7 +23,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/posts"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Writing
                 </Link>
@@ -29,7 +31,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/projects"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Projects
                 </Link>
@@ -37,7 +39,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/speaking"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Talks
                 </Link>
@@ -47,13 +49,13 @@ export function Footer() {
 
           <div>
             <h3 className="font-medium mb-4">Connect</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 text-sm">
               <li>
                 <a
                   href="https://x.com/nickmdiego"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   X
                 </a>
@@ -63,7 +65,7 @@ export function Footer() {
                   href="https://bsky.app/profile/nickdiego.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Bluesky
                 </a>
@@ -73,7 +75,7 @@ export function Footer() {
                   href="https://linkedin.com/in/nickmdiego"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   LinkedIn
                 </a>
@@ -83,7 +85,7 @@ export function Footer() {
                   href="https://profiles.wordpress.org/ndiego"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   WordPress
                 </a>
@@ -93,16 +95,18 @@ export function Footer() {
                   href="https://github.com/ndiego"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   GitHub
                 </a>
               </li>
             </ul>
           </div>
+          </div>
+          <ThemeToggle />
         </div>
 
-        <div className="pt-8 border-t border-border text-sm text-muted-foreground">
+        <div className="pt-8 border-t border-border text-xs text-muted-foreground">
           <p>© {currentYear} Nick Diego. All rights reserved.</p>
         </div>
       </div>
