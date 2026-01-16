@@ -80,7 +80,7 @@ export function CodeBlockClient({
   );
 
   return (
-    <div className="code-block relative my-6 rounded-lg overflow-hidden border border-border">
+    <div className="code-block not-prose relative my-6 rounded-lg overflow-hidden border border-border">
       {filename && (
         <div className="flex items-center justify-between px-4 py-2 bg-card border-b border-border">
           <span className="text-sm text-muted-foreground font-mono">
