@@ -2,6 +2,12 @@
 
 import { useState } from 'react';
 import { Copy, Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 interface CodeBlockClientProps {
   code: string;
@@ -37,6 +43,42 @@ export function CodeBlockClient({
   // Calculate max height based on line count (1.5rem line height + padding)
   const collapsedHeight = maxLines ? `${maxLines * 1.5 + 2}rem` : undefined;
 
+  const CopyButton = () => (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handleCopy}
+          className="h-8 w-8 text-muted-foreground"
+        >
+          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{copied ? 'Copied' : 'Copy'}</TooltipContent>
+    </Tooltip>
+  );
+
+  const ExpandButton = () => (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="h-8 w-8 text-muted-foreground"
+        >
+          {isExpanded ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          )}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{isExpanded ? 'Collapse' : 'Expand'}</TooltipContent>
+    </Tooltip>
+  );
+
   return (
     <div className="code-block relative my-6 rounded-lg overflow-hidden border border-border">
       {filename && (
@@ -44,31 +86,21 @@ export function CodeBlockClient({
           <span className="text-sm text-muted-foreground font-mono">
             {filename}
           </span>
-          <button
-            onClick={handleCopy}
-            className="p-2 -mr-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-            aria-label={copied ? 'Copied!' : 'Copy code'}
-          >
-            {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-          </button>
+          <div className="-mr-2">
+            <CopyButton />
+          </div>
         </div>
       )}
 
       <div className="relative bg-card">
         {!filename && (
           <div className="absolute top-2 right-2 z-10">
-            <button
-              onClick={handleCopy}
-              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-              aria-label={copied ? 'Copied!' : 'Copy code'}
-            >
-              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-            </button>
+            <CopyButton />
           </div>
         )}
 
         <div
-          className={`transition-all duration-300 ${shouldCollapse ? 'overflow-auto' : 'overflow-hidden'}`}
+          className={shouldCollapse ? 'overflow-auto' : 'overflow-hidden'}
           style={shouldCollapse ? { maxHeight: collapsedHeight } : undefined}
         >
           <div className="overflow-x-auto flex">
@@ -100,20 +132,9 @@ export function CodeBlockClient({
           </div>
         </div>
 
-        {/* Expand/collapse button in bottom right corner */}
         {isCollapsible && (
           <div className="absolute bottom-2 right-2 z-10">
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-              aria-label={isExpanded ? 'Collapse code' : 'Expand code'}
-            >
-              {isExpanded ? (
-                <ChevronUp className="w-4 h-4" />
-              ) : (
-                <ChevronDown className="w-4 h-4" />
-              )}
-            </button>
+            <ExpandButton />
           </div>
         )}
       </div>
