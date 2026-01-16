@@ -1,7 +1,7 @@
 @import "tailwindcss";
-
-@plugin "tailwindcss-animate";
 @plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
+@source "../../mdx-components.tsx";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
