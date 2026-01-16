@@ -44,23 +44,13 @@ export function CodeBlockClient({
           <span className="text-sm text-muted-foreground font-mono">
             {filename}
           </span>
-          <div className="flex items-center gap-1">
-            {isCollapsible && (
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="flex items-center gap-1 px-2 py-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {isExpanded ? 'Collapse' : 'Expand'}
-              </button>
-            )}
-            <button
-              onClick={handleCopy}
-              className="p-2 -mr-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-              aria-label={copied ? 'Copied!' : 'Copy code'}
-            >
-              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-            </button>
-          </div>
+          <button
+            onClick={handleCopy}
+            className="p-2 -mr-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+            aria-label={copied ? 'Copied!' : 'Copy code'}
+          >
+            {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+          </button>
         </div>
       )}
 
@@ -78,7 +68,7 @@ export function CodeBlockClient({
         )}
 
         <div
-          className="overflow-hidden transition-all duration-300"
+          className={`transition-all duration-300 ${shouldCollapse ? 'overflow-auto' : 'overflow-hidden'}`}
           style={shouldCollapse ? { maxHeight: collapsedHeight } : undefined}
         >
           <div className="overflow-x-auto flex">
@@ -110,31 +100,19 @@ export function CodeBlockClient({
           </div>
         </div>
 
-        {/* Fade overlay and expand button when collapsed */}
-        {shouldCollapse && (
-          <div className="absolute bottom-0 left-0 right-0">
-            <div className="h-16 bg-gradient-to-t from-muted to-transparent" />
-            <div className="bg-card pb-3 flex justify-center">
-              <button
-                onClick={() => setIsExpanded(true)}
-                className="flex items-center gap-1 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground bg-accent/50 hover:bg-accent rounded-md transition-colors"
-              >
-                <ChevronDown className="w-4 h-4" />
-                Expand
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Collapse button when expanded (only for collapsible blocks without filename) */}
-        {isCollapsible && isExpanded && !filename && (
-          <div className="flex justify-center pb-3">
+        {/* Expand/collapse button in bottom right corner */}
+        {isCollapsible && (
+          <div className="absolute bottom-2 right-2 z-10">
             <button
-              onClick={() => setIsExpanded(false)}
-              className="flex items-center gap-1 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground bg-accent/50 hover:bg-accent rounded-md transition-colors"
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+              aria-label={isExpanded ? 'Collapse code' : 'Expand code'}
             >
-              <ChevronUp className="w-4 h-4" />
-              Collapse
+              {isExpanded ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </button>
           </div>
         )}

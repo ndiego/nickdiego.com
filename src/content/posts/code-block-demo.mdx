@@ -82,17 +82,17 @@ export function Button({ label, onClick }: ButtonProps) {
 
 ## Without Line Numbers
 
-Using the `CodeBlock` component directly with `showLineNumbers={false}`:
+Using `showLineNumbers={false}` in the code fence meta:
 
-<CodeBlock language="bash" showLineNumbers={false}>
-{`npm install next react react-dom
-npm run dev`}
-</CodeBlock>
+```bash showLineNumbers={false}
+npm install next react react-dom
+npm run dev
+```
 
 ## With Filename Header
 
-<CodeBlock language="json" filename="package.json">
-{`{
+```json filename="package.json"
+{
   "name": "my-app",
   "version": "1.0.0",
   "scripts": {
@@ -100,15 +100,15 @@ npm run dev`}
     "build": "next build",
     "start": "next start"
   }
-}`}
-</CodeBlock>
+}
+```
 
 ## Collapsible Code Block
 
-Using `maxLines` to limit the visible lines with an expand button:
+Using `maxLines={8}` to limit the visible lines with an expand button:
 
-<CodeBlock language="typescript" filename="ListenButton.tsx" maxLines={8}>
-{`const checkResponse = await fetch(\`/api/generate-audio?slug=\${slug}\`);
+```typescript filename="ListenButton.tsx" maxLines={8}
+const checkResponse = await fetch(`/api/generate-audio?slug=${slug}`);
 const checkData = await checkResponse.json();
 
 if (checkData.exists && checkData.url) {
@@ -129,8 +129,33 @@ const data = await response.json();
 if (data.url) {
   setAudioUrl(data.url);
   setAudioStats("ready");
-}`}
-</CodeBlock>
+}
+```
+
+```typescript maxLines={8}
+const checkResponse = await fetch(`/api/generate-audio?slug=${slug}`);
+const checkData = await checkResponse.json();
+
+if (checkData.exists && checkData.url) {
+  setAudioUrl(checkData.url);
+  return;
+}
+
+// Generate if it doesn't exist yet
+setAudioStats("generating");
+
+const response = await fetch("/api/generate-audio", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ slug }),
+});
+
+const data = await response.json();
+if (data.url) {
+  setAudioUrl(data.url);
+  setAudioStats("ready");
+}
+```
 
 ## PHP Example
 

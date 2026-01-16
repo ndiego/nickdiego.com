@@ -44,28 +44,32 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     // Override default code blocks with syntax highlighting
-    pre: ({ children }) => {
+    // rehype-mdx-code-props passes meta string props directly to pre element
+    pre: ({
+      children,
+      filename,
+      maxLines,
+      showLineNumbers: showLineNumbersProp,
+    }: {
+      children: React.ReactNode;
+      filename?: string;
+      maxLines?: number;
+      showLineNumbers?: boolean;
+    }) => {
       // Extract code element props
       const codeElement = children as React.ReactElement<{
         className?: string;
         children?: string;
-        'data-line-numbers'?: string;
-        'data-filename'?: string;
       }>;
 
       if (!codeElement?.props) {
         return <pre>{children}</pre>;
       }
 
-      const {
-        className,
-        children: code,
-        'data-line-numbers': lineNumbers,
-        'data-filename': filename,
-      } = codeElement.props;
+      const { className, children: code } = codeElement.props;
 
       const language = className?.replace('language-', '') || 'plaintext';
-      const showLineNumbers = lineNumbers !== 'false';
+      const showLineNumbers = showLineNumbersProp !== false;
 
       if (typeof code !== 'string') {
         return <pre>{children}</pre>;
@@ -76,6 +80,7 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
           language={language}
           showLineNumbers={showLineNumbers}
           filename={filename}
+          maxLines={maxLines}
         >
           {code}
         </CodeBlock>

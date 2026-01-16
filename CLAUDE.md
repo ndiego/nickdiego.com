@@ -72,6 +72,28 @@ featuredImage: /path/to/image.jpg  # optional
 - `<Image src="..." alt="..." />` - Optimized images with captions
 - `<GitHubStats repo="owner/repo" />` - GitHub repo stats
 
+### CodeBlock Usage
+
+Always use fenced code blocks with metadata in the info string. This preserves indentation correctly:
+
+```mdx
+\`\`\`json filename="package.json"
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "next dev"
+  }
+}
+\`\`\`
+```
+
+Available options in the info string:
+- `filename="name.ext"` - Shows filename header
+- `maxLines={8}` - Collapsible with expand button
+- `showLineNumbers={false}` - Hides line numbers
+
+**Important:** Do NOT use `<CodeBlock>` as a JSX component directly in MDX - the MDX compiler strips indentation from JSX expressions.
+
 ## Design Patterns
 
 ### Prefer Direct JSX Over Array Mapping
