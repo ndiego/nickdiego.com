@@ -2,6 +2,11 @@ export const metadata = {
   title: 'Talks',
 };
 
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  year: 'numeric',
+});
+
 const talks = [
   {
     title: 'WordPress Speed Build Challenge',
@@ -41,10 +46,7 @@ export default function SpeakingPage() {
 
       <div className="space-y-8">
         {talks.map((talk) => {
-          const date = new Date(talk.date).toLocaleDateString('en-US', {
-            month: 'long',
-            year: 'numeric',
-          });
+          const date = dateFormatter.format(new Date(talk.date));
 
           return (
             <div

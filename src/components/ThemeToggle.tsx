@@ -13,12 +13,8 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <div className="flex h-9" />;
-  }
-
   return (
-    <div className="flex">
+    <div className={`flex transition-opacity duration-200 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
       <Button
         variant="ghost"
         size="icon"

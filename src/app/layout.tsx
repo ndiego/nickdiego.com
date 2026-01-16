@@ -67,8 +67,10 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
+      style={{ colorScheme: 'dark light' }}
     >
       <head>
+        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

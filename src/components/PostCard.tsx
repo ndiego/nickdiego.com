@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import type { PostMeta } from '@/lib/posts';
 
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+
 export function PostCard({ post }: { post: PostMeta }) {
-  const date = new Date(post.date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  const date = dateFormatter.format(new Date(post.date));
 
   return (
     <article className="group">

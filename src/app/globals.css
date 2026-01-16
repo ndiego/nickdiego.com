@@ -87,7 +87,7 @@
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.190 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.145 0 0);
@@ -125,6 +125,12 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Prevent 300ms tap delay on touch devices */
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+  }
 }
 
 /* Prose overrides for better dark mode */
@@ -146,6 +152,14 @@
   .prose h3,
   .prose h4 {
     @apply text-foreground;
+    text-wrap: balance;
+  }
+
+  /* Scroll margin for anchor links */
+  .prose h2[id],
+  .prose h3[id],
+  .prose h4[id] {
+    scroll-margin-top: 5rem;
   }
 
   /* Inline code */

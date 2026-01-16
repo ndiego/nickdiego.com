@@ -2,8 +2,6 @@ import Link from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="mt-16">
       <div className="max-w-2xl mx-auto px-6 py-12">
@@ -107,7 +105,9 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-border text-xs text-muted-foreground">
-          <p>© {currentYear} Nick Diego. All rights reserved.</p>
+          <p suppressHydrationWarning>
+            © {new Date().getFullYear()} Nick Diego. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

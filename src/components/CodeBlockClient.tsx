@@ -9,6 +9,58 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 
+function CopyButton({ copied, onCopy }: { copied: boolean; onCopy: () => void }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onCopy}
+          className="h-8 w-8 text-muted-foreground"
+          aria-label={copied ? 'Copied to clipboard' : 'Copy code'}
+        >
+          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+          <span className="sr-only" aria-live="polite">
+            {copied ? 'Copied to clipboard' : ''}
+          </span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{copied ? 'Copied' : 'Copy'}</TooltipContent>
+    </Tooltip>
+  );
+}
+
+function ExpandButton({
+  isExpanded,
+  onToggle,
+}: {
+  isExpanded: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onToggle}
+          className="h-8 w-8 text-muted-foreground"
+          aria-label={isExpanded ? 'Collapse code' : 'Expand code'}
+          aria-expanded={isExpanded}
+        >
+          {isExpanded ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          )}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{isExpanded ? 'Collapse' : 'Expand'}</TooltipContent>
+    </Tooltip>
+  );
+}
+
 interface CodeBlockClientProps {
   code: string;
   lightHtml: string;
@@ -40,44 +92,10 @@ export function CodeBlockClient({
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleToggleExpand = () => setIsExpanded(!isExpanded);
+
   // Calculate max height based on line count (1.5rem line height + padding)
   const collapsedHeight = maxLines ? `${maxLines * 1.5 + 2}rem` : undefined;
-
-  const CopyButton = () => (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={handleCopy}
-          className="h-8 w-8 text-muted-foreground"
-        >
-          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>{copied ? 'Copied' : 'Copy'}</TooltipContent>
-    </Tooltip>
-  );
-
-  const ExpandButton = () => (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="h-8 w-8 text-muted-foreground"
-        >
-          {isExpanded ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>{isExpanded ? 'Collapse' : 'Expand'}</TooltipContent>
-    </Tooltip>
-  );
 
   return (
     <div className="code-block not-prose relative my-6 rounded-lg overflow-hidden border border-border">
@@ -87,7 +105,7 @@ export function CodeBlockClient({
             {filename}
           </span>
           <div className="-mr-2">
-            <CopyButton />
+            <CopyButton copied={copied} onCopy={handleCopy} />
           </div>
         </div>
       )}
@@ -95,7 +113,7 @@ export function CodeBlockClient({
       <div className="relative bg-card">
         {!filename && (
           <div className="absolute top-2 right-2 z-10">
-            <CopyButton />
+            <CopyButton copied={copied} onCopy={handleCopy} />
           </div>
         )}
 
@@ -134,7 +152,7 @@ export function CodeBlockClient({
 
         {isCollapsible && (
           <div className="absolute bottom-2 right-2 z-10">
-            <ExpandButton />
+            <ExpandButton isExpanded={isExpanded} onToggle={handleToggleExpand} />
           </div>
         )}
       </div>
