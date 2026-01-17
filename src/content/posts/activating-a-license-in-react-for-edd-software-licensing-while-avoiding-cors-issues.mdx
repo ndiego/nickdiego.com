@@ -30,7 +30,7 @@ In very general terms, when a user activates a license, they are sending a "requ
 
 Making a resource request between two websites can inherently have security implications. You don't want just anyone requesting license information, which includes some customer data, from your online store. If you try activating a license using the JavaScript example that EDD provides, there is a chance that you will get an error similar to the one below:
 
-<Image src="/images/posts/CORS-Error.png" alt="" width={936} height={109} caption={<>CORS Policy Error</>} />
+<Image src="/images/posts/cors-error.png" alt="" width={936} height={109} caption={<>CORS Policy Error</>} />
 
 My store website did not have a [HTTP response header](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#The_HTTP_response_headers) set which resulted in this CORS error. There are of course ways to add a header to your server, Mozilla has a [nice writeup](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin) about this, but none of the options seemed reasonable from a convenience or security perspective. I am not trying to create a public API, and I don't want my project to rely on a specific server configuration to work properly.
 

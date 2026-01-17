@@ -70,7 +70,7 @@ That said, since this technology is included with WordPress core, third-party de
 
 In my current project, I have a custom settings page that is written in React and lives in my base plugin. I then have a premium add-on plugin that provides additional features and settings. When the add-on is activated, I would like these new individual settings to appear on the main settings page provided by the base plugin. Specifically, I want a license activation box to appear at the top of the page and the other premium settings to display at the bottom.
 
-<Image src="/images/posts/SlotFill-Pre-1200.jpg" alt="" width={1200} height={756} caption={<>The current settings page before SlotFill is introduced</>} />
+<Image src="/images/posts/slotfill-pre-1200.jpg" alt="" width={1200} height={756} caption={<>The current settings page before SlotFill is introduced</>} />
 
 I will be using SlotFill, so the settings page needs to have a `Slot` at the top and bottom. The license activation box would be placed in a `Fill` for the top `Slot`. The other settings would be placed in a `Fill` for the bottom `Slot`.
 
@@ -196,7 +196,7 @@ addFilter(
 
 That's all we need to do! Now when we load the settings page, the premium functionality in the `Fill` components will be "slotted" into the correct `Slot` components in the base plugin. ????
 
-<Image src="/images/posts/SlotFill-Post-1200.jpg" alt="SlotFill Example" width={1200} height={1029} caption={<>The settings page after premium functionality has been added via SlotFill</>} />
+<Image src="/images/posts/slotfill-post-1200.jpg" alt="SlotFill Example" width={1200} height={1029} caption={<>The settings page after premium functionality has been added via SlotFill</>} />
 
 ## Summary
 
