@@ -10,7 +10,7 @@ export function Header() {
           className="flex items-center gap-4 hover:opacity-70 transition-opacity"
         >
           <Image
-            src="/avatar.jpg"
+            src="/images/avatar.webp"
             alt="Nick Diego"
             width={48}
             height={48}
@@ -19,7 +19,7 @@ export function Header() {
           <span className="font-medium">Nick Diego</span>
         </Link>
 
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-5">
           <Link
             href="/about"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
@@ -46,7 +46,6 @@ export function Header() {
           </Link>
         </nav>
       </div>
-      <hr className="mt-8 border-border" />
     </header>
   );
 }
