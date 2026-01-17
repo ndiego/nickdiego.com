@@ -29,12 +29,11 @@ npm run lint     # Run ESLint
 ```
 src/
 ├── app/                 # Next.js App Router pages
+├── blog/               # MDX blog posts (can use year subfolders for organization)
 ├── components/          # React components
 │   ├── ui/             # shadcn/ui components
 │   ├── CodeBlock.tsx   # Server component for syntax highlighting
 │   └── CodeBlockClient.tsx  # Client component for interactivity
-├── content/
-│   └── posts/          # MDX blog posts
 ├── lib/
 │   ├── posts.ts        # Post fetching utilities
 │   ├── shiki.ts        # Syntax highlighter setup
@@ -46,7 +45,7 @@ src/
 
 ## Content
 
-Blog posts are MDX files in `src/content/posts/`. Frontmatter schema:
+Blog posts are MDX files in `src/blog/`. You can organize posts into year subfolders (e.g., `src/blog/2024/`, `src/blog/2025/`) for convenience—the folder structure is purely organizational and doesn't affect URLs. Frontmatter schema:
 
 ```yaml
 ---
@@ -149,7 +148,7 @@ For static UI elements like navigation links, footer links, and other fixed cont
 ```tsx
 const navItems = [
   { href: '/about', label: 'About' },
-  { href: '/posts', label: 'Posts' },
+  { href: '/writing', label: 'Writing' },
 ];
 
 navItems.map(item => <Link href={item.href}>{item.label}</Link>)
@@ -158,7 +157,7 @@ navItems.map(item => <Link href={item.href}>{item.label}</Link>)
 **Do this instead:**
 ```tsx
 <Link href="/about">About</Link>
-<Link href="/posts">Posts</Link>
+<Link href="/writing">Writing</Link>
 ```
 
 **Why:**

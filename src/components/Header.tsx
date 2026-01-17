@@ -27,10 +27,10 @@ export function Header() {
             About
           </Link>
           <Link
-            href="/posts"
+            href="/writing"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
           >
-            Posts
+            Writing
           </Link>
           <Link
             href="/projects"

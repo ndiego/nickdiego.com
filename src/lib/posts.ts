@@ -3,7 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
 
-const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+const blogDirectory = path.join(process.cwd(), 'src/blog');
 
 export interface PostMeta {
   slug: string;
@@ -15,19 +15,32 @@ export interface PostMeta {
   featuredImage?: string;
 }
 
-export function getAllPosts(): PostMeta[] {
-  // Ensure the directory exists
-  if (!fs.existsSync(postsDirectory)) {
+function getMdxFilesRecursively(dir: string): string[] {
+  if (!fs.existsSync(dir)) {
     return [];
   }
 
-  const fileNames = fs.readdirSync(postsDirectory);
+  const files: string[] = [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
 
-  return fileNames
-    .filter((name) => name.endsWith('.mdx'))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.mdx$/, '');
-      const fullPath = path.join(postsDirectory, fileName);
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...getMdxFilesRecursively(fullPath));
+    } else if (entry.name.endsWith('.mdx')) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+export function getAllPosts(): PostMeta[] {
+  const mdxFiles = getMdxFilesRecursively(blogDirectory);
+
+  return mdxFiles
+    .map((fullPath) => {
+      const slug = path.basename(fullPath, '.mdx');
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { data, content } = matter(fileContents);
       const stats = readingTime(content);
@@ -46,9 +59,10 @@ export function getAllPosts(): PostMeta[] {
 }
 
 export function getPostBySlug(slug: string) {
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+  const mdxFiles = getMdxFilesRecursively(blogDirectory);
+  const fullPath = mdxFiles.find((file) => path.basename(file, '.mdx') === slug);
 
-  if (!fs.existsSync(fullPath)) {
+  if (!fullPath) {
     return null;
   }
 

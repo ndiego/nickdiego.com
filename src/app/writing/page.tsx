@@ -3,16 +3,16 @@ import { PostCard } from '@/components/PostCard';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Posts',
+  title: 'Writing',
 };
 
-export default function PostsPage() {
+export default function WritingPage() {
   const posts = getAllPosts();
   const categories = getAllCategories();
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-medium mb-12">Posts</h1>
+      <h1 className="text-3xl font-medium mb-12">Writing</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-12">
         <div className="space-y-12">
@@ -22,7 +22,7 @@ export default function PostsPage() {
             <p className="text-muted-foreground">
               No posts yet. Add MDX files to{' '}
               <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
-                src/content/posts/
+                src/blog/
               </code>{' '}
               to get started.
             </p>
@@ -36,7 +36,7 @@ export default function PostsPage() {
               {categories.map((cat) => (
                 <li key={cat}>
                   <Link
-                    href={`/posts?category=${cat.toLowerCase()}`}
+                    href={`/writing?category=${cat.toLowerCase()}`}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {cat}

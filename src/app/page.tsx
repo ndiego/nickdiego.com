@@ -24,9 +24,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Recent Posts */}
+      {/* Recent Writing */}
       <section>
-        <h2 className="text-2xl font-medium mb-4">Posts</h2>
+        <h2 className="text-2xl font-medium mb-4">Writing</h2>
         <p className="text-copy mb-8">
           Everything from WordPress tutorials and AI experiments to web
           development resources and personal updates.
@@ -42,14 +42,14 @@ export default function HomePage() {
           <p className="text-copy mb-8">
             No posts yet. Add MDX files to{' '}
             <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
-              src/content/posts/
+              src/blog/
             </code>{' '}
             to get started.
           </p>
         )}
 
         <Link
-          href="/posts"
+          href="/writing"
           className="text-sm font-medium hover:text-muted-foreground transition-colors"
         >
           View all →
