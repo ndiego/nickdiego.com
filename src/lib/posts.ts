@@ -98,3 +98,41 @@ export function getPostsByCategory(category: string): PostMeta[] {
     post.categories.some((cat) => cat.toLowerCase() === category.toLowerCase())
   );
 }
+
+export function getPostMarkdown(slug: string): string | null {
+  const mdxFiles = getMdxFilesRecursively(blogDirectory);
+  const fullPath = mdxFiles.find((file) => path.basename(file, '.mdx') === slug);
+
+  if (!fullPath) {
+    return null;
+  }
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data, content } = matter(fileContents);
+
+  // Build YAML frontmatter
+  const dateStr = data.date
+    ? new Date(data.date).toISOString()
+    : new Date().toISOString();
+
+  const frontmatter: string[] = ['---'];
+  frontmatter.push(`title: '${(data.title ?? 'Untitled').replace(/'/g, "''")}'`);
+  frontmatter.push(`date: '${dateStr}'`);
+  frontmatter.push(`author: Nick Diego`);
+  if (data.excerpt) {
+    frontmatter.push(`summary: '${data.excerpt.replace(/'/g, "''")}'`);
+  }
+  if (data.featuredImage) {
+    frontmatter.push(`image: ${data.featuredImage}`);
+  }
+  if (data.categories?.length) {
+    frontmatter.push(`tags:`);
+    for (const cat of data.categories) {
+      frontmatter.push(`  - '${cat.replace(/'/g, "''")}'`);
+    }
+  }
+  frontmatter.push(`url: /${slug}`);
+  frontmatter.push('---');
+
+  return frontmatter.join('\n') + '\n\n' + content.trim();
+}

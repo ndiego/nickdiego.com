@@ -81,6 +81,12 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <>
+      <link
+        rel="alternate"
+        type="text/markdown"
+        href={`${siteConfig.url}/${slug}.md`}
+        title={post.meta.title}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
