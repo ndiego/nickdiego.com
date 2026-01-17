@@ -14,33 +14,33 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Basic text elements
     p: ({ children }) => (
-      <p className="text-foreground leading-relaxed mb-6">{children}</p>
+      <p className="text-[var(--text-copy)] leading-relaxed mb-6">{children}</p>
     ),
     h1: ({ children, id }) => (
-      <h1 id={id} className="text-foreground text-3xl font-medium mt-10 mb-4 scroll-mt-20 text-balance" >
+      <h1 id={id} className="text-[var(--text-heading)] text-3xl font-medium mt-10 mb-4 scroll-mt-20 text-balance">
         {children}
       </h1>
     ),
     h2: ({ children, id }) => (
-      <h2 id={id} className="text-foreground text-2xl font-medium mt-10 mb-4 scroll-mt-20 text-balance" >
+      <h2 id={id} className="text-[var(--text-heading)] text-2xl font-medium mt-10 mb-4 scroll-mt-20 text-balance">
         {children}
       </h2>
     ),
     h3: ({ children, id }) => (
-      <h3 id={id} className="text-foreground text-xl font-medium mt-8 mb-3 scroll-mt-20 text-balance" >
+      <h3 id={id} className="text-[var(--text-heading)] text-xl font-medium mt-8 mb-3 scroll-mt-20 text-balance">
         {children}
       </h3>
     ),
     h4: ({ children, id }) => (
-      <h4 id={id} className="text-foreground text-lg font-medium mt-6 mb-2 scroll-mt-20">
+      <h4 id={id} className="text-[var(--text-heading)] text-lg font-medium mt-6 mb-2 scroll-mt-20">
         {children}
       </h4>
     ),
     ul: ({ children }) => (
-      <ul className="list-disc pl-6 mb-6 space-y-2 text-foreground">{children}</ul>
+      <ul className="list-disc pl-6 mb-6 space-y-2 text-[var(--text-copy)]">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="list-decimal pl-6 mb-6 space-y-2 text-foreground">{children}</ol>
+      <ol className="list-decimal pl-6 mb-6 space-y-2 text-[var(--text-copy)]">{children}</ol>
     ),
     li: ({ children }) => (
       <li className="leading-relaxed">{children}</li>
