@@ -36,9 +36,7 @@ add_action( 'enqueue_block_editor_assets', 'example_register_custom_icons' );
 This should be familiar to those that have enqueued scripts and/or styles before. A couple of things to note:
 
 - The path to the JavaScript file can be anything. I generally organize my asset files in their own folder, but it's up to you.
-
 - The array defines the WordPress dependencies that we'll need.
-
 - The `true` at the end is very important. It tells WordPress to load the file in the footer rather than the header. This file needs to be loaded **after** the Icon Block.
 
 Finally, create the blank `register-custom-icons.js` file. Name the file whatever you like, just make sure it's correctly referenced in the enqueue function above.
@@ -203,13 +201,9 @@ const customIconType = &#91;
 An icon type is defined by five parameters. All are required unless specified:
 
 - `isDefault` – Defaults to `false`. Determines if icons in this type should appear first in the Quick Inserter and Inserter Modal. (optional)
-
 - `type` – A slug to define the icon type.
-
 - `title` – A descriptive title for the icon type.
-
 - `icons` – An array of all custom icons in the icon type.
-
 - `categories` – An array of all icon categories in the icon type. (optional)
 
 ### Icons
@@ -236,17 +230,11 @@ const customIcons = &#91;
 Icons in the `customIcons` array are defined by seven parameters. All are required unless specified:
 
 - `isDefault` – Defaults to `false`. Determines if the icon should be displayed first in the list of available icons. (optional)
-
 - `name` – A slug to define the icon.
-
 - `title` – A descriptive title for the icon.
-
 - `icon` – A string of the SVG code that makes up the icon.
-
 - `categories` – An array of category names that the icon belongs to. (optional)
-
 - `keywords` – An array of keywords that help define the icon. Keywords are used when the user is searching for icons. (optional)
-
 - `hasNoIconFill` – Defaults to `false`. Set to `true` for icons that use `stroke` attributes and/or should not have a color fill applied. (optional)
 
 ### Categories
@@ -269,7 +257,6 @@ const customIconCategories = &#91;
 Categories in the `customIconCategories` array are defined by two parameters. All are required:
 
 - `name` – A slug to define the icon category.
-
 - `title` – A descriptive title for the icon category.
 
 That's it. You can now add your own icon library to the Icon Block!
@@ -279,13 +266,9 @@ That's it. You can now add your own icon library to the Icon Block!
 There are a few tips I wanted to share regarding custom SVG icons, especially if you are designing them yourself.
 
 1. To take full advantage of the Icon Block and its internal controls, I recommended converting all SVGs to outlines if possible.
-
 2. Flatten your SVGs before exporting them from your design application. This will generally make the string smaller.
-
 3. After exporting from your design application, remove all unnecessary markup from the SVG code. This will make the string smaller and easier to work with.
-
 4. Unless you need SVGs to be a specific color, remove `fill` and other color values. Icon color can be controlled from within the block.
-
 5. If your SVG does need to include fill or other color values, make sure they are added to the SVG itself. The block will strip any `<style>` markup included with the SVG.
 
 To follow Icon Block development, star the repository on [GitHub](https://github.com/ndiego/icon-block) or follow on [Twitter](https://twitter.com/theiconblock). If you have any questions or a feature that you would like to see, let me know.

@@ -11,11 +11,8 @@ categories:
 I enjoy building block extensions in WordPress. They're often simpler to create than custom blocks because they leverage the existing functionality of core blocks. You only need to add the specific features you want, and I've created several of these plugins.
 
 - [Block Visibility](https://github.com/ndiego/block-visibility)
-
 - [Enable Button Icons](https://github.com/ndiego/enable-button-icons)
-
 - [Enable Decorative Images](https://github.com/ndiego/enable-decorative-images)
-
 - [Enable Column Direction](https://github.com/ndiego/enable-column-direction)
 
 Recently, I needed a solution for creating linked "cards"—essentially a Group block where the entire block is clickable.
@@ -25,13 +22,9 @@ Damon Cook recently [wrote an article](https://developer.wordpress.org/news/2024
 I wanted to create a block extension that:
 
 - Adds a link control to the toolbar of each Group block
-
 - Allows the user to choose a specific link or dynamically use the current post's permalink
-
 - Ensures additional links within the Group are still clickable
-
 - Is accessible
-
 - Adds the necessary classes so themes can style linked Group blocks as needed (the plugin should not apply its own styling)
 
 Here's what the final result looks like. You can try out the [Enable Linked Groups](https://github.com/ndiego/enable-linked-groups) plugin on GitHub and test it directly using the Playground demo below.
@@ -45,9 +38,7 @@ Here's what the final result looks like. You can try out the [Enable Linked Grou
 The Editor implementation followed a well-established process:
 
 - Register custom block attributes using the [`blocks.registerBlockType`](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#blocks-registerblocktype) filter.
-
 - Add UI elements to the block using the [`editor.BlockEdit`](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#editor-blockedit) filter.
-
 - Optionally, add Editor-specific properties to the block using the [`editor.BlockListBlock`](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#editor-blocklistblock) filter.
 
 If you are unfamiliar with this approach, check out [How to extend a WordPress block](https://developer.wordpress.org/news/2024/08/15/how-to-extend-a-wordpress-block/) on the WordPress Developer Blog.
