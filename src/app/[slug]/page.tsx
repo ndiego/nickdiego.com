@@ -6,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeMdxCodeProps from 'rehype-mdx-code-props';
+import { remarkGitHubAlerts } from '@/lib/remark-github-alerts';
 import { getMDXComponents } from '../../../mdx-components';
 import { siteConfig } from '@/lib/site';
 import { generateArticleJsonLd } from '@/lib/metadata';
@@ -107,6 +108,7 @@ export default async function PostPage({ params }: Props) {
             components={getMDXComponents({})}
             options={{
               mdxOptions: {
+                remarkPlugins: [remarkGitHubAlerts],
                 rehypePlugins: [
                   rehypeSlug,
                   [
