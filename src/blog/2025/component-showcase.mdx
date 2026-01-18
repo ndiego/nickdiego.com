@@ -1,0 +1,229 @@
+---
+title: Component Showcase
+date: 2025-01-18
+excerpt: A comprehensive test of all available MDX components including code blocks, images, embeds, and notices.
+categories:
+  - Development
+---
+
+This post demonstrates all the custom MDX components available for use in blog posts. Use it as a reference for formatting and styling.
+
+## Typography
+
+Basic text styling includes **bold text**, *italic text*, and `inline code`. Links work both [internally](/writing) and [externally](https://github.com).
+
+> This is a blockquote. It's useful for highlighting quotes or important passages from other sources.
+
+### Lists
+
+Unordered list:
+
+- First item
+- Second item with some longer text that might wrap to multiple lines
+- Third item
+
+Ordered list:
+
+1. Step one
+2. Step two
+3. Step three
+
+---
+
+## Notices (GitHub Alert Syntax)
+
+Use GitHub-flavored alert syntax for callouts. Just write a blockquote starting with `[!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, or `[!CAUTION]`:
+
+> [!NOTE]
+> This is a **note**. Use it for supplementary information readers should know.
+
+> [!TIP]
+> This is a **tip**. Use it for helpful advice on doing things better.
+
+> [!IMPORTANT]
+> This is **important** information that users need to achieve their goal.
+
+> [!WARNING]
+> This is a **warning**. Use it for urgent info requiring immediate attention.
+
+> [!CAUTION]
+> This is a **caution**. Use it to advise about risks or negative outcomes.
+
+### JSX Syntax
+
+You can also use the `<Notice>` component directly with the `type` prop (`note`, `tip`, `important`, `warning`, `caution`):
+
+<Notice type="note">
+This is a **note** using JSX syntax.
+</Notice>
+
+<Notice type="tip">
+This is a **tip** using JSX syntax.
+</Notice>
+
+## Code Blocks
+
+### Basic Code Block
+
+```javascript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('World'));
+```
+
+### With Filename
+
+```tsx filename="components/Button.tsx"
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary';
+}
+
+export function Button({ children, onClick, variant = 'primary' }: ButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className={variant === 'primary' ? 'bg-blue-500' : 'bg-gray-500'}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+### Collapsible Code Block
+
+Use `maxLines` for long code blocks:
+
+```json filename="package.json" maxLines={8}
+{
+  "name": "my-nextjs-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}
+```
+
+### Without Line Numbers
+
+```bash showLineNumbers={false}
+npm install
+npm run dev
+```
+
+### Various Languages
+
+CSS:
+
+```css filename="styles.css"
+.container {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
+}
+```
+
+Shell commands:
+
+```bash filename="Terminal"
+git clone https://github.com/user/repo.git
+cd repo
+npm install
+```
+
+## Image Component
+
+### Default Size (Full Width)
+
+<Image
+  src="/images/placeholder.jpg"
+  alt="Placeholder image demonstrating full width"
+  width={1200}
+  height={675}
+  caption="This is a full-width image with a caption."
+/>
+
+### Small Size (60% Width, Centered)
+
+<Image
+  src="/images/placeholder.jpg"
+  alt="Placeholder image demonstrating small size"
+  width={600}
+  height={400}
+  size="small"
+  caption={<>A smaller, centered image. Captions support <a href="https://example.com">links</a> too.</>}
+/>
+
+### Without Border
+
+<Image
+  src="/images/placeholder.jpg"
+  alt="Placeholder image without border"
+  width={800}
+  height={450}
+  bordered={false}
+/>
+
+## YouTube Embed
+
+Embed YouTube videos by their ID:
+
+<YouTube id="dQw4w9WgXcQ" title="Example YouTube Video" />
+
+With a start time (in seconds):
+
+<YouTube id="dQw4w9WgXcQ" title="Video starting at 30 seconds" start={30} />
+
+## Tweet Embed
+
+Embed tweets by their ID:
+
+<Tweet id="1354143047324299264" />
+
+## GitHub Stats
+
+Display live stats for any GitHub repository:
+
+<GitHubStats repo="WordPress/gutenberg" />
+
+<GitHubStats repo="ndiego/icon-block" />
+
+## Combining Components
+
+Components can be combined within the same section. For example, you might show code alongside a notice:
+
+<Notice type="note">
+The following example requires React 19 or later.
+</Notice>
+
+```tsx filename="app/page.tsx"
+export default function Page() {
+  return (
+    <main>
+      <h1>Hello, Next.js!</h1>
+    </main>
+  );
+}
+```
+
+---
+
+That covers all the available components. Refer back to this post when writing new content.
