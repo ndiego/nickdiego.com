@@ -13,6 +13,7 @@ export interface PostMeta {
   categories: string[];
   readingTime: string;
   featuredImage?: string;
+  draft?: boolean;
 }
 
 function getMdxFilesRecursively(dir: string): string[] {
@@ -53,7 +54,15 @@ export function getAllPosts(): PostMeta[] {
         categories: data.categories ?? [],
         readingTime: stats.text,
         featuredImage: data.featuredImage,
+        draft: data.draft ?? false,
       };
+    })
+    .filter((post) => {
+      // Show drafts in development, hide in production
+      if (process.env.NODE_ENV === 'production' && post.draft) {
+        return false;
+      }
+      return true;
     })
     .sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1));
 }
@@ -69,6 +78,11 @@ export function getPostBySlug(slug: string) {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
+  // Block access to drafts in production
+  if (process.env.NODE_ENV === 'production' && data.draft) {
+    return null;
+  }
+
   const stats = readingTime(content);
 
   return {
@@ -80,6 +94,7 @@ export function getPostBySlug(slug: string) {
       categories: data.categories ?? [],
       readingTime: stats.text,
       featuredImage: data.featuredImage,
+      draft: data.draft ?? false,
     },
     content,
   };

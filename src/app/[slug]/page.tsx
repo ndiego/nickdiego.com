@@ -97,9 +97,16 @@ export default async function PostPage({ params }: Props) {
       <article className="max-w-2xl mx-auto px-6 py-12">
         <header className="mb-12">
           <h1 className="text-3xl font-medium mb-2 text-balance">{post.meta.title}</h1>
-          <time dateTime={post.meta.date} className="text-muted-foreground text-sm">
-            {date}
-          </time>
+          <div className="flex items-center gap-3">
+            <time dateTime={post.meta.date} className="text-muted-foreground text-sm">
+              {date}
+            </time>
+            {post.meta.draft && (
+              <span className="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 rounded">
+                Draft
+              </span>
+            )}
+          </div>
         </header>
 
         <div>
