@@ -2,7 +2,7 @@ import React, { ComponentPropsWithoutRef } from 'react';
 import type { MDXComponents } from 'mdx/types';
 import { Link } from '@/components/ui/link';
 import { Notice } from '@/components/Notice';
-import { GitHubStats } from '@/components/GitHubStats';
+import { GitHubRepoCard } from '@/components/GitHubRepoCard';
 import { YouTube } from '@/components/YouTube';
 import { Video } from '@/components/Video';
 import { Tweet } from '@/components/Tweet';
@@ -135,7 +135,7 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
     },
     // Custom MDX components
     Notice,
-    GitHubStats,
+    GitHubRepoCard,
     YouTube,
     Video,
     Tweet,
