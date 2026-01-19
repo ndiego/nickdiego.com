@@ -141,7 +141,7 @@ export default async function PostPage({ params }: Props) {
                 <Link
                   key={category}
                   href={`/writing/category/${getCategorySlug(category)}`}
-                  className="px-4 py-2 text-sm border border-border rounded-full text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                  className="px-4 py-2 text-sm border border-border rounded-full text-muted-foreground hover:bg-muted/50 transition-colors"
                 >
                   {category}
                 </Link>

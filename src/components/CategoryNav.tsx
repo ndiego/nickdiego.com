@@ -33,7 +33,7 @@ export function CategoryNav({ categories }: CategoryNavProps) {
               <Link
                 key={cat}
                 href={`/writing/category/${getCategorySlug(cat)}`}
-                className="px-3 py-1.5 text-sm border border-border rounded-full text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                className="px-3 py-1.5 text-sm border border-border rounded-full text-muted-foreground hover:bg-muted/50 transition-colors"
               >
                 {cat}
               </Link>
