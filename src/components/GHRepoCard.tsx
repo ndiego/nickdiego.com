@@ -1,6 +1,6 @@
 import { Star, GitFork } from 'lucide-react';
 
-interface GitHubRepoCardProps {
+interface GHRepoCardProps {
   repo: string;
   title: string;
   description: string;
@@ -18,7 +18,7 @@ async function getRepoStats(repo: string) {
   }
 }
 
-export async function GitHubRepoCard({ repo, title, description }: GitHubRepoCardProps) {
+export async function GHRepoCard({ repo, title, description }: GHRepoCardProps) {
   const data = await getRepoStats(repo);
 
   return (
@@ -43,7 +43,7 @@ export async function GitHubRepoCard({ repo, title, description }: GitHubRepoCar
           </div>
         )}
       </div>
-      <p className="text-muted-foreground leading-relaxed">{description}</p>
+      <p className="text-foreground leading-relaxed">{description}</p>
     </a>
   );
 }

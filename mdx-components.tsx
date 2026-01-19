@@ -2,7 +2,8 @@ import React, { ComponentPropsWithoutRef } from 'react';
 import type { MDXComponents } from 'mdx/types';
 import { Link } from '@/components/ui/link';
 import { Notice } from '@/components/Notice';
-import { GitHubRepoCard } from '@/components/GitHubRepoCard';
+import { GHRepoCard } from '@/components/GHRepoCard';
+import { WPPluginCard } from '@/components/WPPluginCard';
 import { YouTube } from '@/components/YouTube';
 import { Video } from '@/components/Video';
 import { Tweet } from '@/components/Tweet';
@@ -135,7 +136,8 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
     },
     // Custom MDX components
     Notice,
-    GitHubRepoCard,
+    GHRepoCard,
+    WPPluginCard,
     YouTube,
     Video,
     Tweet,
