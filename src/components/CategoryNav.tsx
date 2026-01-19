@@ -20,6 +20,7 @@ export function CategoryNav({ categories }: CategoryNavProps) {
       <div className="xl:hidden mb-8">
         <button
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <span>Categories</span>
