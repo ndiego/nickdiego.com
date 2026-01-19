@@ -146,6 +146,10 @@ a:hover code {
 }
 
 /* Heading anchors */
+h2, h3, h4 {
+  scroll-margin-top: 5rem;
+}
+
 .heading-anchor {
   @apply no-underline;
 }
