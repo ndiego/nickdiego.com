@@ -11,7 +11,7 @@ This post demonstrates all the custom MDX components available for use in blog p
 
 ## Typography
 
-Basic text styling includes **bold text**, *italic text*, and `inline code`. Links work both [internally](/writing) and [externally](https://github.com).
+Basic text styling includes **bold text**, _italic text_, and `inline code`. Links work both [internally](/writing) and [externally](https://github.com).
 
 > This is a blockquote. It's useful for highlighting quotes or important passages from other sources.
 
@@ -54,13 +54,9 @@ Use GitHub-flavored alert syntax for callouts. Just write a blockquote starting 
 
 You can also use the `<Notice>` component directly with the `type` prop (`note`, `tip`, `important`, `warning`, `caution`):
 
-<Notice type="note">
-This is a **note** using JSX syntax.
-</Notice>
+<Notice type="note">This is a **note** using JSX syntax.</Notice>
 
-<Notice type="tip">
-This is a **tip** using JSX syntax.
-</Notice>
+<Notice type="tip">This is a **tip** using JSX syntax.</Notice>
 
 ## Code Blocks
 
@@ -71,7 +67,7 @@ function greet(name) {
   return `Hello, ${name}!`;
 }
 
-console.log(greet('World'));
+console.log(greet("World"));
 ```
 
 ### With Filename
@@ -80,14 +76,18 @@ console.log(greet('World'));
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
 }
 
-export function Button({ children, onClick, variant = 'primary' }: ButtonProps) {
+export function Button({
+  children,
+  onClick,
+  variant = "primary",
+}: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={variant === 'primary' ? 'bg-blue-500' : 'bg-gray-500'}
+      className={variant === "primary" ? "bg-blue-500" : "bg-gray-500"}
     >
       {children}
     </button>
@@ -170,7 +170,12 @@ npm install
   width={600}
   height={400}
   size="small"
-  caption={<>A smaller, centered image. Captions support <a href="https://example.com">links</a> too.</>}
+  caption={
+    <>
+      A smaller, centered image. Captions support{" "}
+      <a href="https://example.com">links</a> too.
+    </>
+  }
 />
 
 ### Without Border
@@ -235,9 +240,7 @@ Display WordPress plugin cards with live stats from the plugin directory:
 
 Components can be combined within the same section. For example, you might show code alongside a notice:
 
-<Notice type="note">
-The following example requires React 19 or later.
-</Notice>
+<Notice type="note">The following example requires React 19 or later.</Notice>
 
 ```tsx filename="app/page.tsx"
 export default function Page() {

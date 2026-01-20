@@ -1,35 +1,35 @@
 export const metadata = {
-  title: 'Projects',
+  title: "Projects",
 };
 
 const projects = [
   {
-    name: 'Block Visibility',
+    name: "Block Visibility",
     description:
-      'Control when and where blocks are displayed on your WordPress site. 30,000+ active users.',
-    url: 'https://github.com/ndiego/block-visibility',
+      "Control when and where blocks are displayed on your WordPress site. 30,000+ active users.",
+    url: "https://github.com/ndiego/block-visibility",
   },
   {
-    name: 'Icon Block',
+    name: "Icon Block",
     description:
-      'A simple yet powerful block for adding custom SVG icons to your WordPress site. 30,000+ active users.',
-    url: 'https://github.com/ndiego/icon-block',
+      "A simple yet powerful block for adding custom SVG icons to your WordPress site. 30,000+ active users.",
+    url: "https://github.com/ndiego/icon-block",
   },
   {
-    name: 'Enable Linked Groups',
+    name: "Enable Linked Groups",
     description:
-      'Make Group blocks clickable while maintaining internal link functionality.',
-    url: 'https://github.com/ndiego/enable-linked-groups',
+      "Make Group blocks clickable while maintaining internal link functionality.",
+    url: "https://github.com/ndiego/enable-linked-groups",
   },
   {
-    name: 'Enable Button Icons',
-    description: 'Add icons to Button blocks in WordPress.',
-    url: 'https://github.com/ndiego/enable-button-icons',
+    name: "Enable Button Icons",
+    description: "Add icons to Button blocks in WordPress.",
+    url: "https://github.com/ndiego/enable-button-icons",
   },
   {
-    name: 'Social Sharing Block',
-    description: 'A simple social sharing block for WordPress.',
-    url: 'https://github.com/ndiego/social-sharing-block',
+    name: "Social Sharing Block",
+    description: "A simple social sharing block for WordPress.",
+    url: "https://github.com/ndiego/social-sharing-block",
   },
 ];
 

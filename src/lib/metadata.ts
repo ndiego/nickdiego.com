@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { siteConfig } from './site';
+import type { Metadata } from "next";
+import { siteConfig } from "./site";
 
 interface GenerateMetadataOptions {
   title?: string;
   description?: string;
   image?: string;
   path?: string;
-  type?: 'website' | 'article';
+  type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
   authors?: string[];
@@ -17,8 +17,8 @@ export function generateMetadata({
   title,
   description,
   image,
-  path = '',
-  type = 'website',
+  path = "",
+  type = "website",
   publishedTime,
   modifiedTime,
   authors,
@@ -41,9 +41,9 @@ export function generateMetadata({
       description: metaDescription,
       url,
       siteName: siteConfig.name,
-      locale: 'en_US',
+      locale: "en_US",
       type,
-      ...(type === 'article' && {
+      ...(type === "article" && {
         publishedTime,
         modifiedTime,
         authors: authors || [siteConfig.author.name],
@@ -58,7 +58,7 @@ export function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
       creator: siteConfig.author.twitter,
@@ -88,40 +88,41 @@ export function generateArticleJsonLd({
   const url = `${siteConfig.url}${path}`;
 
   return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    "@context": "https://schema.org",
+    "@type": "Article",
     headline: title,
     description,
     url,
-    image: image || `${siteConfig.url}/api/og?title=${encodeURIComponent(title)}`,
+    image:
+      image || `${siteConfig.url}/api/og?title=${encodeURIComponent(title)}`,
     datePublished: publishedTime,
     dateModified: modifiedTime || publishedTime,
     author: {
-      '@type': 'Person',
+      "@type": "Person",
       name: siteConfig.author.name,
       url: siteConfig.url,
     },
     publisher: {
-      '@type': 'Person',
+      "@type": "Person",
       name: siteConfig.author.name,
       url: siteConfig.url,
     },
     mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': url,
+      "@type": "WebPage",
+      "@id": url,
     },
   };
 }
 
 export function generateWebsiteJsonLd() {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
     author: {
-      '@type': 'Person',
+      "@type": "Person",
       name: siteConfig.author.name,
       url: siteConfig.url,
       sameAs: [
@@ -136,11 +137,11 @@ export function generateWebsiteJsonLd() {
 
 export function generatePersonJsonLd() {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
+    "@context": "https://schema.org",
+    "@type": "Person",
     name: siteConfig.author.name,
     url: siteConfig.url,
-    jobTitle: 'WordPress Developer & Developer Advocate',
+    jobTitle: "WordPress Developer & Developer Advocate",
     sameAs: [
       siteConfig.links.twitter,
       siteConfig.links.github,

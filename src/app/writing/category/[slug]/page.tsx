@@ -1,10 +1,14 @@
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { getAllCategories, getPostsByCategory } from '@/lib/posts';
-import { getCategoryFromSlug, getCategorySlug, categoryMeta } from '@/lib/categories';
-import { PostCard } from '@/components/PostCard';
-import { siteConfig } from '@/lib/site';
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { getAllCategories, getPostsByCategory } from "@/lib/posts";
+import {
+  getCategoryFromSlug,
+  getCategorySlug,
+  categoryMeta,
+} from "@/lib/categories";
+import { PostCard } from "@/components/PostCard";
+import { siteConfig } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -65,7 +69,9 @@ export default async function CategoryPage({ params }: Props) {
         {posts.length > 0 ? (
           posts.map((post) => <PostCard key={post.slug} post={post} />)
         ) : (
-          <p className="text-muted-foreground">No posts in this category yet.</p>
+          <p className="text-muted-foreground">
+            No posts in this category yet.
+          </p>
         )}
       </div>
     </div>

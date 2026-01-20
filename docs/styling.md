@@ -20,7 +20,7 @@ Uses shadcn/ui semantic color variables for consistent theming:
 Dark mode is configured via Tailwind v4 custom variant:
 
 ```css
-@custom-variant dark (&:where(.dark, .dark *))
+@custom-variant dark (&:where(.dark, .dark *));
 ```
 
 The `next-themes` package handles theme switching. CSS variables are defined in `src/app/globals.css` with separate values for light and dark modes.

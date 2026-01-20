@@ -1,9 +1,9 @@
-import { getAllPosts, getAllCategories } from '@/lib/posts';
-import { PostCard } from '@/components/PostCard';
-import { CategoryNav } from '@/components/CategoryNav';
+import { getAllPosts, getAllCategories } from "@/lib/posts";
+import { PostCard } from "@/components/PostCard";
+import { CategoryNav } from "@/components/CategoryNav";
 
 export const metadata = {
-  title: 'Writing',
+  title: "Writing",
 };
 
 export default function WritingPage() {
@@ -23,10 +23,10 @@ export default function WritingPage() {
             posts.map((post) => <PostCard key={post.slug} post={post} />)
           ) : (
             <p className="text-muted-foreground">
-              No posts yet. Add MDX files to{' '}
+              No posts yet. Add MDX files to{" "}
               <code className="text-sm bg-muted px-1.5 py-0.5 rounded-md">
                 src/blog/
-              </code>{' '}
+              </code>{" "}
               to get started.
             </p>
           )}

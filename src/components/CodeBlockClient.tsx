@@ -1,15 +1,21 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Copy, Check, ChevronDown, ChevronUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Copy, Check, ChevronDown, ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from "@/components/ui/tooltip";
 
-function CopyButton({ copied, onCopy }: { copied: boolean; onCopy: () => void }) {
+function CopyButton({
+  copied,
+  onCopy,
+}: {
+  copied: boolean;
+  onCopy: () => void;
+}) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -18,15 +24,19 @@ function CopyButton({ copied, onCopy }: { copied: boolean; onCopy: () => void })
           size="icon"
           onClick={onCopy}
           className="h-8 w-8 text-muted-foreground"
-          aria-label={copied ? 'Copied to clipboard' : 'Copy code'}
+          aria-label={copied ? "Copied to clipboard" : "Copy code"}
         >
-          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+          {copied ? (
+            <Check className="h-4 w-4" />
+          ) : (
+            <Copy className="h-4 w-4" />
+          )}
           <span className="sr-only" aria-live="polite">
-            {copied ? 'Copied to clipboard' : ''}
+            {copied ? "Copied to clipboard" : ""}
           </span>
         </Button>
       </TooltipTrigger>
-      <TooltipContent>{copied ? 'Copied' : 'Copy'}</TooltipContent>
+      <TooltipContent>{copied ? "Copied" : "Copy"}</TooltipContent>
     </Tooltip>
   );
 }
@@ -46,7 +56,7 @@ function ExpandButton({
           size="icon"
           onClick={onToggle}
           className="h-8 w-8 text-muted-foreground"
-          aria-label={isExpanded ? 'Collapse code' : 'Expand code'}
+          aria-label={isExpanded ? "Collapse code" : "Expand code"}
           aria-expanded={isExpanded}
         >
           {isExpanded ? (
@@ -56,7 +66,7 @@ function ExpandButton({
           )}
         </Button>
       </TooltipTrigger>
-      <TooltipContent>{isExpanded ? 'Collapse' : 'Expand'}</TooltipContent>
+      <TooltipContent>{isExpanded ? "Collapse" : "Expand"}</TooltipContent>
     </Tooltip>
   );
 }
@@ -118,7 +128,7 @@ export function CodeBlockClient({
         )}
 
         <div
-          className={shouldCollapse ? 'overflow-auto' : 'overflow-hidden'}
+          className={shouldCollapse ? "overflow-auto" : "overflow-hidden"}
           style={shouldCollapse ? { maxHeight: collapsedHeight } : undefined}
         >
           <div className="overflow-x-auto flex">
@@ -138,12 +148,12 @@ export function CodeBlockClient({
             <div className="flex-1 min-w-0 overflow-x-auto">
               <div
                 className="shiki-light block dark:hidden"
-                style={!showLineNumbers ? { paddingLeft: '1rem' } : undefined}
+                style={!showLineNumbers ? { paddingLeft: "1rem" } : undefined}
                 dangerouslySetInnerHTML={{ __html: lightHtml }}
               />
               <div
                 className="shiki-dark hidden dark:block"
-                style={!showLineNumbers ? { paddingLeft: '1rem' } : undefined}
+                style={!showLineNumbers ? { paddingLeft: "1rem" } : undefined}
                 dangerouslySetInnerHTML={{ __html: darkHtml }}
               />
             </div>
@@ -152,7 +162,10 @@ export function CodeBlockClient({
 
         {isCollapsible && (
           <div className="absolute bottom-2 right-2 z-10">
-            <ExpandButton isExpanded={isExpanded} onToggle={handleToggleExpand} />
+            <ExpandButton
+              isExpanded={isExpanded}
+              onToggle={handleToggleExpand}
+            />
           </div>
         )}
       </div>

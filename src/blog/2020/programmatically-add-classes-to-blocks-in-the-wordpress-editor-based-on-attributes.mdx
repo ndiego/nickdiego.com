@@ -16,7 +16,7 @@ This post will detail how adding block classes based on custom attributes can be
 
 ## Setup
 
-*I am assuming you are familiar with JavaScript (ESNext), React and have an appropriate development environment for your project. If you are not, or need a refresher, check out the [Tutorials](https://developer.wordpress.org/block-editor/tutorials/) in the Block Editor Handbook.*
+_I am assuming you are familiar with JavaScript (ESNext), React and have an appropriate development environment for your project. If you are not, or need a refresher, check out the [Tutorials](https://developer.wordpress.org/block-editor/tutorials/) in the Block Editor Handbook._
 
 To add custom classes to blocks in the editor, you need to use the `editor.BlockListBlock` filter. More information on this filter, and block filters in general, can be found in the [Block Editor Handbook](https://developer.wordpress.org/block-editor/developers/filters/block-filters/#editor-blocklistblock).
 
@@ -26,12 +26,12 @@ The first thing you need to do is add the filter. All filters have the following
 /**
  * WordPress dependencies
  */
-import { addFilter } from '@wordpress/hooks';
+import { addFilter } from "@wordpress/hooks";
 
 addFilter(
-	'editor.BlockListBlock',
-	'your-plugin/your-custom-class',
-	withYourCustomBlockClass
+  "editor.BlockListBlock",
+  "your-plugin/your-custom-class",
+  withYourCustomBlockClass,
 );
 ```
 
@@ -43,19 +43,22 @@ Next, you need to create the callback function, which will be a [higher-order co
 /**
  * WordPress dependencies
  */
-import { addFilter } from '@wordpress/hooks';
-import { createHigherOrderComponent } from '@wordpress/compose';
+import { addFilter } from "@wordpress/hooks";
+import { createHigherOrderComponent } from "@wordpress/compose";
 
-const withYourCustomBlockClass = createHigherOrderComponent( ( BlockListBlock ) => {
-    return ( props ) => {
-        return <BlockListBlock { ...props }/>;
+const withYourCustomBlockClass = createHigherOrderComponent(
+  (BlockListBlock) => {
+    return (props) => {
+      return <BlockListBlock {...props} />;
     };
-}, 'withYourCustomBlockClass' );
+  },
+  "withYourCustomBlockClass",
+);
 
 addFilter(
-	'editor.BlockListBlock',
-	'your-plugin/your-custom-class',
-	withYourCustomBlockClass
+  "editor.BlockListBlock",
+  "your-plugin/your-custom-class",
+  withYourCustomBlockClass,
 );
 ```
 
@@ -68,11 +71,14 @@ Now that the filter is completely setup, you can start adding the desired custom
 To add a custom class, you simply add a className attribute to the `BlockListBlock` component.
 
 ```javascript
-const withYourCustomBlockClass = createHigherOrderComponent( ( BlockListBlock ) => {
-    return ( props ) => {
-        return <BlockListBlock { ...props } className={ 'your-custom-class' }/>;
+const withYourCustomBlockClass = createHigherOrderComponent(
+  (BlockListBlock) => {
+    return (props) => {
+      return <BlockListBlock {...props} className={"your-custom-class"} />;
     };
-}, 'withYourCustomBlockClass' );
+  },
+  "withYourCustomBlockClass",
+);
 ```
 
 This will add `your-custom-class` to every block in the editor. While this is likely not the outcome you are looking for, it's a good start.
@@ -82,15 +88,18 @@ This will add `your-custom-class` to every block in the editor. While this is li
 To display the class based on an attribute, you need to retrieve the block attributes from `props`. Assume that the custom attribute is named `customAttribute` and you want to add the custom class if the attribute exists on the block, and it's value is `true`. The code would look something like this.
 
 ```javascript
-const withYourCustomBlockClass = createHigherOrderComponent( ( BlockListBlock ) => {
-    return ( props ) => {
-        const { attributes } = props;
-        const { customAttribute } = attributes;
-        const customClass = customAttribute ? 'your-custom-class' : '';
+const withYourCustomBlockClass = createHigherOrderComponent(
+  (BlockListBlock) => {
+    return (props) => {
+      const { attributes } = props;
+      const { customAttribute } = attributes;
+      const customClass = customAttribute ? "your-custom-class" : "";
 
-        return <BlockListBlock { ...props } className={ customClass }/>;
+      return <BlockListBlock {...props} className={customClass} />;
     };
-}, 'withYourCustomBlockClass' );
+  },
+  "withYourCustomBlockClass",
+);
 ```
 
 Again, this filter will target every block in the editor but will only add the class if the block has `customAttribute` set to `true`. Of course, your attributes could be much more complicated than a simple boolean, and you could apply different custom classes based on the value(s) of each attribute.
@@ -104,20 +113,23 @@ The `props` variable contains pretty much everything you need to know about a bl
 Assume you only want to add `your-custom-class` to paragraph blocks. You would then do something like the following. If the block does not have the appropriate `name`, you just return the unedited `BlockListBlock` component.
 
 ```javascript
-const withYourCustomBlockClass = createHigherOrderComponent( ( BlockListBlock ) => {
-    return ( props ) => {
-        const { name, attributes } = props;
+const withYourCustomBlockClass = createHigherOrderComponent(
+  (BlockListBlock) => {
+    return (props) => {
+      const { name, attributes } = props;
 
-        if ( name != 'core/paragraph' ) {
-            return <BlockListBlock { ...props }/>;
-        }
+      if (name != "core/paragraph") {
+        return <BlockListBlock {...props} />;
+      }
 
-        const { customAttribute } = attributes;
-        const customClass = customAttribute ? 'your-custom-class' : '';
+      const { customAttribute } = attributes;
+      const customClass = customAttribute ? "your-custom-class" : "";
 
-        return <BlockListBlock { ...props } className={ customClass }/>;
+      return <BlockListBlock {...props} className={customClass} />;
     };
-}, 'withYourCustomBlockClass' );
+  },
+  "withYourCustomBlockClass",
+);
 ```
 
 While this is a simple example, you can get much more sophisticated in the blocks you are filtering out. In my [Block Visibility](https://nickdiego.wpengine.com/projects/) project, there is an entire function dedicated to determining which block(s) should have the `block-visibility__is-hidden` class.
@@ -132,27 +144,30 @@ Below is the complete code for adding the CSS class `your-custom-class` to all p
 /**
  * WordPress dependencies
  */
-import { addFilter } from '@wordpress/hooks';
-import { createHigherOrderComponent } from '@wordpress/compose';
+import { addFilter } from "@wordpress/hooks";
+import { createHigherOrderComponent } from "@wordpress/compose";
 
-const withYourCustomBlockClass = createHigherOrderComponent( ( BlockListBlock ) => {
-    return ( props ) => {
-        const { name, attributes } = props;
+const withYourCustomBlockClass = createHigherOrderComponent(
+  (BlockListBlock) => {
+    return (props) => {
+      const { name, attributes } = props;
 
-        if ( name != 'core/paragraph' ) {
-            return <BlockListBlock { ...props }/>;
-        }
-	
-	const { yourAttribute } = attributes;
-	const customClass = yourAttribute ? 'your-custom-class' : '';
+      if (name != "core/paragraph") {
+        return <BlockListBlock {...props} />;
+      }
 
-        return <BlockListBlock { ...props } className={ customClass } />;
+      const { yourAttribute } = attributes;
+      const customClass = yourAttribute ? "your-custom-class" : "";
+
+      return <BlockListBlock {...props} className={customClass} />;
     };
-}, 'withYourCustomBlockClass' );
+  },
+  "withYourCustomBlockClass",
+);
 
 addFilter(
-	'editor.BlockListBlock',
-	'your-plugin/your-custom-class',
-	withYourCustomBlockClass
+  "editor.BlockListBlock",
+  "your-plugin/your-custom-class",
+  withYourCustomBlockClass,
 );
 ```

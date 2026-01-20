@@ -28,7 +28,12 @@ I wanted to create a block extension that:
 
 Here's what the final result looks like. You can try out the [Enable Linked Groups](https://github.com/ndiego/enable-linked-groups) plugin on GitHub and test it directly using the Playground demo below.
 
-<Image src="./linked-group.png" alt="The Editor view of the Enable Linked Group blocks plugin." width={1384} height={1056} />
+<Image
+  src="./linked-group.png"
+  alt="The Editor view of the Enable Linked Group blocks plugin."
+  width={1384}
+  height={1056}
+/>
 
 [Try the Playground Demo](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ndiego/enable-linked-groups/main/_playground/blueprint-github.json)
 
@@ -44,7 +49,12 @@ If you are unfamiliar with this approach, check out [How to extend a WordPress b
 
 The most interesting part of this build was the custom link control in the block toolbar. My goal was to roughly emulate the Image block implementation.
 
-<Image src="./linked-group-image-link.jpg" alt="The Image block link control." width={1082} height={660} />
+<Image
+  src="./linked-group-image-link.jpg"
+  alt="The Image block link control."
+  width={1082}
+  height={660}
+/>
 
 The link control in the Image block is quite complicated, so I chose to build my own version using the experimental [LinkControl](https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/link-control/README.md) component coupled with a [ToolbarButton](https://developer.wordpress.org/block-editor/reference-guides/components/toolbar-button/), [Popover](https://developer.wordpress.org/block-editor/reference-guides/components/popover/), and [MenuGroup](https://developer.wordpress.org/block-editor/reference-guides/components/menu-group/) ([code](https://github.com/ndiego/enable-linked-groups/blob/44ce44a7826a7cb3c2299fa64aec87659695c60f/src/index.js#L89-L188)).
 
@@ -66,14 +76,29 @@ Here's an example of the front-end markup. You can see the link element with the
 
 ```html
 <div class="wp-block-group is-linked">
-    <a class="wp-block-group__link" href="https://wordpress.org" target="_self" rel="follow" aria-hidden="true" tabindex="-1"> </a>
-    <h2>Linked Group</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <div class="wp-block-buttons">
-        <div class="wp-block-button">
-            <a class="wp-block-button__link" href="https://github.com/ndiego/enable-linked-groups">Call to action</a>
-        </div>
+  <a
+    class="wp-block-group__link"
+    href="https://wordpress.org"
+    target="_self"
+    rel="follow"
+    aria-hidden="true"
+    tabindex="-1"
+  >
+  </a>
+  <h2>Linked Group</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </p>
+  <div class="wp-block-buttons">
+    <div class="wp-block-button">
+      <a
+        class="wp-block-button__link"
+        href="https://github.com/ndiego/enable-linked-groups"
+        >Call to action</a
+      >
     </div>
+  </div>
 </div>
 ```
 

@@ -57,7 +57,7 @@ categories:
 Your post content here...
 
 <Notice type="info">
-Use custom components like Notice and GitHubStats in your MDX.
+  Use custom components like Notice and GitHubStats in your MDX.
 </Notice>
 
 <GitHubStats repo="username/repo" />

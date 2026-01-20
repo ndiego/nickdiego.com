@@ -25,12 +25,18 @@ At this point, it is important to mention that I am a self-taught developer, and
 In very general terms, when a user activates a license, they are sending a "request" back to the website that they purchased the product from, which will return a "response" indicating if the activation was successful or not. Enter CORS:
 
 > Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served.
-> 
+>
 > Wikipedia
 
 Making a resource request between two websites can inherently have security implications. You don't want just anyone requesting license information, which includes some customer data, from your online store. If you try activating a license using the JavaScript example that EDD provides, there is a chance that you will get an error similar to the one below:
 
-<Image src="./cors-error.png" alt="" width={936} height={109} caption={<>CORS Policy Error</>} />
+<Image
+  src="./cors-error.png"
+  alt=""
+  width={936}
+  height={109}
+  caption={<>CORS Policy Error</>}
+/>
 
 My store website did not have a [HTTP response header](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#The_HTTP_response_headers) set which resulted in this CORS error. There are of course ways to add a header to your server, Mozilla has a [nice writeup](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin) about this, but none of the options seemed reasonable from a convenience or security perspective. I am not trying to create a public API, and I don't want my project to rely on a specific server configuration to work properly.
 
@@ -126,13 +132,13 @@ The first thing I am doing in this function is validating the nonce. We do not w
 
 The `$api_url` variable is the URL for the website with EDD Software Licensing running on it, i.e. the product store. The `$item_name` and `$item_id` refer to the product the user is attempting to activate. Refer to the [documentation](https://docs.easydigitaldownloads.com/article/384-software-licensing-api) on where to find the id. Note that these variables are hardcoded for demonstration purposes, but you will likely come up with a more elegant solution.
 
-Next, I am setting the `$edd_action` and `$license` key. These two variables come from the UI in React, and I will talk more about them later. Variables from JavaScript are passed to PHP via Ajax and are retrieved using the $_POST method in this example.
+Next, I am setting the `$edd_action` and `$license` key. These two variables come from the UI in React, and I will talk more about them later. Variables from JavaScript are passed to PHP via Ajax and are retrieved using the $\_POST method in this example.
 
 With all the variables set, we make the API call using `wp_remote_post()` which performs an HTTP request using the POST method. Assuming there are no errors, we then retrieve the response.
 
-Note that there are other ways in PHP to make an HTTP request, but using all of the WordPress-specific functions makes debugging much easier, especially  `is_wp_error()` and `wp_die()`.
+Note that there are other ways in PHP to make an HTTP request, but using all of the WordPress-specific functions makes debugging much easier, especially `is_wp_error()` and `wp_die()`.
 
-The most important part of the code above is the last line. There are two actions that we could use here. `wp_ajax_(your action name)` only works for users that are logged in to your website. wp_ajax_nopriv_(your action name) is for users that are not logged in. Both can be used in tandem, but since license activation takes place in the admin area of the website, we just need `wp_ajax_(your action name)`.
+The most important part of the code above is the last line. There are two actions that we could use here. `wp_ajax_(your action name)` only works for users that are logged in to your website. wp*ajax_nopriv*(your action name) is for users that are not logged in. Both can be used in tandem, but since license activation takes place in the admin area of the website, we just need `wp_ajax_(your action name)`.
 
 The `(your action name)` part of the action, or `demo_license_controls` in this example, will be used in the Ajax call on the React side.
 
@@ -156,19 +162,19 @@ Step 2 is where we need to make our Ajax call. There are many different Ajax lib
 
 ```javascript
 // Valid actions are activate_license, deactivate_license, get_version, check_license
-async function licenseControls( license = '', edd_action = 'activate_license' ) {
-	const response = await fetch( demoAjaxUrl, {
-		method: 'POST',
-		credentials: 'same-origin',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: new URLSearchParams( {
-			_ajax_nonce: demoLicenseControlsNonce,
-			action: 'demo_license_controls',
-			edd_action: edd_action,
-			license: license,
-		} )
-	} );
-	return response.json();
+async function licenseControls(license = "", edd_action = "activate_license") {
+  const response = await fetch(demoAjaxUrl, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      _ajax_nonce: demoLicenseControlsNonce,
+      action: "demo_license_controls",
+      edd_action: edd_action,
+      license: license,
+    }),
+  });
+  return response.json();
 }
 ```
 

@@ -4,8 +4,8 @@ interface YouTubeProps {
   start?: number;
 }
 
-export function YouTube({ id, title = 'YouTube video', start }: YouTubeProps) {
-  const startParam = start ? `?start=${start}` : '';
+export function YouTube({ id, title = "YouTube video", start }: YouTubeProps) {
+  const startParam = start ? `?start=${start}` : "";
 
   return (
     <div className="relative aspect-video my-8 rounded-md overflow-hidden bg-muted">

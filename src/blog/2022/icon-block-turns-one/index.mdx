@@ -23,13 +23,27 @@ Before version 1.3.0, the Icon Block did not properly support custom SVGs that u
 
 This limitation made using certain icon libraries nearly impossible. A great example is the [Heroicons](https://heroicons.com/) icon suite by the makers of Tailwind CSS. Version 1.3.0 now includes a toggle to remove the custom color fill. You can see this in action below.
 
-<Image src="./icon-block-no-fill-toggle.gif" alt="Using a Heroicon SVG with the new toggle fill color option." width={1127} height={826} caption={<>Using a Heroicon SVG with the new toggle fill color option.</>} />
+<Image
+  src="./icon-block-no-fill-toggle.gif"
+  alt="Using a Heroicon SVG with the new toggle fill color option."
+  width={1127}
+  height={826}
+  caption={<>Using a Heroicon SVG with the new toggle fill color option.</>}
+/>
 
 ### Improved Borders and Spacing
 
 The Icon Block now supports all of the advanced border and spacing functionality that's coming in WordPress 6.1. This includes the ability to configure the border on each side of the icon as well as new spacing steps for margin and padding.
 
-<Image src="./icon-block-border-spacing.png" alt="Updated border and spacing controls in preparation for WordPress 6.1" width={1049} height={778} caption={<>Updated border and spacing controls in preparation for WordPress 6.1</>} />
+<Image
+  src="./icon-block-border-spacing.png"
+  alt="Updated border and spacing controls in preparation for WordPress 6.1"
+  width={1049}
+  height={778}
+  caption={
+    <>Updated border and spacing controls in preparation for WordPress 6.1</>
+  }
+/>
 
 You will need to use Gutenberg to take advantage of these new settings until WordPress 6.1 is officially released. WordPress 6.0 without Gutenberg will display the old border and spacing settings.
 
@@ -37,13 +51,25 @@ You will need to use Gutenberg to take advantage of these new settings until Wor
 
 You can now add a `title` attribute to each icon. The `title` field is located in the Advanced tab.
 
-<Image src="./icon-block-title-attribute.png" alt="" width={656} height={530} caption={<>The new title attribute is located in the Advanced panel.</>} />
+<Image
+  src="./icon-block-title-attribute.png"
+  alt=""
+  width={656}
+  height={530}
+  caption={<>The new title attribute is located in the Advanced panel.</>}
+/>
 
 ### UI Standardization
 
 Great strides are taken to ensure the Icon Block user experience is as close to core WordPress as possible. Placeholders across many core blocks were overhauled in WordPress 6.1, mainly for media-related blocks. The Icon Block's custom placeholder was replaced with a more standard offering but with a bespoke inactive state.
 
-<Image src="./icon-block-placeholder.gif" alt="The new placeholder component in the Icon Block." width={860} height={416} caption={<>The new placeholder component in the Icon Block.</>} />
+<Image
+  src="./icon-block-placeholder.gif"
+  alt="The new placeholder component in the Icon Block."
+  width={860}
+  height={416}
+  caption={<>The new placeholder component in the Icon Block.</>}
+/>
 
 Like the border and spacing controls, you will need to install Gutenberg to see the new placeholder until 6.1 is released.
 
@@ -65,9 +91,9 @@ There is now a new filter titled `iconBlock.enableCustomIcons` that controls whe
 
 ```javascript
 wp.hooks.addFilter(
-	'iconBlock.enableCustomIcons',
-	'example-theme/disable-custom-icons',
-	() => false
+  "iconBlock.enableCustomIcons",
+  "example-theme/disable-custom-icons",
+  () => false,
 );
 ```
 
@@ -100,7 +126,15 @@ The theme.json block configuration below will disable both border and spacing co
 
 Border and spacing controls can be configured globally in the Site Editor if you are using a block theme.
 
-<Image src="./icon-block-global-styles.gif" alt="Setting border and spacing styles in the Global Styles panel." width={750} height={600} caption={<>How to set border and spacing styles in the Global Styles panel.</>} />
+<Image
+  src="./icon-block-global-styles.gif"
+  alt="Setting border and spacing styles in the Global Styles panel."
+  width={750}
+  height={600}
+  caption={
+    <>How to set border and spacing styles in the Global Styles panel.</>
+  }
+/>
 
 ## Bug Fixes
 

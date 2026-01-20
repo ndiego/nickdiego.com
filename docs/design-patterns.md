@@ -10,11 +10,11 @@ For static UI elements like navigation links, footer links, and other fixed cont
 
 ```tsx
 const navItems = [
-  { href: '/about', label: 'About' },
-  { href: '/writing', label: 'Writing' },
+  { href: "/about", label: "About" },
+  { href: "/writing", label: "Writing" },
 ];
 
-navItems.map(item => <Link href={item.href}>{item.label}</Link>)
+navItems.map((item) => <Link href={item.href}>{item.label}</Link>);
 ```
 
 ### Do this instead:
@@ -34,5 +34,6 @@ navItems.map(item => <Link href={item.href}>{item.label}</Link>)
 ### Exceptions
 
 Use arrays/mapping when:
+
 - Data is genuinely dynamic (from a database, CMS, or user input)
 - You have many items (10+) that are truly uniform

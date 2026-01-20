@@ -1,17 +1,17 @@
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { getAllPosts, getPostBySlug } from '@/lib/posts';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeMdxCodeProps from 'rehype-mdx-code-props';
-import { remarkGitHubAlerts } from '@/lib/remark-github-alerts';
-import { rehypeRelativeImages } from '@/lib/rehype-relative-images';
-import { getMDXComponents } from '../../../mdx-components';
-import { siteConfig } from '@/lib/site';
-import { generateArticleJsonLd } from '@/lib/metadata';
-import { getCategorySlug } from '@/lib/categories';
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeMdxCodeProps from "rehype-mdx-code-props";
+import { remarkGitHubAlerts } from "@/lib/remark-github-alerts";
+import { rehypeRelativeImages } from "@/lib/rehype-relative-images";
+import { getMDXComponents } from "../../../mdx-components";
+import { siteConfig } from "@/lib/site";
+import { generateArticleJsonLd } from "@/lib/metadata";
+import { getCategorySlug } from "@/lib/categories";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.meta.title,
       description: post.meta.excerpt,
       url,
-      type: 'article',
+      type: "article",
       publishedTime: post.meta.date,
       authors: [siteConfig.author.name],
       images: [
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: post.meta.title,
       description: post.meta.excerpt,
       images: [ogImage],
@@ -69,10 +69,10 @@ export default async function PostPage({ params }: Props) {
 
   if (!post) notFound();
 
-  const date = new Date(post.meta.date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
+  const date = new Date(post.meta.date).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   });
 
   const jsonLd = generateArticleJsonLd({
@@ -97,9 +97,14 @@ export default async function PostPage({ params }: Props) {
       />
       <article className="max-w-2xl mx-auto px-6 py-6 md:py-12">
         <header className="mb-12">
-          <h1 className="text-3xl font-medium mb-2 text-balance">{post.meta.title}</h1>
+          <h1 className="text-3xl font-medium mb-2 text-balance">
+            {post.meta.title}
+          </h1>
           <div className="flex items-center gap-3">
-            <time dateTime={post.meta.date} className="text-muted-foreground text-sm">
+            <time
+              dateTime={post.meta.date}
+              className="text-muted-foreground text-sm"
+            >
               {date}
             </time>
             {post.meta.draft && (
@@ -113,7 +118,10 @@ export default async function PostPage({ params }: Props) {
         <div>
           <MDXRemote
             source={post.content}
-            components={getMDXComponents({}, { imageBasePath: post.imageBasePath })}
+            components={getMDXComponents(
+              {},
+              { imageBasePath: post.imageBasePath },
+            )}
             options={{
               mdxOptions: {
                 remarkPlugins: [remarkGitHubAlerts],
@@ -122,9 +130,9 @@ export default async function PostPage({ params }: Props) {
                   [
                     rehypeAutolinkHeadings,
                     {
-                      behavior: 'wrap',
+                      behavior: "wrap",
                       properties: {
-                        className: ['heading-anchor'],
+                        className: ["heading-anchor"],
                       },
                     },
                   ],

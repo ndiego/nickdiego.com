@@ -1,4 +1,4 @@
-import { Star, GitFork } from 'lucide-react';
+import { Star, GitFork } from "lucide-react";
 
 interface GHRepoCardProps {
   repo: string;
@@ -18,7 +18,11 @@ async function getRepoStats(repo: string) {
   }
 }
 
-export async function GHRepoCard({ repo, title, description }: GHRepoCardProps) {
+export async function GHRepoCard({
+  repo,
+  title,
+  description,
+}: GHRepoCardProps) {
   const data = await getRepoStats(repo);
 
   return (

@@ -90,7 +90,7 @@
   --foreground: oklch(0.985 0 0);
   --text-copy: oklch(0.85 0 0);
   --text-heading: oklch(0.985 0 0);
-  --card: oklch(0.190 0 0);
+  --card: oklch(0.19 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.145 0 0);
@@ -146,7 +146,9 @@ a:hover code {
 }
 
 /* Heading anchors */
-h2, h3, h4 {
+h2,
+h3,
+h4 {
   scroll-margin-top: 5rem;
 }
 
@@ -163,7 +165,7 @@ h4 .heading-anchor {
 h2:hover .heading-anchor::before,
 h3:hover .heading-anchor::before,
 h4:hover .heading-anchor::before {
-  content: '#';
+  content: "#";
   @apply absolute -left-6 text-muted-foreground;
 }
 

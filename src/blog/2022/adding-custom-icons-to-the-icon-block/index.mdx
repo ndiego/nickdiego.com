@@ -143,9 +143,21 @@ This code will add 6 new icons to the Icon Block. They will appear as their own 
 
 Here are a few screenshots of what the finished product looks like:
 
-<Image src="./icon-block-library-popover.png" alt="Example Icons in the Icon Block quick inserter." width={700} height={600} caption={<>Example Icons in the Quick Inserter</>} />
+<Image
+  src="./icon-block-library-popover.png"
+  alt="Example Icons in the Icon Block quick inserter."
+  width={700}
+  height={600}
+  caption={<>Example Icons in the Quick Inserter</>}
+/>
 
-<Image src="./icon-block-library-custom-icons.png" alt="Example Icons in the Icon Block inserter modal." width={1163} height={761} caption={<>Example Icons in the Inserter modal</>} />
+<Image
+  src="./icon-block-library-custom-icons.png"
+  alt="Example Icons in the Icon Block inserter modal."
+  width={1163}
+  height={761}
+  caption={<>Example Icons in the Inserter modal</>}
+/>
 
 ### The Filter
 
@@ -189,13 +201,13 @@ Custom icons are added to the Icon Block by defining an icon **type**. In the fo
 
 ```javascript
 const customIconType = [
-	{
-		isDefault: false,
-		type: 'example-icons',
-		title: __( 'Example Icons', 'example-theme' ),
-		icons: customIcons,
-		categories: customIconCategories,
-	},
+  {
+    isDefault: false,
+    type: "example-icons",
+    title: __("Example Icons", "example-theme"),
+    icons: customIcons,
+    categories: customIconCategories,
+  },
 ];
 ```
 
@@ -244,14 +256,14 @@ Finally, we need to define icon categories. Categories are optional, but they ar
 
 ```javascript
 const customIconCategories = [
-	{
-		name: 'category-one',
-		title: __( 'Category One', 'example-theme' ),
-	},
-	{
-		name: 'category-two',
-		title: __( 'Category Two', 'example-theme' ),
-	},
+  {
+    name: "category-one",
+    title: __("Category One", "example-theme"),
+  },
+  {
+    name: "category-two",
+    title: __("Category Two", "example-theme"),
+  },
 ];
 ```
 

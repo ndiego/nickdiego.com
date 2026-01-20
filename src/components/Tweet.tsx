@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface TweetProps {
   id: string;
@@ -14,7 +14,7 @@ declare global {
         createTweet: (
           id: string,
           container: HTMLElement,
-          options?: Record<string, unknown>
+          options?: Record<string, unknown>,
         ) => Promise<HTMLElement>;
       };
     };
@@ -32,11 +32,11 @@ export function Tweet({ id }: TweetProps) {
     const loadTwitterWidget = () => {
       if (window.twttr && containerRef.current) {
         window.twttr.widgets.createTweet(id, containerRef.current, {
-          theme: document.documentElement.classList.contains('dark')
-            ? 'dark'
-            : 'light',
+          theme: document.documentElement.classList.contains("dark")
+            ? "dark"
+            : "light",
           dnt: true,
-          align: 'center',
+          align: "center",
         });
       }
     };
@@ -44,8 +44,8 @@ export function Tweet({ id }: TweetProps) {
     if (window.twttr) {
       loadTwitterWidget();
     } else {
-      const script = document.createElement('script');
-      script.src = 'https://platform.twitter.com/widgets.js';
+      const script = document.createElement("script");
+      script.src = "https://platform.twitter.com/widgets.js";
       script.async = true;
       script.onload = loadTwitterWidget;
       document.body.appendChild(script);
@@ -53,9 +53,6 @@ export function Tweet({ id }: TweetProps) {
   }, [id]);
 
   return (
-    <div
-      ref={containerRef}
-      className="my-8 flex justify-center [&>*]:!my-0"
-    />
+    <div ref={containerRef} className="my-8 flex justify-center [&>*]:!my-0" />
   );
 }

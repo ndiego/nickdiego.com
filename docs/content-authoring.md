@@ -10,6 +10,7 @@ Blog posts are MDX files in `src/blog/`. Posts can be organized in two ways:
 2. **Posts with images** (folder structure): `src/blog/2024/my-post/index.mdx` with images alongside
 
 For posts with images, colocate the images in the same folder:
+
 ```
 src/blog/2024/my-post/
 ├── index.mdx
@@ -28,7 +29,7 @@ date: YYYY-MM-DD
 excerpt: Short description
 categories:
   - Category
-featuredImage: /path/to/image.jpg  # optional
+featuredImage: /path/to/image.jpg # optional
 ---
 ```
 
@@ -58,15 +59,16 @@ Always use fenced code blocks with metadata in the info string. This preserves i
 ```mdx
 \`\`\`json filename="package.json"
 {
-  "name": "my-app",
-  "scripts": {
-    "dev": "next dev"
-  }
+"name": "my-app",
+"scripts": {
+"dev": "next dev"
+}
 }
 \`\`\`
 ```
 
 Available options in the info string:
+
 - `filename="name.ext"` - Shows filename header
 - `maxLines={8}` - Collapsible with expand button
 - `showLineNumbers={false}` - Hides line numbers

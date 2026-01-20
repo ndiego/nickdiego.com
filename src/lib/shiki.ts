@@ -1,4 +1,4 @@
-import { createHighlighter, type Highlighter } from 'shiki';
+import { createHighlighter, type Highlighter } from "shiki";
 
 let highlighter: Highlighter | null = null;
 let highlighterPromise: Promise<Highlighter> | null = null;
@@ -13,26 +13,26 @@ export async function getHighlighter() {
   }
 
   highlighterPromise = createHighlighter({
-    themes: ['github-light', 'github-dark'],
+    themes: ["github-light", "github-dark"],
     langs: [
-      'javascript',
-      'typescript',
-      'jsx',
-      'tsx',
-      'json',
-      'html',
-      'css',
-      'scss',
-      'php',
-      'bash',
-      'shell',
-      'markdown',
-      'yaml',
-      'python',
-      'sql',
-      'graphql',
-      'diff',
-      'plaintext',
+      "javascript",
+      "typescript",
+      "jsx",
+      "tsx",
+      "json",
+      "html",
+      "css",
+      "scss",
+      "php",
+      "bash",
+      "shell",
+      "markdown",
+      "yaml",
+      "python",
+      "sql",
+      "graphql",
+      "diff",
+      "plaintext",
     ],
   });
 
@@ -42,7 +42,7 @@ export async function getHighlighter() {
 
 export async function highlightCode(
   code: string,
-  lang: string = 'plaintext'
+  lang: string = "plaintext",
 ): Promise<{ light: string; dark: string }> {
   const hl = await getHighlighter();
 
@@ -51,12 +51,12 @@ export async function highlightCode(
 
   const light = hl.codeToHtml(code, {
     lang: normalizedLang,
-    theme: 'github-light',
+    theme: "github-light",
   });
 
   const dark = hl.codeToHtml(code, {
     lang: normalizedLang,
-    theme: 'github-dark',
+    theme: "github-dark",
   });
 
   return { light, dark };
@@ -64,16 +64,16 @@ export async function highlightCode(
 
 function normalizeLanguage(lang: string): string {
   const aliases: Record<string, string> = {
-    js: 'javascript',
-    ts: 'typescript',
-    sh: 'bash',
-    zsh: 'bash',
-    yml: 'yaml',
-    md: 'markdown',
-    py: 'python',
-    rb: 'ruby',
-    rs: 'rust',
-    '': 'plaintext',
+    js: "javascript",
+    ts: "typescript",
+    sh: "bash",
+    zsh: "bash",
+    yml: "yaml",
+    md: "markdown",
+    py: "python",
+    rb: "ruby",
+    rs: "rust",
+    "": "plaintext",
   };
 
   return aliases[lang.toLowerCase()] || lang.toLowerCase();

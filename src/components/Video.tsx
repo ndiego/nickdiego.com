@@ -1,4 +1,4 @@
-import { getVideoMetadata } from '@/lib/cloudflare';
+import { getVideoMetadata } from "@/lib/cloudflare";
 
 interface VideoProps {
   id: string;
@@ -13,7 +13,7 @@ interface VideoProps {
 
 export async function Video({
   id,
-  title = 'Video',
+  title = "Video",
   autoplay = false,
   loop = false,
   muted = false,
@@ -23,15 +23,15 @@ export async function Video({
 }: VideoProps) {
   const params = new URLSearchParams();
 
-  if (autoplay) params.set('autoplay', 'true');
-  if (loop) params.set('loop', 'true');
-  if (muted) params.set('muted', 'true');
-  if (!controls) params.set('controls', 'false');
-  if (poster) params.set('poster', poster);
-  if (start) params.set('startTime', start.toString());
+  if (autoplay) params.set("autoplay", "true");
+  if (loop) params.set("loop", "true");
+  if (muted) params.set("muted", "true");
+  if (!controls) params.set("controls", "false");
+  if (poster) params.set("poster", poster);
+  if (start) params.set("startTime", start.toString());
 
   const queryString = params.toString();
-  const src = `https://iframe.videodelivery.net/${id}${queryString ? `?${queryString}` : ''}`;
+  const src = `https://iframe.videodelivery.net/${id}${queryString ? `?${queryString}` : ""}`;
 
   // Fetch video metadata to get the correct aspect ratio
   const metadata = await getVideoMetadata(id);

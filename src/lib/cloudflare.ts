@@ -21,7 +21,7 @@ const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const metadataCache = new Map<string, CloudflareVideoMetadata>();
 
 export async function getVideoMetadata(
-  videoId: string
+  videoId: string,
 ): Promise<CloudflareVideoMetadata | null> {
   // Return cached metadata if available
   if (metadataCache.has(videoId)) {
@@ -31,7 +31,7 @@ export async function getVideoMetadata(
   // If credentials aren't configured, return null (component will use default)
   if (!CLOUDFLARE_ACCOUNT_ID || !CLOUDFLARE_API_TOKEN) {
     console.warn(
-      'Cloudflare credentials not configured. Using default 16:9 aspect ratio.'
+      "Cloudflare credentials not configured. Using default 16:9 aspect ratio.",
     );
     return null;
   }
@@ -44,19 +44,23 @@ export async function getVideoMetadata(
           Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}`,
         },
         next: { revalidate: 86400 }, // Cache for 24 hours
-      }
+      },
     );
 
     if (!response.ok) {
       console.error(
-        `Failed to fetch video metadata for ${videoId}: ${response.status}`
+        `Failed to fetch video metadata for ${videoId}: ${response.status}`,
       );
       return null;
     }
 
     const data: CloudflareApiResponse = await response.json();
 
-    if (!data.success || !data.result?.input?.width || !data.result?.input?.height) {
+    if (
+      !data.success ||
+      !data.result?.input?.width ||
+      !data.result?.input?.height
+    ) {
       console.error(`Invalid metadata response for video ${videoId}`);
       return null;
     }

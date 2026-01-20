@@ -1,5 +1,5 @@
-import { visit } from 'unist-util-visit';
-import type { Root, Element } from 'hast';
+import { visit } from "unist-util-visit";
+import type { Root, Element } from "hast";
 
 interface Options {
   imageBasePath: string | null;
@@ -15,11 +15,11 @@ export function rehypeRelativeImages(options: Options) {
   return (tree: Root) => {
     if (!imageBasePath) return;
 
-    visit(tree, 'element', (node: Element) => {
+    visit(tree, "element", (node: Element) => {
       // Handle <img> elements
-      if (node.tagName === 'img' && node.properties?.src) {
+      if (node.tagName === "img" && node.properties?.src) {
         const src = String(node.properties.src);
-        if (src.startsWith('./')) {
+        if (src.startsWith("./")) {
           node.properties.src = `/api/blog-images/${imageBasePath}/${src.slice(2)}`;
         }
       }
@@ -28,7 +28,7 @@ export function rehypeRelativeImages(options: Options) {
       // The src prop is passed through properties
       if (node.properties?.src) {
         const src = String(node.properties.src);
-        if (src.startsWith('./')) {
+        if (src.startsWith("./")) {
           node.properties.src = `/api/blog-images/${imageBasePath}/${src.slice(2)}`;
         }
       }

@@ -3,9 +3,12 @@ export const categoryMeta: Record<string, { description?: string }> = {
 };
 
 export function getCategorySlug(category: string): string {
-  return category.toLowerCase().replace(/\s+/g, '-');
+  return category.toLowerCase().replace(/\s+/g, "-");
 }
 
-export function getCategoryFromSlug(slug: string, categories: string[]): string | undefined {
+export function getCategoryFromSlug(
+  slug: string,
+  categories: string[],
+): string | undefined {
   return categories.find((cat) => getCategorySlug(cat) === slug);
 }

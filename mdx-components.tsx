@@ -1,16 +1,16 @@
-import React, { ComponentPropsWithoutRef } from 'react';
-import type { MDXComponents } from 'mdx/types';
-import { Link } from '@/components/ui/link';
-import { Notice } from '@/components/Notice';
-import { GHRepoCard } from '@/components/GHRepoCard';
-import { WPPluginCard } from '@/components/WPPluginCard';
-import { YouTube } from '@/components/YouTube';
-import { Video } from '@/components/Video';
-import { Tweet } from '@/components/Tweet';
-import { Image, ImageProps } from '@/components/Image';
-import { CodeBlock } from '@/components/CodeBlock';
+import React, { ComponentPropsWithoutRef } from "react";
+import type { MDXComponents } from "mdx/types";
+import { Link } from "@/components/ui/link";
+import { Notice } from "@/components/Notice";
+import { GHRepoCard } from "@/components/GHRepoCard";
+import { WPPluginCard } from "@/components/WPPluginCard";
+import { YouTube } from "@/components/YouTube";
+import { Video } from "@/components/Video";
+import { Tweet } from "@/components/Tweet";
+import { Image, ImageProps } from "@/components/Image";
+import { CodeBlock } from "@/components/CodeBlock";
 
-type AnchorProps = ComponentPropsWithoutRef<'a'>;
+type AnchorProps = ComponentPropsWithoutRef<"a">;
 
 interface MDXComponentsOptions {
   imageBasePath?: string | null;
@@ -18,14 +18,14 @@ interface MDXComponentsOptions {
 
 export function getMDXComponents(
   components: MDXComponents,
-  options: MDXComponentsOptions = {}
+  options: MDXComponentsOptions = {},
 ): MDXComponents {
   const { imageBasePath } = options;
 
   // Wrapper to transform relative image paths
   const ImageWithBasePath = (props: ImageProps) => {
     let src = props.src;
-    if (src.startsWith('./') && imageBasePath) {
+    if (src.startsWith("./") && imageBasePath) {
       src = `/api/blog-images/${imageBasePath}/${src.slice(2)}`;
     }
     return <Image {...props} src={src} />;
@@ -36,34 +36,48 @@ export function getMDXComponents(
       <p className="text-[var(--text-copy)] leading-relaxed mb-6">{children}</p>
     ),
     h1: ({ children, id }) => (
-      <h1 id={id} className="text-[var(--text-heading)] text-3xl font-medium mt-10 mb-4 scroll-mt-20 text-balance">
+      <h1
+        id={id}
+        className="text-[var(--text-heading)] text-3xl font-medium mt-10 mb-4 scroll-mt-20 text-balance"
+      >
         {children}
       </h1>
     ),
     h2: ({ children, id }) => (
-      <h2 id={id} className="text-[var(--text-heading)] text-2xl font-medium mt-10 mb-4 scroll-mt-20 text-balance">
+      <h2
+        id={id}
+        className="text-[var(--text-heading)] text-2xl font-medium mt-10 mb-4 scroll-mt-20 text-balance"
+      >
         {children}
       </h2>
     ),
     h3: ({ children, id }) => (
-      <h3 id={id} className="text-[var(--text-heading)] text-xl font-medium mt-8 mb-3 scroll-mt-20 text-balance">
+      <h3
+        id={id}
+        className="text-[var(--text-heading)] text-xl font-medium mt-8 mb-3 scroll-mt-20 text-balance"
+      >
         {children}
       </h3>
     ),
     h4: ({ children, id }) => (
-      <h4 id={id} className="text-[var(--text-heading)] text-lg font-medium mt-6 mb-2 scroll-mt-20">
+      <h4
+        id={id}
+        className="text-[var(--text-heading)] text-lg font-medium mt-6 mb-2 scroll-mt-20"
+      >
         {children}
       </h4>
     ),
     ul: ({ children }) => (
-      <ul className="list-disc pl-6 mb-6 space-y-2 text-[var(--text-copy)]">{children}</ul>
+      <ul className="list-disc pl-6 mb-6 space-y-2 text-[var(--text-copy)]">
+        {children}
+      </ul>
     ),
     ol: ({ children }) => (
-      <ol className="list-decimal pl-6 mb-6 space-y-2 text-[var(--text-copy)]">{children}</ol>
+      <ol className="list-decimal pl-6 mb-6 space-y-2 text-[var(--text-copy)]">
+        {children}
+      </ol>
     ),
-    li: ({ children }) => (
-      <li className="leading-relaxed">{children}</li>
-    ),
+    li: ({ children }) => <li className="leading-relaxed">{children}</li>,
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-border pl-4 my-6 text-muted-foreground italic">
         {children}
@@ -81,15 +95,15 @@ export function getMDXComponents(
     ),
     a: ({ href, children, ...props }: AnchorProps) => {
       const className =
-        'text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500 font-normal no-underline transition-colors';
-      if (href?.startsWith('/')) {
+        "text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500 font-normal no-underline transition-colors";
+      if (href?.startsWith("/")) {
         return (
           <Link href={href} className={className} {...props}>
             {children}
           </Link>
         );
       }
-      if (href?.startsWith('#')) {
+      if (href?.startsWith("#")) {
         return (
           <a href={href} className={className} {...props}>
             {children}
@@ -133,10 +147,10 @@ export function getMDXComponents(
 
       const { className, children: code } = codeElement.props;
 
-      const language = className?.replace('language-', '') || 'plaintext';
+      const language = className?.replace("language-", "") || "plaintext";
       const showLineNumbers = showLineNumbersProp !== false;
 
-      if (typeof code !== 'string') {
+      if (typeof code !== "string") {
         return <pre>{children}</pre>;
       }
 

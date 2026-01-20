@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { getCategorySlug } from '@/lib/categories';
+import Link from "next/link";
+import { getCategorySlug } from "@/lib/categories";
 
 interface CategoryNavProps {
   categories: string[];

@@ -13,20 +13,20 @@ This post demonstrates the custom CodeBlock component with Shiki syntax highligh
 Standard fenced code blocks automatically get syntax highlighting:
 
 ```javascript
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // Base theme.json structure
-const baseConfig = require('../src/json/base.json');
+const baseConfig = require("../src/json/base.json");
 
 // Function to read and parse JSON file
 function readJsonFile(filePath) {
-    try {
-        return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    } catch (error) {
-        console.error(`Error reading ${filePath}:`, error);
-        return {};
-    }
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    console.error(`Error reading ${filePath}:`, error);
+    return {};
+  }
 }
 ```
 
@@ -54,7 +54,7 @@ async function fetchUser(id: string): Promise<User | null> {
 ## React Component (TSX)
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 interface ButtonProps {
   label: string;
@@ -74,7 +74,8 @@ export function Button({ label, onClick }: ButtonProps) {
       onClick={handleClick}
       className="px-4 py-2 bg-blue-500 text-white rounded"
     >
-      {clicked ? '✓ ' : ''}{label}
+      {clicked ? "✓ " : ""}
+      {label}
     </button>
   );
 }
@@ -192,7 +193,7 @@ function get_block_wrapper_attributes($attributes = []) {
 }
 
 .code-block pre code {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -203,17 +204,17 @@ function get_block_wrapper_attributes($attributes = []) {
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Page</title>
-</head>
-<body>
-  <main>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my website.</p>
-  </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Page</title>
+  </head>
+  <body>
+    <main>
+      <h1>Hello, World!</h1>
+      <p>Welcome to my website.</p>
+    </main>
+  </body>
 </html>
 ```
 

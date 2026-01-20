@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
-import { PostCard } from '@/components/PostCard';
-import Image from 'next/image';
+import Link from "next/link";
+import { getAllPosts } from "@/lib/posts";
+import { PostCard } from "@/components/PostCard";
+import Image from "next/image";
 
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
@@ -13,14 +13,20 @@ export default function HomePage() {
         <div>
           <h1 className="text-4xl font-medium mb-4">Hi there</h1>
           <p className="text-copy leading-relaxed">
-            I&apos;m Nick—a Product Marketing Manager at Automattic, WordPress Core
-            contributor, and hobby web developer. This site&apos;s dedicated to my
-            current WordPress projects and explorations into related technologies.
-            Have a look around.
+            I&apos;m Nick—a Product Marketing Manager at Automattic, WordPress
+            Core contributor, and hobby web developer. This site&apos;s
+            dedicated to my current WordPress projects and explorations into
+            related technologies. Have a look around.
           </p>
         </div>
         <div className="flex justify-center md:justify-end">
-          <Image src="/images/avatar.png" alt="Nick Diego" width={128} height={128} className="rounded-full" />
+          <Image
+            src="/images/avatar.png"
+            alt="Nick Diego"
+            width={128}
+            height={128}
+            className="rounded-full"
+          />
         </div>
       </section>
 
@@ -40,20 +46,22 @@ export default function HomePage() {
           </div>
         ) : (
           <p className="text-copy mb-8">
-            No posts yet. Add MDX files to{' '}
+            No posts yet. Add MDX files to{" "}
             <code className="text-sm bg-muted px-1.5 py-0.5 rounded-md">
               src/blog/
-            </code>{' '}
+            </code>{" "}
             to get started.
           </p>
         )}
 
-        <Link
-          href="/writing"
-          className="text-sm font-medium hover:text-muted-foreground transition-colors"
-        >
-          View all →
-        </Link>
+        <div className="flex justify-end">
+          <Link
+            href="/writing"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            View all →
+          </Link>
+        </div>
       </section>
     </div>
   );

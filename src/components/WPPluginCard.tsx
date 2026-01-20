@@ -1,4 +1,4 @@
-import { Star, Users } from 'lucide-react';
+import { Star, Users } from "lucide-react";
 
 interface WPPluginCardProps {
   slug: string;
@@ -10,7 +10,7 @@ async function getPluginStats(slug: string) {
   try {
     const res = await fetch(
       `https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&slug=${slug}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 } },
     );
     if (!res.ok) return null;
     return res.json();
@@ -29,7 +29,11 @@ function formatInstalls(num: number): string {
   return `${num}+`;
 }
 
-export async function WPPluginCard({ slug, title, description }: WPPluginCardProps) {
+export async function WPPluginCard({
+  slug,
+  title,
+  description,
+}: WPPluginCardProps) {
   const data = await getPluginStats(slug);
 
   return (

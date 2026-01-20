@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
-import { Providers } from '@/components/Providers';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { siteConfig } from '@/lib/site';
-import { generateWebsiteJsonLd, generatePersonJsonLd } from '@/lib/metadata';
-import './globals.css';
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Providers } from "@/components/Providers";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { siteConfig } from "@/lib/site";
+import { generateWebsiteJsonLd, generatePersonJsonLd } from "@/lib/metadata";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
   alternates: {
-    canonical: '/',
+    canonical: "/",
     types: {
-      'application/rss+xml': '/feed.xml',
+      "application/rss+xml": "/feed.xml",
     },
   },
   openGraph: {
@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
     images: [
       {
-        url: '/api/og',
+        url: "/api/og",
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -38,11 +38,11 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
     creator: siteConfig.author.twitter,
-    images: ['/api/og'],
+    images: ["/api/og"],
   },
   robots: {
     index: true,
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -67,7 +67,7 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
-      style={{ colorScheme: 'dark light' }}
+      style={{ colorScheme: "dark light" }}
     >
       <head>
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
@@ -93,7 +93,9 @@ export default function RootLayout({
             Skip to content
           </a>
           <Header />
-          <main id="main" className="flex-1">{children}</main>
+          <main id="main" className="flex-1">
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>

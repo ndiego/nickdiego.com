@@ -28,10 +28,10 @@ Copy `.env.example` to `.env.local` and configure as needed:
 cp .env.example .env.local
 ```
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `CLOUDFLARE_ACCOUNT_ID` | No | Cloudflare account ID for video aspect ratio detection |
-| `CLOUDFLARE_API_TOKEN` | No | API token with Stream:Read permission |
+| Variable                | Required | Description                                            |
+| ----------------------- | -------- | ------------------------------------------------------ |
+| `CLOUDFLARE_ACCOUNT_ID` | No       | Cloudflare account ID for video aspect ratio detection |
+| `CLOUDFLARE_API_TOKEN`  | No       | API token with Stream:Read permission                  |
 
 See [components.md](./components.md#video) for details on setting up Cloudflare Stream.
 

@@ -1,11 +1,11 @@
-import NextLink from 'next/link';
-import { cn } from '@/lib/utils';
-import { ComponentProps } from 'react';
-import { MoveUpRightIcon } from 'lucide-react';
+import NextLink from "next/link";
+import { cn } from "@/lib/utils";
+import { ComponentProps } from "react";
+import { MoveUpRightIcon } from "lucide-react";
 
 interface LinkProps extends ComponentProps<typeof NextLink> {
   className?: string;
-  variant?: 'default' | 'unstyled' | 'external';
+  variant?: "default" | "unstyled" | "external";
 }
 
 /**
@@ -31,18 +31,27 @@ interface LinkProps extends ComponentProps<typeof NextLink> {
  * // External link with icon
  * <Link href="https://example.com" variant="external">External Site</Link>
  */
-export function Link({ className, variant = 'default', children, ...props }: LinkProps) {
+export function Link({
+  className,
+  variant = "default",
+  children,
+  ...props
+}: LinkProps) {
   const defaultStyles =
-    variant === 'default' || variant === 'external'
-      ? 'text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500 font-normal no-underline transition-colors'
-      : '';
+    variant === "default" || variant === "external"
+      ? "text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500 font-normal no-underline transition-colors"
+      : "";
 
-  const externalStyles = variant === 'external' ? 'inline-flex items-center gap-0.5' : '';
+  const externalStyles =
+    variant === "external" ? "inline-flex items-center gap-0.5" : "";
 
   return (
-    <NextLink className={cn(defaultStyles, externalStyles, className)} {...props}>
+    <NextLink
+      className={cn(defaultStyles, externalStyles, className)}
+      {...props}
+    >
       {children}
-      {variant === 'external' && <MoveUpRightIcon className="size-3" />}
+      {variant === "external" && <MoveUpRightIcon className="size-3" />}
     </NextLink>
   );
 }

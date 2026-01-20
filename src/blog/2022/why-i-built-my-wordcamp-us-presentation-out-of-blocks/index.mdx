@@ -60,11 +60,28 @@ I am also using the Gutenberg plugin to take full advantage of functionality not
 
 After that, it just takes **a lot** of blocks. 749 to be exact.
 
-<Image src="./custom-blocks-number-of-blocks.jpg" alt="The presentation was composed of 749 individual blocks that make up 21 slides." width={900} height={489} caption={<>The presentation was composed of 749 individual blocks that make up 21 slides.</>} />
+<Image
+  src="./custom-blocks-number-of-blocks.jpg"
+  alt="The presentation was composed of 749 individual blocks that make up 21 slides."
+  width={900}
+  height={489}
+  caption={
+    <>
+      The presentation was composed of 749 individual blocks that make up 21
+      slides.
+    </>
+  }
+/>
 
 Each presentation slide is a Cover block with the "Toggle full height" setting applied. Inside each slide is a Stack block, which includes 3 Group blocks. The general structure looks like this:
 
-<Image src="./custom-blocks-structure.jpg" alt="The general structure of each slide." width={1350} height={675} caption={<>The general structure of each slide.</>} />
+<Image
+  src="./custom-blocks-structure.jpg"
+  alt="The general structure of each slide."
+  width={1350}
+  height={675}
+  caption={<>The general structure of each slide.</>}
+/>
 
 The Cover and Stack blocks have a minor amount of additional CSS applied. These styles are add using the classes, [`.is-style-slide`](https://github.com/ndiego/nautilus/blob/main/src/blocks/core/cover.scss) and [`is-style-full-height-stack`](https://github.com/ndiego/nautilus/blob/main/src/blocks/core/group.scss) respectively.
 
@@ -74,13 +91,30 @@ I created a Gist of the block markup for the [complete presentation](https://gis
 
 Slide progression is handled using anchor links placed in the header and footer of each slide. Anchor links, while simplistic, work well enough and I wanted to stick as closely as possible to core WordPress. They also show up in the List View making it easy to navigate between slides in the Editor.
 
-<Image src="./custom-blocks-anchor-links.jpg" alt="The anchor links for each slide are visible in the List View." width={900} height={560} caption={<>The anchor links for each slide are visible in the List View.</>} />
+<Image
+  src="./custom-blocks-anchor-links.jpg"
+  alt="The anchor links for each slide are visible in the List View."
+  width={900}
+  height={560}
+  caption={<>The anchor links for each slide are visible in the List View.</>}
+/>
 
 Finally, I used a few third-party plugins to polish up the presentation.
 
 Every SVG icon is added using the [Icon Block](https://wordpress.org/plugins/icon-block/). The [Block Visibility](https://wordpress.org/plugins/block-visibility/) plugin conditionally displays certain slide components. For example, I wanted to hide slide headers and footers on mobile devices. The plugin was also used to schedule the presentation so it would remain inaccessible until I began speaking at WordCamp US. Here's a look at the configuration for the main slide.
 
-<Image src="./custom-blocks-visibility.jpg" alt="Block Visibility was used to conditionally display notices and schedule the presentation." width={1350} height={720} caption={<>[Block Visibility](https://wordpress.org/plugins/block-visibility/) was used to conditionally display notices and schedule the presentation.</>} />
+<Image
+  src="./custom-blocks-visibility.jpg"
+  alt="Block Visibility was used to conditionally display notices and schedule the presentation."
+  width={1350}
+  height={720}
+  caption={
+    <>
+      [Block Visibility](https://wordpress.org/plugins/block-visibility/) was
+      used to conditionally display notices and schedule the presentation.
+    </>
+  }
+/>
 
 These additional tools are definitely not required, which means the entire slideshow could be built with core WordPress as soon as version 6.1 is released.
 

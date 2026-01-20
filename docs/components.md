@@ -7,6 +7,7 @@ Custom components available for use in MDX content.
 The `<Image>` component uses Next.js Image optimization. **Width and height are required** for proper aspect ratio and optimization.
 
 Images are colocated with blog posts in a folder structure:
+
 ```
 src/blog/2024/my-post/
 ├── index.mdx
@@ -15,6 +16,7 @@ src/blog/2024/my-post/
 ```
 
 Reference images using relative paths:
+
 ```mdx
 <Image
   src="./screenshot.png"
@@ -28,24 +30,26 @@ The `./` prefix is automatically resolved to the correct API route at build time
 
 ### Props
 
-| Prop | Required | Description |
-|------|----------|-------------|
-| `src` | Yes | Path to the image |
-| `alt` | Yes | Alt text for accessibility |
-| `width` | Yes | Original image width in pixels |
-| `height` | Yes | Original image height in pixels |
-| `size` | No | Size variant: `"default"` (full content width) or `"small"` (60% width, centered) |
-| `caption` | No | Caption displayed below the image (supports JSX) |
-| `bordered` | No | Add a border around the image |
-| `priority` | No | Load image with priority (for above-the-fold images) |
+| Prop       | Required | Description                                                                       |
+| ---------- | -------- | --------------------------------------------------------------------------------- |
+| `src`      | Yes      | Path to the image                                                                 |
+| `alt`      | Yes      | Alt text for accessibility                                                        |
+| `width`    | Yes      | Original image width in pixels                                                    |
+| `height`   | Yes      | Original image height in pixels                                                   |
+| `size`     | No       | Size variant: `"default"` (full content width) or `"small"` (60% width, centered) |
+| `caption`  | No       | Caption displayed below the image (supports JSX)                                  |
+| `bordered` | No       | Add a border around the image                                                     |
+| `priority` | No       | Load image with priority (for above-the-fold images)                              |
 
 ### Size Variants
 
 ```mdx
 {/* Full width (default) */}
+
 <Image src="..." alt="..." width={1024} height={768} />
 
 {/* 60% width, centered */}
+
 <Image src="..." alt="..." width={500} height={400} size="small" />
 ```
 
@@ -57,7 +61,11 @@ The `./` prefix is automatically resolved to the correct API route at build time
   alt="Screenshot"
   width={1024}
   height={768}
-  caption={<>This is a caption with a <a href="https://example.com">link</a>.</>}
+  caption={
+    <>
+      This is a caption with a <a href="https://example.com">link</a>.
+    </>
+  }
 />
 ```
 
@@ -81,26 +89,21 @@ The `<Video>` component embeds videos hosted on Cloudflare Stream. It automatica
 
 ### Props
 
-| Prop | Required | Default | Description |
-|------|----------|---------|-------------|
-| `id` | Yes | — | Cloudflare Stream video ID |
-| `title` | No | `"Video"` | Accessible title |
-| `autoplay` | No | `false` | Auto-play video |
-| `loop` | No | `false` | Loop video |
-| `muted` | No | `false` | Mute audio |
-| `controls` | No | `true` | Show player controls |
-| `poster` | No | — | Custom poster/thumbnail URL |
-| `start` | No | — | Start time in seconds |
+| Prop       | Required | Default   | Description                 |
+| ---------- | -------- | --------- | --------------------------- |
+| `id`       | Yes      | —         | Cloudflare Stream video ID  |
+| `title`    | No       | `"Video"` | Accessible title            |
+| `autoplay` | No       | `false`   | Auto-play video             |
+| `loop`     | No       | `false`   | Loop video                  |
+| `muted`    | No       | `false`   | Mute audio                  |
+| `controls` | No       | `true`    | Show player controls        |
+| `poster`   | No       | —         | Custom poster/thumbnail URL |
+| `start`    | No       | —         | Start time in seconds       |
 
 ### Example with Options
 
 ```mdx
-<Video
-  id="abc123def456"
-  title="Product demo"
-  muted
-  loop
-/>
+<Video id="abc123def456" title="Product demo" muted loop />
 ```
 
 ### Environment Variables
@@ -153,11 +156,11 @@ Display a GitHub repository card with live star and fork counts fetched from the
 
 ### Props
 
-| Prop | Required | Description |
-|------|----------|-------------|
-| `repo` | Yes | GitHub repository in `owner/repo` format |
-| `title` | Yes | Display title for the card |
-| `description` | Yes | Brief description of the project |
+| Prop          | Required | Description                              |
+| ------------- | -------- | ---------------------------------------- |
+| `repo`        | Yes      | GitHub repository in `owner/repo` format |
+| `title`       | Yes      | Display title for the card               |
+| `description` | Yes      | Brief description of the project         |
 
 ### Features
 

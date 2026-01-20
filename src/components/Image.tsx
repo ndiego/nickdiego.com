@@ -1,7 +1,7 @@
-import NextImage from 'next/image';
-import { ReactNode } from 'react';
+import NextImage from "next/image";
+import { ReactNode } from "react";
 
-type ImageSize = 'default' | 'small';
+type ImageSize = "default" | "small";
 
 export interface ImageProps {
   src: string;
@@ -14,14 +14,17 @@ export interface ImageProps {
   bordered?: boolean;
 }
 
-const sizeConfig: Record<ImageSize, { wrapperClassName: string; sizes: string }> = {
+const sizeConfig: Record<
+  ImageSize,
+  { wrapperClassName: string; sizes: string }
+> = {
   default: {
-    wrapperClassName: 'w-full',
-    sizes: '(max-width: 672px) 100vw, 672px',
+    wrapperClassName: "w-full",
+    sizes: "(max-width: 672px) 100vw, 672px",
   },
   small: {
-    wrapperClassName: 'w-[60%]',
-    sizes: '(max-width: 672px) 60vw, 403px',
+    wrapperClassName: "w-[60%]",
+    sizes: "(max-width: 672px) 60vw, 403px",
   },
 };
 
@@ -30,7 +33,7 @@ export function Image({
   alt,
   width,
   height,
-  size = 'default',
+  size = "default",
   caption,
   priority = false,
   bordered = true,
@@ -38,7 +41,9 @@ export function Image({
   const { wrapperClassName, sizes } = sizeConfig[size];
 
   return (
-    <figure className={`my-8 ${size === 'small' ? 'flex flex-col items-center' : ''}`}>
+    <figure
+      className={`my-8 ${size === "small" ? "flex flex-col items-center" : ""}`}
+    >
       <div className={wrapperClassName}>
         <NextImage
           src={src}
@@ -47,7 +52,7 @@ export function Image({
           height={height}
           priority={priority}
           sizes={sizes}
-          className={`w-full h-auto rounded-md ${bordered ? 'border border-border' : ''}`}
+          className={`w-full h-auto rounded-md ${bordered ? "border border-border" : ""}`}
         />
       </div>
       {caption && (

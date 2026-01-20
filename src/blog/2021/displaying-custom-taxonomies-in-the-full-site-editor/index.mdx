@@ -7,7 +7,9 @@ categories:
 ---
 
 <Notice type="note">
-In WordPress 6.1, you no longer have to manually add custom taxonomy blocks. Whenever a custom taxonomy is registered, WordPress will automatically add a corresponding block.
+  In WordPress 6.1, you no longer have to manually add custom taxonomy blocks.
+  Whenever a custom taxonomy is registered, WordPress will automatically add a
+  corresponding block.
 </Notice>
 
 I am working on building a new site for one of [my projects](https://nickdiego.com/current-projects/). On that site, I have a "Knowledge Base" section that utilizes a custom post type called `article`. Articles have a number of custom taxonomies, one of which is `article-category`. These "Article Categories" are different from normal post categories and I need a way to display them in the WordPress Site Editor **as a block**.
@@ -20,7 +22,13 @@ If you are using the [Gutenberg](https://wordpress.org/plugins/gutenberg/) plugi
 
 Gutenberg currently includes a very handy block called "Post Categories", which displays the current post's categories. See the end of this post for an example.
 
-<Image src="./post-categories-block-inserter.png" alt="" width={1024} height={594} caption={<>The Post Categories block in the block inserter.</>} />
+<Image
+  src="./post-categories-block-inserter.png"
+  alt=""
+  width={1024}
+  height={594}
+  caption={<>The Post Categories block in the block inserter.</>}
+/>
 
 The name of the block should be changed in the future because it actually allows you to display **any** taxonomy. But, there is a catch, which is why I am writing this article.
 
@@ -34,16 +42,16 @@ Until this point, I had never explored block variations, and there is very littl
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import { __ } from "@wordpress/i18n";
 
 const variations = [
-	{
-		name: 'category',
-		title: __( 'Post Categories' ),
-		icon: 'category',
-		isDefault: true,
-		attributes: { term: 'category' },
-	},
+  {
+    name: "category",
+    title: __("Post Categories"),
+    icon: "category",
+    isDefault: true,
+    attributes: { term: "category" },
+  },
 ];
 
 export default variations;
@@ -59,20 +67,15 @@ Since it seemed like the Post Terms block accepts variations and has a `term` at
 /**
  * Register the Article Categories variation for the Post Terms block.
  */
-wp.domReady( () => {
-
-    wp.blocks.registerBlockVariation(
-        'core/post-terms',
-        {
-            name: 'article-category',
-    		title: 'Article Categories',
-    		icon: 'category',
-    		isDefault: false,
-    		attributes: { term: 'article-category' },
-        },
-    );
-
-} );
+wp.domReady(() => {
+  wp.blocks.registerBlockVariation("core/post-terms", {
+    name: "article-category",
+    title: "Article Categories",
+    icon: "category",
+    isDefault: false,
+    attributes: { term: "article-category" },
+  });
+});
 ```
 
 Finally, we just need to enqueue the file. Something like this:
@@ -90,7 +93,13 @@ add_action( 'enqueue_block_editor_assets', 'namespace_enqueue_block_variations' 
 
 Now when I search in the block inserter, the "Article Categories" variation appears! ?
 
-<Image src="./block-variation-inserter.webp" alt="" width={1024} height={587} caption={<>The Article Categories block variation in the block inserter.</>} />
+<Image
+  src="./block-variation-inserter.webp"
+  alt=""
+  width={1024}
+  height={587}
+  caption={<>The Article Categories block variation in the block inserter.</>}
+/>
 
 This solution can then be repeated for any number of custom taxonomies that you have on your theme.
 

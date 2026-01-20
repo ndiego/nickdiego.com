@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import readingTime from 'reading-time';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import readingTime from "reading-time";
 
-const blogDirectory = path.join(process.cwd(), 'src/blog');
+const blogDirectory = path.join(process.cwd(), "src/blog");
 
 export interface PostMeta {
   slug: string;
@@ -28,7 +28,7 @@ function getMdxFilesRecursively(dir: string): string[] {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       files.push(...getMdxFilesRecursively(fullPath));
-    } else if (entry.name.endsWith('.mdx')) {
+    } else if (entry.name.endsWith(".mdx")) {
       files.push(fullPath);
     }
   }
@@ -43,8 +43,8 @@ function getMdxFilesRecursively(dir: string): string[] {
  * - src/blog/2024/my-post/index.mdx -> "my-post"
  */
 function getSlugFromPath(fullPath: string): string {
-  const fileName = path.basename(fullPath, '.mdx');
-  if (fileName === 'index') {
+  const fileName = path.basename(fullPath, ".mdx");
+  if (fileName === "index") {
     // For folder-based posts, use the parent directory name as slug
     return path.basename(path.dirname(fullPath));
   }
@@ -58,8 +58,8 @@ function getSlugFromPath(fullPath: string): string {
  * - src/blog/2024/my-post.mdx -> null (no colocated images)
  */
 function getImageBasePath(fullPath: string): string | null {
-  const fileName = path.basename(fullPath, '.mdx');
-  if (fileName === 'index') {
+  const fileName = path.basename(fullPath, ".mdx");
+  if (fileName === "index") {
     // Extract path relative to blogDirectory
     const dirPath = path.dirname(fullPath);
     const relativePath = path.relative(blogDirectory, dirPath);
@@ -74,15 +74,15 @@ export function getAllPosts(): PostMeta[] {
   return mdxFiles
     .map((fullPath) => {
       const slug = getSlugFromPath(fullPath);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
       const stats = readingTime(content);
 
       return {
         slug,
-        title: data.title ?? 'Untitled',
+        title: data.title ?? "Untitled",
         date: data.date ?? new Date().toISOString(),
-        excerpt: data.excerpt ?? '',
+        excerpt: data.excerpt ?? "",
         categories: data.categories ?? [],
         readingTime: stats.text,
         featuredImage: data.featuredImage,
@@ -91,7 +91,7 @@ export function getAllPosts(): PostMeta[] {
     })
     .filter((post) => {
       // Show drafts in development, hide in production
-      if (process.env.NODE_ENV === 'production' && post.draft) {
+      if (process.env.NODE_ENV === "production" && post.draft) {
         return false;
       }
       return true;
@@ -107,11 +107,11 @@ export function getPostBySlug(slug: string) {
     return null;
   }
 
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
   // Block access to drafts in production
-  if (process.env.NODE_ENV === 'production' && data.draft) {
+  if (process.env.NODE_ENV === "production" && data.draft) {
     return null;
   }
 
@@ -120,9 +120,9 @@ export function getPostBySlug(slug: string) {
   return {
     meta: {
       slug,
-      title: data.title ?? 'Untitled',
+      title: data.title ?? "Untitled",
       date: data.date ?? new Date().toISOString(),
-      excerpt: data.excerpt ?? '',
+      excerpt: data.excerpt ?? "",
       categories: data.categories ?? [],
       readingTime: stats.text,
       featuredImage: data.featuredImage,
@@ -136,14 +136,16 @@ export function getPostBySlug(slug: string) {
 export function getAllCategories(): string[] {
   const posts = getAllPosts();
   const categories = new Set<string>();
-  posts.forEach((post) => post.categories.forEach((cat) => categories.add(cat)));
+  posts.forEach((post) =>
+    post.categories.forEach((cat) => categories.add(cat)),
+  );
   return Array.from(categories).sort();
 }
 
 export function getPostsByCategory(category: string): PostMeta[] {
   const posts = getAllPosts();
   return posts.filter((post) =>
-    post.categories.some((cat) => cat.toLowerCase() === category.toLowerCase())
+    post.categories.some((cat) => cat.toLowerCase() === category.toLowerCase()),
   );
 }
 
@@ -155,7 +157,7 @@ export function getPostMarkdown(slug: string): string | null {
     return null;
   }
 
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
   // Build YAML frontmatter
@@ -163,8 +165,10 @@ export function getPostMarkdown(slug: string): string | null {
     ? new Date(data.date).toISOString()
     : new Date().toISOString();
 
-  const frontmatter: string[] = ['---'];
-  frontmatter.push(`title: '${(data.title ?? 'Untitled').replace(/'/g, "''")}'`);
+  const frontmatter: string[] = ["---"];
+  frontmatter.push(
+    `title: '${(data.title ?? "Untitled").replace(/'/g, "''")}'`,
+  );
   frontmatter.push(`date: '${dateStr}'`);
   frontmatter.push(`author: Nick Diego`);
   if (data.excerpt) {
@@ -180,7 +184,7 @@ export function getPostMarkdown(slug: string): string | null {
     }
   }
   frontmatter.push(`url: /${slug}`);
-  frontmatter.push('---');
+  frontmatter.push("---");
 
-  return frontmatter.join('\n') + '\n\n' + content.trim();
+  return frontmatter.join("\n") + "\n\n" + content.trim();
 }

@@ -1,5 +1,5 @@
-import { getAllPosts } from '@/lib/posts';
-import { siteConfig } from '@/lib/site';
+import { getAllPosts } from "@/lib/posts";
+import { siteConfig } from "@/lib/site";
 
 export async function GET() {
   const posts = getAllPosts();
@@ -22,21 +22,21 @@ export async function GET() {
       <guid isPermaLink="true">${siteConfig.url}/${post.slug}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <description>${escapeXml(post.excerpt)}</description>
-    </item>`
+    </item>`,
       )
-      .join('')}
+      .join("")}
   </channel>
 </rss>`;
 
   return new Response(xml, {
-    headers: { 'Content-Type': 'application/xml' },
+    headers: { "Content-Type": "application/xml" },
   });
 }
 
 function escapeXml(str: string) {
   return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }

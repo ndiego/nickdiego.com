@@ -34,19 +34,19 @@ So what is SlotFill?
 Based on my research, [SlotFill](https://developer.wordpress.org/block-editor/components/slot-fill/) was implemented into WordPress by the team over at 10up with [Ryan Welcher](https://ryanwelcher.com/) spearheading most of the development. Ryan put together a [great overview](https://10up.com/blog/2019/extending-gutenberg-with-slotfill/) of SlotFill back in 2019. He describes SlotFill as basically a modern take on the traditional (PHP) WordPress hook architecture.
 
 > Slot and Fill are a pair of components which enable developers to render elsewhere in a React element tree, a pattern often referred to as “portal” rendering. It is a pattern for component extensibility, where a single Slot may be occupied by an indeterminate number of Fills elsewhere in the application.
-> 
+>
 > Ryan Welcher - Extending Gutenberg With SlotFill and Filters
 
 There are three components that makeup SlotFill. In addition to `Slot` and `Fill`, the application needs to be wrapped in the `SlotFillProvider` component which essentially enables everything. Below is an adapted example from the Block Editor Handbook.
 
 ```javascript
 import { SlotFillProvider, Slot, Fill, Panel, PanelBody } from '@wordpress/components';
- 
+
 const ExampleSlotComponent = ( props ) => {
- 
+
     return (
         <SlotFillProvider>
-            
+
 
                     <Slot name="ExampleSlot"/>
                 </PanelBody>
@@ -71,7 +71,13 @@ That said, since this technology is included with WordPress core, third-party de
 
 In my current project, I have a custom settings page that is written in React and lives in my base plugin. I then have a premium add-on plugin that provides additional features and settings. When the add-on is activated, I would like these new individual settings to appear on the main settings page provided by the base plugin. Specifically, I want a license activation box to appear at the top of the page and the other premium settings to display at the bottom.
 
-<Image src="./slotfill-pre-1200.jpg" alt="" width={1200} height={756} caption={<>The current settings page before SlotFill is introduced</>} />
+<Image
+  src="./slotfill-pre-1200.jpg"
+  alt=""
+  width={1200}
+  height={756}
+  caption={<>The current settings page before SlotFill is introduced</>}
+/>
 
 I will be using SlotFill, so the settings page needs to have a `Slot` at the top and bottom. The license activation box would be placed in a `Fill` for the top `Slot`. The other settings would be placed in a `Fill` for the bottom `Slot`.
 
@@ -82,19 +88,13 @@ First, we need to reconfigure the main base plugin to make use of SlotFill.
 Let's assume that the JSX markup for the settings panel looks something like the following.
 
 ```javascript
-const SettingsComponent = ( props ) => {
-
-    return (
-        
-            <div className="setting-item">
-                // Existing setting in main plugin
-            
-            
-                // Existing setting in main plugin
-            
-        </div>
-    );
-}
+const SettingsComponent = (props) => {
+  return (
+    <div className="setting-item">
+      // Existing setting in main plugin // Existing setting in main plugin
+    </div>
+  );
+};
 ```
 
 Let's add the SlotFill markup. You start by wrapping everything in the `SlotFillProvider` component and then add the various `Slot` components. In this example, I want a slot at the beginning of the settings container and one at the end.
@@ -104,16 +104,16 @@ import { SlotFillProvider, Slot } from '@wordpress/components';
 
 const SettingsComponent = ( props ) => {
 
-    return (        
+    return (
         <SlotFillProvider>
-            
+
                 <Slot name="PluginSettingsTop">
                 <div className="setting-item">
                     // Existing setting in main plugin
-                
-                
+
+
                     // Existing setting in main plugin
-                
+
                 <Slot name="PluginSettingsBottom">
             </div>
         </SlotFillProvider>
@@ -144,14 +144,14 @@ const SettingsComponent = ( props ) => {
                 exampleProp={ exampleProp }
                 { ...props }
             />
-            
+
                 <Slot name="SettingsTop">
                 <div className="setting-item">
                     // Existing setting in main plugin
-                
-                
+
+
                     // Existing setting in main plugin
-                
+
                 <Slot name="SettingsBottom">
             </div>
         </SlotFillProvider>
@@ -163,7 +163,7 @@ All the setup in the main plugin is now complete. Let's switch over to the premi
 
 ### Premium Add-on
 
-The setup for the premium add-on is quite simple. All we need to do is use the  `addFilter( 'hook', 'namespace', 'callback' )` function to add the necessary `Fill` components. We just need to make sure we are using the correct hook, which is `myExamplePlugin.Settings` in this example.
+The setup for the premium add-on is quite simple. All we need to do is use the `addFilter( 'hook', 'namespace', 'callback' )` function to add the necessary `Fill` components. We just need to make sure we are using the correct hook, which is `myExamplePlugin.Settings` in this example.
 
 Note that the namespace can be anything you like but is required unlike in PHP. More information on `addFilter()` can be found in the [Block Editor Handbook](https://developer.wordpress.org/block-editor/packages/packages-hooks/).
 
@@ -174,14 +174,14 @@ import { Fill } from '@wordpress/components';
 function premiumSettings() {
     return ( props ) => (
         <Fill name="SettingsTop">
-            
+
                 // The markup for the license activation box
-            
+
         </Fill>
         <Fill name="SettingsBottom">
-            
+
                 // Additional premium setting that should appear at the bottom of the settings container
-            
+
         </Fill>
     );
 }
@@ -197,7 +197,17 @@ addFilter(
 
 That's all we need to do! Now when we load the settings page, the premium functionality in the `Fill` components will be "slotted" into the correct `Slot` components in the base plugin. ????
 
-<Image src="./slotfill-post-1200.jpg" alt="SlotFill Example" width={1200} height={1029} caption={<>The settings page after premium functionality has been added via SlotFill</>} />
+<Image
+  src="./slotfill-post-1200.jpg"
+  alt="SlotFill Example"
+  width={1200}
+  height={1029}
+  caption={
+    <>
+      The settings page after premium functionality has been added via SlotFill
+    </>
+  }
+/>
 
 ## Summary
 

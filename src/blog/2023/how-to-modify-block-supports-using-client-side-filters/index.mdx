@@ -9,7 +9,7 @@ categories:
 
 I ran into a situation recently where I wanted to add border controls to Heading and Paragraph blocks and also add border-radius support to Column blocks. This functionality is not yet available in WordPress Core or Gutenberg. In the case of the Column block, border-radius can introduce some tricky content overflow issues, but nothing I couldn't handle manually in my own controlled environment.
 
-Thankfully, there is a powerful client-side filter called `blocks.registerBlockType` that, among other things, allows you to modify [block supports](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/), such as border, color, dimensions, and typography. You may have seen other tutorials that use this filter, but I have not seen one that discusses *adding* functionality not currently available in WordPress.
+Thankfully, there is a powerful client-side filter called `blocks.registerBlockType` that, among other things, allows you to modify [block supports](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/), such as border, color, dimensions, and typography. You may have seen other tutorials that use this filter, but I have not seen one that discusses _adding_ functionality not currently available in WordPress.
 
 So, in this article, I will show you how to use the `blocks.registerBlockType` filter to add the missing border controls and also modify the default typography controls on all blocks. This technique is useful for Editor curation and can be combined with other approaches, such as the one discussed in my [recent article](https://developer.wordpress.org/news/2023/05/curating-the-editor-experience-with-client-side-filters/) on another client-side filter.
 
@@ -23,7 +23,7 @@ So, with that in mind, let's get started.
 
 ## Adding border support
 
-To begin, I added a new file called `modify-block-supports.js` in my theme.  This file is enqueued in the theme's `functions.php` file with the following code. Depending on your own implementation, a utility plugin is also a viable approach.
+To begin, I added a new file called `modify-block-supports.js` in my theme. This file is enqueued in the theme's `functions.php` file with the following code. Depending on your own implementation, a utility plugin is also a viable approach.
 
 ```javascript
 /**
@@ -32,9 +32,9 @@ To begin, I added a new file called `modify-block-supports.js` in my theme.  Thi
  * @return void
  */
 function example_modify_block_supports() {
-	wp_enqueue_script( 
-		'example-modify-block-supports', 
-		get_template_directory_uri() . '/assets/js/modify-block-supports.js', 
+	wp_enqueue_script(
+		'example-modify-block-supports',
+		get_template_directory_uri() . '/assets/js/modify-block-supports.js',
 		array(),
 		wp_get_theme()->get( 'Version' ),
 		true
@@ -48,12 +48,12 @@ In the `modify-block-supports.js` file, I added the filter using `addFilter` fro
 ```javascript
 const { addFilter } = wp.hooks;
 
-addFilter( 'hookName', 'namespace', callback, priority );
+addFilter("hookName", "namespace", callback, priority);
 ```
 
 Unlike PHP filters, JavaScript filters require a namespace as the second argument. The namespace uniquely identifies the callback function and can be anything you want. Priority is optional.
 
-The callback function for the `blocks.registerBlockType` filter accepts two parameters. 
+The callback function for the `blocks.registerBlockType` filter accepts two parameters.
 
 - `settings` – All of the block's settings.
 - `name` – The name of the block.
@@ -74,44 +74,43 @@ const { addFilter } = wp.hooks;
  *
  * @returns {Object} The modified block settings with added border support.
  */
-function addBorderSupport( settings, name ) {
+function addBorderSupport(settings, name) {
+  // Bail early if the block does not have supports.
+  if (!settings?.supports) {
+    return settings;
+  }
 
-	// Bail early if the block does not have supports.
-	if ( ! settings?.supports ) {
-		return settings;
-	}
+  // Only apply to Column, Heading, and Paragraph blocks.
+  if (
+    name === "core/column" ||
+    name === "core/heading" ||
+    name === "core/paragraph"
+  ) {
+    return Object.assign({}, settings, {
+      supports: Object.assign(settings.supports, {
+        __experimentalBorder: {
+          color: true,
+          style: true,
+          width: true,
+          radius: true,
+          __experimentalDefaultControls: {
+            color: false,
+            style: false,
+            width: false,
+            radius: false,
+          },
+        },
+      }),
+    });
+  }
 
-	// Only apply to Column, Heading, and Paragraph blocks.
-  	if (
-		name === 'core/column' ||
-		name === 'core/heading' ||
-		name === 'core/paragraph' 
-	) {
-		return Object.assign( {}, settings, {
-			supports: Object.assign( settings.supports, {
-				__experimentalBorder: {
-					color: true,
-					style: true,
-					width: true,
-					radius: true,
-					__experimentalDefaultControls: {
-						color: false,
-						style: false,
-						width: false,
-						radius: false,
-					}
-				},
-			} ),
-		} );
-	}
-
-	return settings;
+  return settings;
 }
 
 addFilter(
-	'blocks.registerBlockType',
-	'modify-block-supports/add-border-support',
-	addBorderSupport,
+  "blocks.registerBlockType",
+  "modify-block-supports/add-border-support",
+  addBorderSupport,
 );
 ```
 
@@ -131,7 +130,7 @@ Notice how the code in the previous example sets the `__experimentalDefaultContr
 
 In a recent [Hallway Hangout](https://make.wordpress.org/themes/2023/05/26/summary-curating-the-editor-and-building-block-themes-for-clients/), there was some discussion about how to configure the default controls on each block. Some people want them all to be visible. Others, like myself, want to really personalize the experience and only enable the controls I use all the time and hide everything else.
 
-Well,  `__experimentalDefaultControls` to the rescue.
+Well, `__experimentalDefaultControls` to the rescue.
 
 The following `blocks.registerBlockType` filter will set the default typography controls to `fontSize` and `fontAppearance` for all blocks that support typography. You could also configure specific defaults per block-type.
 
@@ -143,34 +142,33 @@ const { addFilter } = wp.hooks;
 
 /**
  * Modifies the default typography settings for blocks with typography support.
- * 
+ *
  * @param {Object} settings - The original block settings.
- * 
+ *
  * @returns {Object} The modified block settings with updated typography defaults.
  */
-function modifyTypographyDefaults( settings ) {
+function modifyTypographyDefaults(settings) {
+  // Only apply to blocks with typography support.
+  if (settings?.supports?.typography) {
+    return Object.assign({}, settings, {
+      supports: Object.assign(settings.supports, {
+        typography: Object.assign(settings.supports.typography, {
+          __experimentalDefaultControls: {
+            fontAppearance: true,
+            fontSize: true,
+          },
+        }),
+      }),
+    });
+  }
 
-	// Only apply to blocks with typography support.
-	if ( settings?.supports?.typography ) {
-		return Object.assign( {}, settings, {
-			supports: Object.assign( settings.supports, {
-				typography: Object.assign( settings.supports.typography, {
-					__experimentalDefaultControls: {
-						fontAppearance: true,
-						fontSize: true
-					}
-				} ),
-			} ),
-		} );
-	}
-
-	return settings;
+  return settings;
 }
 
 addFilter(
-	'blocks.registerBlockType',
-	'modify-block-supports/modify-typography-defaults',
-	modifyTypographyDefaults,
+  "blocks.registerBlockType",
+  "modify-block-supports/modify-typography-defaults",
+  modifyTypographyDefaults,
 );
 ```
 

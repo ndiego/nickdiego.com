@@ -1,8 +1,14 @@
-import { ReactNode } from 'react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Info, Lightbulb, Sparkles, TriangleAlert, CircleAlert } from 'lucide-react';
+import { ReactNode } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Info,
+  Lightbulb,
+  Sparkles,
+  TriangleAlert,
+  CircleAlert,
+} from "lucide-react";
 
-type NoticeType = 'note' | 'tip' | 'important' | 'warning' | 'caution';
+type NoticeType = "note" | "tip" | "important" | "warning" | "caution";
 
 interface NoticeProps {
   type?: NoticeType;
@@ -17,7 +23,7 @@ const icons: Record<NoticeType, typeof Info> = {
   caution: CircleAlert,
 };
 
-export function Notice({ type = 'note', children }: NoticeProps) {
+export function Notice({ type = "note", children }: NoticeProps) {
   const Icon = icons[type];
 
   return (
