@@ -34,7 +34,7 @@ export function PostCard({ post }: { post: PostMeta }) {
       className="rounded-md border border-border p-6 transition-colors hover:bg-muted/50 cursor-pointer"
     >
       <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center">
           {post.categories.map((cat, i) => (
             <span key={cat}>
               <Link
@@ -44,7 +44,7 @@ export function PostCard({ post }: { post: PostMeta }) {
                 {cat}
               </Link>
               {i < post.categories.length - 1 && (
-                <span className="mx-1">·</span>
+                <span className="mx-2">·</span>
               )}
             </span>
           ))}
@@ -52,7 +52,7 @@ export function PostCard({ post }: { post: PostMeta }) {
         <time dateTime={post.date}>{date}</time>
       </div>
 
-      <h2 className="text-xl font-medium mb-3">
+      <h2 className="text-xl font-medium mb-3 text-balance">
         <Link href={postUrl} className="hover:underline">
           {post.title}
         </Link>
