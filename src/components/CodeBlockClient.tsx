@@ -17,20 +17,27 @@ function CopyButton({
   onCopy: () => void;
 }) {
   return (
-    <Tooltip>
+    <Tooltip delayDuration={1000}>
       <TooltipTrigger asChild>
         <Button
           variant="ghost"
           size="icon"
           onClick={onCopy}
-          className="h-8 w-8 text-muted-foreground"
+          className="h-8 w-8 text-muted-foreground bg-card opacity-90 hover:opacity-100"
           aria-label={copied ? "Copied to clipboard" : "Copy code"}
         >
-          {copied ? (
-            <Check className="h-4 w-4" />
-          ) : (
-            <Copy className="h-4 w-4" />
-          )}
+          <span className="relative h-4 w-4">
+            <Copy
+              className={`absolute inset-0 h-4 w-4 transition-all duration-200 ease-out ${
+                copied ? "scale-50 opacity-0" : "scale-100 opacity-100"
+              }`}
+            />
+            <Check
+              className={`absolute inset-0 h-4 w-4 transition-all duration-200 ease-out ${
+                copied ? "scale-100 opacity-100" : "scale-50 opacity-0"
+              }`}
+            />
+          </span>
           <span className="sr-only" aria-live="polite">
             {copied ? "Copied to clipboard" : ""}
           </span>
@@ -49,13 +56,13 @@ function ExpandButton({
   onToggle: () => void;
 }) {
   return (
-    <Tooltip>
+    <Tooltip delayDuration={1000}>
       <TooltipTrigger asChild>
         <Button
           variant="ghost"
           size="icon"
           onClick={onToggle}
-          className="h-8 w-8 text-muted-foreground"
+          className="h-8 w-8 text-muted-foreground bg-card opacity-90 hover:opacity-100"
           aria-label={isExpanded ? "Collapse code" : "Expand code"}
           aria-expanded={isExpanded}
         >
@@ -134,13 +141,11 @@ export function CodeBlockClient({
           <div className="overflow-x-auto flex">
             {showLineNumbers && (
               <div
-                className="flex-none select-none text-right text-sm font-mono text-muted-foreground py-4 pl-4 pr-5"
+                className="line-numbers flex-none select-none text-right font-mono text-muted-foreground py-4 pl-4 pr-5"
                 aria-hidden="true"
               >
                 {Array.from({ length: lineCount }, (_, i) => (
-                  <div key={i} className="leading-6">
-                    {i + 1}
-                  </div>
+                  <div key={i}>{i + 1}</div>
                 ))}
               </div>
             )}

@@ -176,14 +176,30 @@ h4:hover .heading-anchor::before {
   background: transparent !important;
 }
 
+.code-block .shiki code,
+.code-block .line-numbers {
+  font-size: 80%;
+  line-height: 1.5rem;
+}
+
 .code-block .shiki code {
   display: block;
   padding: 0;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
   background: transparent !important;
 }
 
 .code-block .shiki code .line {
   padding-right: 1rem;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
