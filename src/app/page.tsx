@@ -7,7 +7,7 @@ export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6 md:py-12">
+    <div className="max-w-2xl mx-auto px-6 py-6 md:py-12">
       {/* Hero */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
         <div>
