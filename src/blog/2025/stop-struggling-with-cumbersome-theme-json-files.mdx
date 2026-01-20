@@ -37,20 +37,20 @@ function readJsonFile(filePath) {
 // Enhanced deep merge function to handle arrays
 function deepMerge(target, source) {
     for (const key in source) {
-        if (source&#91;key] instanceof Object) {
-            if (Array.isArray(source&#91;key])) {
+        if (source[key] instanceof Object) {
+            if (Array.isArray(source[key])) {
                 // If it's an array, replace it entirely
-                target&#91;key] = source&#91;key];
+                target[key] = source[key];
             } else if (key in target) {
                 // If it's an object and exists in target, merge recursively
-                target&#91;key] = deepMerge(target&#91;key], source&#91;key]);
+                target[key] = deepMerge(target[key], source[key]);
             } else {
                 // If it's an object but doesn't exist in target, copy it
-                target&#91;key] = source&#91;key];
+                target[key] = source[key];
             }
         } else {
             // For primitive values, simply replace
-            target&#91;key] = source&#91;key];
+            target[key] = source[key];
         }
     }
     return target;

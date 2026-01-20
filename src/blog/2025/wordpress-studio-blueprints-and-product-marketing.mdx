@@ -28,13 +28,13 @@ Here’s the Blueprint I’ve been using for most of my own projects, including 
     "php": "8.3",
     "wp": "latest"
   },
-  "plugins": &#91;
+  "plugins": [
     "block-visibility",
     "icon-block",
     "social-sharing-block",
     "gutenberg"
   ],
-  "steps": &#91;
+  "steps": [
     {
       "step": "defineWpConfigConsts",
       "consts": {
@@ -122,7 +122,7 @@ Here’s the Blueprint I’ve been using for most of my own projects, including 
     },
     {
       "step": "runPHP",
-      "code": "<?php require_once '/wordpress/wp-load.php'; $wp_rewrite->set_permalink_structure( '/%postname%/' ); include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); deactivate_plugins( 'hello.php', 'hello-dolly', 'akismet/akismet.php' ); include_once( ABSPATH . 'wp-admin/includes/file.php' ); delete_plugins( &#91; 'hello.php', 'hello-dolly', 'akismet/akismet.php' ] );"
+      "code": "<?php require_once '/wordpress/wp-load.php'; $wp_rewrite->set_permalink_structure( '/%postname%/' ); include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); deactivate_plugins( 'hello.php', 'hello-dolly', 'akismet/akismet.php' ); include_once( ABSPATH . 'wp-admin/includes/file.php' ); delete_plugins( [ 'hello.php', 'hello-dolly', 'akismet/akismet.php' ] );"
     },
     {
       "step": "updateUserMeta",

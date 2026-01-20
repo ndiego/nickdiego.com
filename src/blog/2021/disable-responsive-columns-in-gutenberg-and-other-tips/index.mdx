@@ -96,7 +96,7 @@ Disabling responsive columns can be achieved using the following CSS. Again, I h
     }
 
     /* Columns with an explicitly-assigned width should maintain their`flex-basis` width and not grow. */
-    .wp-block-columns.is-not-stacked-on-mobile > .wp-block-column&#91;style*="flex-basis"] {
+    .wp-block-columns.is-not-stacked-on-mobile > .wp-block-column[style*="flex-basis"] {
         flex-basis: auto !important;
         flex-grow: 0;
     }

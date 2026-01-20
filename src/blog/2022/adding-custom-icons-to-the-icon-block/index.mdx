@@ -57,43 +57,43 @@ wp.domReady( () => {
 
 	function addCustomIcons( icons ) {
 
-		const customIcons = &#91;
+		const customIcons = [
 			{
 				isDefault: true,
 				name: 'bookmark',
 				title: __( 'Bookmark', 'icon-block' ),
 				icon: '<svg width="24px" height="24px" viewBox="0 0 24 24">
 </path></svg>',
-				categories: &#91; 'category-one', 'category-two' ],
+				categories: [ 'category-one', 'category-two' ],
 			},
 			{
 				name: 'cloud',
 				title: __( 'Cloud', 'icon-block' ),
 				icon: '<svg width="24px" height="24px" viewBox="0 0 24 24">
 </path></svg>',
-				categories: &#91; 'category-one', 'category-two' ],
+				categories: [ 'category-one', 'category-two' ],
 			},
 			{
 				name: 'heart',
 				title: __( 'Heart', 'custom-icons' ),
 				icon: '<svg width="24px" height="24px" viewBox="0 0 24 24">
 </path></svg>',
-				categories: &#91; 'category-one' ],
-				keywords: &#91; 'love' ],
+				categories: [ 'category-one' ],
+				keywords: [ 'love' ],
 			},
 			{
 				name: 'mail',
 				title: __( 'Mail', 'custom-icons' ),
 				icon: '<svg width="24px" height="24px" viewBox="0 0 24 24">
 </path></svg>',
-				categories: &#91; 'category-one' ],
+				categories: [ 'category-one' ],
 			},
 			{
 				name: 'search',
 				title: __( 'Search', 'custom-icons' ),
 				icon: '<svg width="24px" height="24px" viewBox="0 0 24 24">
 </path></svg>',
-				categories: &#91; 'category-two' ],
+				categories: [ 'category-two' ],
 			},
 			{
 				isDefault: true,
@@ -101,11 +101,11 @@ wp.domReady( () => {
 				title: __( 'User', 'custom-icons' ),
 				icon: '<svg width="24px" height="24px" viewBox="0 0 24 24">
 </path></svg>',
-				categories: &#91; 'category-two' ],
+				categories: [ 'category-two' ],
 			},
 		];
 
-		const customIconCategories = &#91;
+		const customIconCategories = [
 			{
 				name: 'category-one',
 				title: __( 'Category One', 'example-theme' ),
@@ -116,7 +116,7 @@ wp.domReady( () => {
 			},
 		];
 
-		const customIconType = &#91;
+		const customIconType = [
 			{
 				isDefault: true,
 				type: 'example-icons',
@@ -126,7 +126,7 @@ wp.domReady( () => {
 			},
 		];
 
-		const allIcons = &#91;].concat( icons, customIconType );
+		const allIcons = [].concat( icons, customIconType );
 
 		return allIcons;
 	}
@@ -160,9 +160,9 @@ wp.domReady( () => {
 
 	function addCustomIcons( icons ) {
 
-		const customIconType = &#91; ... ];
+		const customIconType = [ ... ];
 
-		const allIcons = &#91;].concat( icons, customIconType );
+		const allIcons = [].concat( icons, customIconType );
 
 		return allIcons;
 	}
@@ -188,7 +188,7 @@ Once an array of custom icons is defined in `customIconType`, which we'll talk a
 Custom icons are added to the Icon Block by defining an icon **type**. In the following example code, I have defined the type "Example Icons". You can register multiple types.
 
 ```javascript
-const customIconType = &#91;
+const customIconType = [
 	{
 		isDefault: false,
 		type: 'example-icons',
@@ -212,7 +212,7 @@ An icon type is defined by five parameters. All are required unless specified:
 Next, we need to add the icons themselves.
 
 ```javascript
-const customIcons = &#91;
+const customIcons = [
 	{ ... },
 	{
 		isDefault: false,
@@ -220,8 +220,8 @@ const customIcons = &#91;
 		title: __( 'Heart', 'custom-icons' ),
 		icon: '<svg width="24px" height="24px" viewBox="0 0 24 24">
 </path></svg>',
-		categories: &#91; 'category-one' ],
-		keywords: &#91; 'love' ],
+		categories: [ 'category-one' ],
+		keywords: [ 'love' ],
 		hasNoIconFill: false,
 	},
 	{ ... },
@@ -243,7 +243,7 @@ Icons in the `customIcons` array are defined by seven parameters. All are requir
 Finally, we need to define icon categories. Categories are optional, but they are a great way to organize your custom icons.
 
 ```javascript
-const customIconCategories = &#91;
+const customIconCategories = [
 	{
 		name: 'category-one',
 		title: __( 'Category One', 'example-theme' ),
