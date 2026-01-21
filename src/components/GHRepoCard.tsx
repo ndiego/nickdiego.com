@@ -30,12 +30,12 @@ export async function GHRepoCard({
       href={`https://github.com/${repo}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block not-prose my-6 p-6 border border-border rounded-md transition-colors hover:bg-muted/50"
+      className="group block not-prose my-6 px-6 pt-5 pb-6 border border-border rounded-md transition-colors hover:bg-muted/50"
     >
-      <div className="flex items-start justify-between gap-4 mb-4">
+      <div className="flex items-center justify-between gap-4 mb-4">
         <h3 className="font-semibold text-lg text-foreground">{title}</h3>
         {data && (
-          <div className="flex items-center gap-4 text-sm text-muted-foreground shrink-0">
+          <div className="flex items-center gap-4 text-sm text-muted-foreground shrink-0 tabular-nums">
             <span className="flex items-center gap-1.5">
               <Star className="w-4 h-4" aria-hidden="true" />
               {data.stargazers_count?.toLocaleString() ?? 0}
