@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 import { ReactNode } from "react";
 
-type ImageSize = "default" | "small";
+type ImageSize = "default" | "small" | "wide";
 
 export interface ImageProps {
   src: string;
@@ -25,6 +25,10 @@ const sizeConfig: Record<
   small: {
     wrapperClassName: "w-[60%]",
     sizes: "(max-width: 672px) 60vw, 403px",
+  },
+  wide: {
+    wrapperClassName: "w-full lg:w-[calc(100%+8rem)] lg:-ml-16",
+    sizes: "(max-width: 672px) 100vw, 800px",
   },
 };
 
