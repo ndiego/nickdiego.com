@@ -15,7 +15,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="py-6 md:py-8">
+    <header className="py-6 md:py-8 mb-2 md:mb-8">
       <div className="flex items-center justify-between max-w-2xl mx-auto px-6">
         <Link
           href="/"
@@ -63,14 +63,14 @@ export function Header() {
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <button
-              className="sm:hidden p-2 -mr-2 hover:text-foreground transition-colors touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+              className="sm:hidden p-2 text-muted-foreground hover:text-foreground transition-colors touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md cursor-pointer"
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5" aria-hidden="true" />
             </button>
           </SheetTrigger>
           <SheetContent side="right">
-            <SheetTitle className="text-lg font-medium">Nick Diego</SheetTitle>
+            <SheetTitle className="text-base font-medium">Nick Diego</SheetTitle>
             <nav className="flex flex-col gap-2 mt-8">
               <Link
                 href="/about"
