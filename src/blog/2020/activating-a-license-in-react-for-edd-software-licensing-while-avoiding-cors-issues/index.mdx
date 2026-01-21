@@ -147,13 +147,9 @@ The `(your action name)` part of the action, or `demo_license_controls` in this 
 Finally, we need to make the Ajax call in React where the license activation UI "lives". First, a quick recap of the data flow we are attempting to create and what a user will actually be doing.
 
 1. The user will enter their license key into a text field and then click an "Activate" button.
-
 2. The license key value will then be passed to our PHP function via Ajax.
-
 3. The PHP function will make an API call to the store website to activate the license if it is activable.
-
 4. A response will be sent back with a success or failure message.
-
 5. We will then parse the response and display a message to the user about whether the activation was successful or not.
 
 Steps 1 and 5 are outside the scope of this post but are pretty straightforward. WordPress does have a number of built-in components, such as text inputs and buttons, that I encourage you to check out. I am leveraging them in my projects, and the [Developer Handbook](https://developer.wordpress.org/block-editor/components/) provides a good overview of each one.
@@ -211,9 +207,7 @@ You can then use this data to provide a success notice to the user. EDD has [exa
 The topics covered in this post are just the tip of the iceberg, but I hope it helps you overcome the CORS issue that I ran into when using the Software Licensing add-on for EDD. To simplify everything I wrote above into three bullet points:
 
 1. Create your license activation UI in React.
-
 2. Handle the actual license activation in a PHP function.
-
 3. Invoke the PHP function using Ajax from your React app.
 
 That's it, mission complete!
