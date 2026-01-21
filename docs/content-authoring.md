@@ -29,9 +29,20 @@ date: YYYY-MM-DD
 excerpt: Short description
 categories:
   - Category
-featuredImage: /path/to/image.jpg # optional
+featuredImage: ./cover.png # optional, used for OpenGraph/social sharing
 ---
 ```
+
+### Featured Images
+
+The `featuredImage` field sets the OpenGraph image used when sharing posts on social media. It supports:
+
+- **Colocated images** (recommended): `featuredImage: ./cover.png` - relative path to an image in the same folder
+- **External URLs**: `featuredImage: https://example.com/image.jpg` - absolute URL to any image
+
+If no `featuredImage` is set, an OG image is auto-generated using the post title and excerpt.
+
+For best results, use images sized **1200×630 pixels** (the standard OG image size).
 
 ### Draft Posts
 

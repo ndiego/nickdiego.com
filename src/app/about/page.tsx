@@ -1,5 +1,32 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+const description =
+  "Product Marketing Manager at Automattic, WordPress Core contributor, and open-source developer building tools for the web.";
+
+export const metadata: Metadata = {
   title: "About",
+  description,
+  openGraph: {
+    title: "About",
+    description,
+    url: "/about",
+    images: [
+      {
+        url: "/api/og?title=About&subtitle=Nick Diego",
+        width: 1200,
+        height: 630,
+        alt: "About Nick Diego",
+      },
+    ],
+  },
+  twitter: {
+    title: "About",
+    description,
+    images: ["/api/og?title=About&subtitle=Nick Diego"],
+  },
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

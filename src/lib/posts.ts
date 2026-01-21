@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import { siteConfig } from "./site";
 
 const blogDirectory = path.join(process.cwd(), "src/blog");
 
@@ -68,12 +69,39 @@ function getImageBasePath(fullPath: string): string | null {
   return null;
 }
 
+/**
+ * Resolve a featured image path to an absolute URL.
+ * - Relative paths (./cover.png) -> full URL via blog-images API
+ * - Absolute URLs (https://...) -> returned as-is
+ * - Undefined -> undefined
+ */
+function resolveFeaturedImage(
+  featuredImage: string | undefined,
+  imageBasePath: string | null,
+): string | undefined {
+  if (!featuredImage) return undefined;
+
+  // Already an absolute URL
+  if (featuredImage.startsWith("http://") || featuredImage.startsWith("https://")) {
+    return featuredImage;
+  }
+
+  // Relative path - resolve via blog-images API
+  if (featuredImage.startsWith("./") && imageBasePath) {
+    const filename = featuredImage.slice(2); // Remove "./"
+    return `${siteConfig.url}/api/blog-images/${imageBasePath}/${filename}`;
+  }
+
+  return undefined;
+}
+
 export function getAllPosts(): PostMeta[] {
   const mdxFiles = getMdxFilesRecursively(blogDirectory);
 
   return mdxFiles
     .map((fullPath) => {
       const slug = getSlugFromPath(fullPath);
+      const imageBasePath = getImageBasePath(fullPath);
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
       const stats = readingTime(content);
@@ -85,7 +113,7 @@ export function getAllPosts(): PostMeta[] {
         excerpt: data.excerpt ?? "",
         categories: data.categories ?? [],
         readingTime: stats.text,
-        featuredImage: data.featuredImage,
+        featuredImage: resolveFeaturedImage(data.featuredImage, imageBasePath),
         draft: data.draft ?? false,
       };
     })
@@ -116,6 +144,7 @@ export function getPostBySlug(slug: string) {
   }
 
   const stats = readingTime(content);
+  const imageBasePath = getImageBasePath(fullPath);
 
   return {
     meta: {
@@ -125,11 +154,11 @@ export function getPostBySlug(slug: string) {
       excerpt: data.excerpt ?? "",
       categories: data.categories ?? [],
       readingTime: stats.text,
-      featuredImage: data.featuredImage,
+      featuredImage: resolveFeaturedImage(data.featuredImage, imageBasePath),
       draft: data.draft ?? false,
     },
     content,
-    imageBasePath: getImageBasePath(fullPath),
+    imageBasePath,
   };
 }
 

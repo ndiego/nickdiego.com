@@ -1,5 +1,32 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+const description =
+  "Open-source WordPress plugins and tools including Block Visibility, Icon Block, and more.";
+
+export const metadata: Metadata = {
   title: "Projects",
+  description,
+  openGraph: {
+    title: "Projects",
+    description,
+    url: "/projects",
+    images: [
+      {
+        url: "/api/og?title=Projects&subtitle=Open-source WordPress plugins and tools",
+        width: 1200,
+        height: 630,
+        alt: "Projects by Nick Diego",
+      },
+    ],
+  },
+  twitter: {
+    title: "Projects",
+    description,
+    images: ["/api/og?title=Projects&subtitle=Open-source WordPress plugins and tools"],
+  },
+  alternates: {
+    canonical: "/projects",
+  },
 };
 
 const projects = [

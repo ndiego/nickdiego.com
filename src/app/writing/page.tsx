@@ -1,9 +1,35 @@
+import type { Metadata } from "next";
 import { getAllPosts, getAllCategories } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { CategoryNav } from "@/components/CategoryNav";
 
-export const metadata = {
+const description =
+  "Articles and tutorials on WordPress development, the block editor, and building for the web.";
+
+export const metadata: Metadata = {
   title: "Writing",
+  description,
+  openGraph: {
+    title: "Writing",
+    description,
+    url: "/writing",
+    images: [
+      {
+        url: "/api/og?title=Writing&subtitle=Articles on WordPress and web development",
+        width: 1200,
+        height: 630,
+        alt: "Writing by Nick Diego",
+      },
+    ],
+  },
+  twitter: {
+    title: "Writing",
+    description,
+    images: ["/api/og?title=Writing&subtitle=Articles on WordPress and web development"],
+  },
+  alternates: {
+    canonical: "/writing",
+  },
 };
 
 export default function WritingPage() {

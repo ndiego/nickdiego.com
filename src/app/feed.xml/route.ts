@@ -21,6 +21,8 @@ export async function GET() {
       <link>${siteConfig.url}/${post.slug}</link>
       <guid isPermaLink="true">${siteConfig.url}/${post.slug}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+      <author>${siteConfig.author.name}</author>${post.categories.map((cat) => `
+      <category>${escapeXml(cat)}</category>`).join("")}
       <description>${escapeXml(post.excerpt)}</description>
     </item>`,
       )

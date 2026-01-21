@@ -28,10 +28,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const description =
     categoryMeta[category]?.description ?? `Posts about ${category}`;
+  const ogImageUrl = `/api/og?title=${encodeURIComponent(category)}&subtitle=${encodeURIComponent("Posts in this category")}`;
 
   return {
     title: category,
     description,
+    openGraph: {
+      title: category,
+      description,
+      url: `/writing/category/${slug}`,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${category} posts`,
+        },
+      ],
+    },
+    twitter: {
+      title: category,
+      description,
+      images: [ogImageUrl],
+    },
     alternates: {
       canonical: `${siteConfig.url}/writing/category/${slug}`,
     },

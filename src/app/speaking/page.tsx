@@ -1,8 +1,34 @@
+import type { Metadata } from "next";
 import { talks, Talk } from "@/data/talks";
 import { TalkCard } from "@/components/TalkCard";
 
-export const metadata = {
+const description =
+  "Conference talks, live streams, podcasts, and presentations on WordPress development.";
+
+export const metadata: Metadata = {
   title: "Speaking",
+  description,
+  openGraph: {
+    title: "Speaking",
+    description,
+    url: "/speaking",
+    images: [
+      {
+        url: "/api/og?title=Speaking&subtitle=Talks and presentations",
+        width: 1200,
+        height: 630,
+        alt: "Speaking by Nick Diego",
+      },
+    ],
+  },
+  twitter: {
+    title: "Speaking",
+    description,
+    images: ["/api/og?title=Speaking&subtitle=Talks and presentations"],
+  },
+  alternates: {
+    canonical: "/speaking",
+  },
 };
 
 // Group talks by year
