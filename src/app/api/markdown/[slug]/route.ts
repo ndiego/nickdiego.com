@@ -1,4 +1,5 @@
 import { getPostMarkdown } from "@/lib/posts";
+import { siteConfig } from "@/lib/site";
 
 export async function GET(
   request: Request,
@@ -14,6 +15,7 @@ export async function GET(
   return new Response(markdown, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
+      "Link": `<${siteConfig.url}/${slug}>; rel="canonical"`,
     },
   });
 }
