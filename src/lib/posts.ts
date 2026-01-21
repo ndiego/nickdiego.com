@@ -1,3 +1,4 @@
+import { cache } from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -95,7 +96,11 @@ function resolveFeaturedImage(
   return undefined;
 }
 
-export function getAllPosts(): PostMeta[] {
+/**
+ * Get all posts with request-level deduplication via React.cache().
+ * Categories are pre-sorted alphabetically.
+ */
+export const getAllPosts = cache((): PostMeta[] => {
   const mdxFiles = getMdxFilesRecursively(blogDirectory);
 
   return mdxFiles
@@ -106,12 +111,17 @@ export function getAllPosts(): PostMeta[] {
       const { data, content } = matter(fileContents);
       const stats = readingTime(content);
 
+      // Pre-sort categories alphabetically
+      const categories = (data.categories ?? []).slice().sort((a: string, b: string) =>
+        a.localeCompare(b)
+      );
+
       return {
         slug,
         title: data.title ?? "Untitled",
         date: data.date ?? new Date().toISOString(),
         excerpt: data.excerpt ?? "",
-        categories: data.categories ?? [],
+        categories,
         readingTime: stats.text,
         featuredImage: resolveFeaturedImage(data.featuredImage, imageBasePath),
         draft: data.draft ?? false,
@@ -125,9 +135,13 @@ export function getAllPosts(): PostMeta[] {
       return true;
     })
     .sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1));
-}
+});
 
-export function getPostBySlug(slug: string) {
+/**
+ * Get a single post by slug with request-level deduplication via React.cache().
+ * Categories are pre-sorted alphabetically.
+ */
+export const getPostBySlug = cache((slug: string) => {
   const mdxFiles = getMdxFilesRecursively(blogDirectory);
   const fullPath = mdxFiles.find((file) => getSlugFromPath(file) === slug);
 
@@ -146,13 +160,18 @@ export function getPostBySlug(slug: string) {
   const stats = readingTime(content);
   const imageBasePath = getImageBasePath(fullPath);
 
+  // Pre-sort categories alphabetically
+  const categories = (data.categories ?? []).slice().sort((a: string, b: string) =>
+    a.localeCompare(b)
+  );
+
   return {
     meta: {
       slug,
       title: data.title ?? "Untitled",
       date: data.date ?? new Date().toISOString(),
       excerpt: data.excerpt ?? "",
-      categories: data.categories ?? [],
+      categories,
       readingTime: stats.text,
       featuredImage: resolveFeaturedImage(data.featuredImage, imageBasePath),
       draft: data.draft ?? false,
@@ -160,23 +179,29 @@ export function getPostBySlug(slug: string) {
     content,
     imageBasePath,
   };
-}
+});
 
-export function getAllCategories(): string[] {
+/**
+ * Get all unique categories with request-level deduplication via React.cache().
+ */
+export const getAllCategories = cache((): string[] => {
   const posts = getAllPosts();
   const categories = new Set<string>();
   posts.forEach((post) =>
     post.categories.forEach((cat) => categories.add(cat)),
   );
   return Array.from(categories).sort();
-}
+});
 
-export function getPostsByCategory(category: string): PostMeta[] {
+/**
+ * Get posts by category with request-level deduplication via React.cache().
+ */
+export const getPostsByCategory = cache((category: string): PostMeta[] => {
   const posts = getAllPosts();
   return posts.filter((post) =>
     post.categories.some((cat) => cat.toLowerCase() === category.toLowerCase()),
   );
-}
+});
 
 export function getPostMarkdown(slug: string): string | null {
   const mdxFiles = getMdxFilesRecursively(blogDirectory);
