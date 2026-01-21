@@ -34,7 +34,9 @@ export default function WritingPage() {
       </div>
 
       {/* Desktop sidebar - positioned to the right of centered content */}
-      <CategoryNav categories={categories} desktopSidebar />
+      <aside>
+        <CategoryNav categories={categories} desktopSidebar />
+      </aside>
     </div>
   );
 }
