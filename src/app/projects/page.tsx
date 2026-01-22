@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { WPPluginStat } from "@/components/WPPluginStat";
+import { WPPluginCard } from "@/components/WPPluginCard";
+import { GHRepoCard } from "@/components/GHRepoCard";
 import { Separator } from "@/components/ui/separator";
 
 const description =
@@ -31,37 +33,6 @@ export const metadata: Metadata = {
   },
 };
 
-const projects = [
-  {
-    name: "Block Visibility",
-    description:
-      "Control when and where blocks are displayed on your WordPress site. 30,000+ active users.",
-    url: "https://github.com/ndiego/block-visibility",
-  },
-  {
-    name: "Icon Block",
-    description:
-      "A simple yet powerful block for adding custom SVG icons to your WordPress site. 30,000+ active users.",
-    url: "https://github.com/ndiego/icon-block",
-  },
-  {
-    name: "Enable Linked Groups",
-    description:
-      "Make Group blocks clickable while maintaining internal link functionality.",
-    url: "https://github.com/ndiego/enable-linked-groups",
-  },
-  {
-    name: "Enable Button Icons",
-    description: "Add icons to Button blocks in WordPress.",
-    url: "https://github.com/ndiego/enable-button-icons",
-  },
-  {
-    name: "Social Sharing Block",
-    description: "A simple social sharing block for WordPress.",
-    url: "https://github.com/ndiego/social-sharing-block",
-  },
-];
-
 const pluginSlugs = [
   "block-visibility",
   "icon-block",
@@ -92,21 +63,32 @@ export default function ProjectsPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-medium mb-6">All Projects</h2>
-        <div className="space-y-4">
-          {projects.map((project) => (
-            <a
-              key={project.name}
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block p-6 border border-border rounded-md hover:border-muted-foreground/50 transition-colors"
-            >
-              <h3 className="font-medium mb-2">{project.name}</h3>
-              <p className="text-sm text-copy">{project.description}</p>
-            </a>
-          ))}
-        </div>
+        <h3 className="text-lg font-medium mb-4">Featured</h3>
+        <WPPluginCard
+          slug="block-visibility"
+          title="Block Visibility"
+          description="This utility plugin lets you control block visibility dynamically, enabling you to schedule content, display exclusive promotions, and restrict blocks based on user roles, screen sizes, query strings, and more."
+        />
+        <WPPluginCard
+          slug="icon-block"
+          title="Icon Block"
+          description="A simple block plugin that allows you to add a custom SVG icon or graphic to WordPress. The plugin also includes the WordPress icon library with over 270 SVG icons to choose from."
+        />
+        <WPPluginCard
+          slug="social-sharing-block"
+          title="Social Sharing Block"
+          description="Heavily inspired by the Social Icons block in WordPress core, this block plugin allows you to add social share icons to the Block Editor. Choose from 15+ social channels."
+        />
+        <GHRepoCard
+          repo="ndiego/enable-button-icons"
+          title="Enable Button Icons"
+          description="Add icons to Button blocks in WordPress."
+        />
+        <GHRepoCard
+          repo="ndiego/enable-linked-groups"
+          title="Enable Linked Groups"
+          description="Make Group blocks clickable while maintaining internal link functionality."
+        />
       </section>
     </div>
   );
