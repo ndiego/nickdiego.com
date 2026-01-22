@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { Link } from "@/components/ui/link";
 
 const description =
-  "Product Marketing Manager at Automattic, WordPress Core contributor, and open-source developer building tools for the web.";
+  "Product Marketing Manager at Automattic, WordPress Core contributor, plugin developer, and retired hospitality marketer.";
 
 export const metadata: Metadata = {
   title: "About",
@@ -37,37 +38,33 @@ export default function AboutPage() {
       </h1>
 
       <div className="space-y-6">
+        <p className="text-copy leading-relaxed">Hi there, my name is Nick.</p>
+
         <p className="text-copy leading-relaxed">
-          I&apos;m Nick Diego—a Product Marketing Manager at Automattic,
-          WordPress Core contributor, and hobby web developer.
+          I&apos;m a Product Marketing Manager at Automattic as well as a
+          WordPress Core contributor, plugin developer, and retired hospitality
+          marketer. I currently live in Minneapolis, Minnesota, with my wife,
+          our dog Willie, and many rescued cats.
         </p>
 
         <p className="text-copy leading-relaxed">
-          This site is dedicated to my current WordPress projects and
-          explorations into related technologies. Feel free to have a look
-          around and reach out if you&apos;d like to connect.
+          This website is primarily dedicated to my personal web development
+          endeavors. It serves as a place to share my current projects, code
+          snippets, tutorials on WordPress plugin development, and anything else
+          that might be relevant.
         </p>
-
-        <h2 className="text-[var(--text-heading)] text-2xl font-medium mt-10 mb-4">
-          What I do
-        </h2>
 
         <p className="text-copy leading-relaxed">
-          At Automattic, I work on developer tools and help communicate the
-          value of WordPress to developers around the world. I&apos;m also an
-          active contributor to WordPress Core, focusing on the block editor and
-          related developer experience improvements.
+          If you are looking for more information on my WordPress plugins, head
+          over to the{" "}
+          <Link href="/projects">projects</Link>{" "}
+          page. I am currently working on {" "}
+          <Link href="https://wordpress.org/plugins/block-visibility/">Block Visibility</Link>, a plugin that allows
+          you to dynamically control the visibility of any block in the
+          WordPress editor.
         </p>
 
-        <h2 className="text-[var(--text-heading)] text-2xl font-medium mt-10 mb-4">
-          Projects
-        </h2>
-
-        <p className="text-copy leading-relaxed">
-          I maintain several open-source WordPress plugins, including Block
-          Visibility and the Icon Block, both of which have reached 30,000+
-          active users.
-        </p>
+        <p className="text-copy leading-relaxed">Thanks for stopping by!</p>
       </div>
     </div>
   );
