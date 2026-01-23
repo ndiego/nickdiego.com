@@ -56,12 +56,13 @@ export default function AboutPage() {
 
         <p className="text-copy leading-relaxed">
           If you are looking for more information on my WordPress plugins, head
-          over to the{" "}
-          <Link href="/projects">projects</Link>{" "}
-          page. I am currently working on {" "}
-          <Link href="https://wordpress.org/plugins/block-visibility/">Block Visibility</Link>, a plugin that allows
-          you to dynamically control the visibility of any block in the
-          WordPress editor.
+          over to the <Link href="/projects">projects</Link> page. I am
+          currently working on{" "}
+          <Link href="https://wordpress.org/plugins/block-visibility/">
+            Block Visibility
+          </Link>
+          , a plugin that allows you to dynamically control the visibility of
+          any block in the WordPress editor.
         </p>
 
         <p className="text-copy leading-relaxed">Thanks for stopping by!</p>

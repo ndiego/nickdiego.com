@@ -25,7 +25,9 @@ export const metadata: Metadata = {
   twitter: {
     title: "Writing",
     description,
-    images: ["/api/og?title=Writing&subtitle=Articles on WordPress and web development"],
+    images: [
+      "/api/og?title=Writing&subtitle=Articles on WordPress and web development",
+    ],
   },
   alternates: {
     canonical: "/writing",

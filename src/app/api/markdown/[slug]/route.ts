@@ -15,7 +15,7 @@ export async function GET(
   return new Response(markdown, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Link": `<${siteConfig.url}/${slug}>; rel="canonical"`,
+      Link: `<${siteConfig.url}/${slug}>; rel="canonical"`,
     },
   });
 }

@@ -83,7 +83,10 @@ function resolveFeaturedImage(
   if (!featuredImage) return undefined;
 
   // Already an absolute URL
-  if (featuredImage.startsWith("http://") || featuredImage.startsWith("https://")) {
+  if (
+    featuredImage.startsWith("http://") ||
+    featuredImage.startsWith("https://")
+  ) {
     return featuredImage;
   }
 
@@ -112,9 +115,9 @@ export const getAllPosts = cache((): PostMeta[] => {
       const stats = readingTime(content);
 
       // Pre-sort categories alphabetically
-      const categories = (data.categories ?? []).slice().sort((a: string, b: string) =>
-        a.localeCompare(b)
-      );
+      const categories = (data.categories ?? [])
+        .slice()
+        .sort((a: string, b: string) => a.localeCompare(b));
 
       return {
         slug,
@@ -161,9 +164,9 @@ export const getPostBySlug = cache((slug: string) => {
   const imageBasePath = getImageBasePath(fullPath);
 
   // Pre-sort categories alphabetically
-  const categories = (data.categories ?? []).slice().sort((a: string, b: string) =>
-    a.localeCompare(b)
-  );
+  const categories = (data.categories ?? [])
+    .slice()
+    .sort((a: string, b: string) => a.localeCompare(b));
 
   return {
     meta: {

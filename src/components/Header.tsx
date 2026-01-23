@@ -72,7 +72,9 @@ export function Header() {
             }
           />
           <SheetContent side="right">
-            <SheetTitle className="text-base font-medium">Nick Diego</SheetTitle>
+            <SheetTitle className="text-base font-medium">
+              Nick Diego
+            </SheetTitle>
             <nav className="flex flex-col gap-2 mt-8">
               <Link
                 href="/about"

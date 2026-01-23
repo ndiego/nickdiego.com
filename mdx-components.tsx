@@ -69,14 +69,10 @@ export function getMDXComponents(
       </h4>
     ),
     ul: ({ children }) => (
-      <ul className="list-disc pl-6 mb-6 space-y-2 text-copy">
-        {children}
-      </ul>
+      <ul className="list-disc pl-6 mb-6 space-y-2 text-copy">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="list-decimal pl-6 mb-6 space-y-2 text-copy">
-        {children}
-      </ol>
+      <ol className="list-decimal pl-6 mb-6 space-y-2 text-copy">{children}</ol>
     ),
     li: ({ children }) => <li className="leading-relaxed">{children}</li>,
     blockquote: ({ children }) => (

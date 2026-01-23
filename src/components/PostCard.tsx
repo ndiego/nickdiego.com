@@ -25,18 +25,18 @@ export function PostCard({ post }: { post: PostMeta }) {
         <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
           <div className="flex items-center">
             {post.categories.map((cat, i) => (
-                <span key={cat}>
-                  <Link
-                    href={`/writing/category/${getCategorySlug(cat)}`}
-                    className="hover:text-foreground transition-colors pointer-events-auto"
-                  >
-                    {cat}
-                  </Link>
-                  {i < post.categories.length - 1 && (
-                    <span className="mx-2">·</span>
-                  )}
-                </span>
-              ))}
+              <span key={cat}>
+                <Link
+                  href={`/writing/category/${getCategorySlug(cat)}`}
+                  className="hover:text-foreground transition-colors pointer-events-auto"
+                >
+                  {cat}
+                </Link>
+                {i < post.categories.length - 1 && (
+                  <span className="mx-2">·</span>
+                )}
+              </span>
+            ))}
           </div>
           <time dateTime={post.date}>{date}</time>
         </div>

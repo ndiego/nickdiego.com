@@ -61,11 +61,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
 
       <h3 className="text-lg font-medium text-balance max-w-[90%] leading-tight">
         {talkUrl ? (
-          <a
-            href={talkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={talkUrl} target="_blank" rel="noopener noreferrer">
             {talk.title}
           </a>
         ) : (

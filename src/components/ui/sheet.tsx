@@ -23,16 +23,13 @@ function SheetPortal({ ...props }: SheetPrimitive.Portal.Props) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
-function SheetOverlay({
-  className,
-  ...props
-}: SheetPrimitive.Backdrop.Props) {
+function SheetOverlay({ className, ...props }: SheetPrimitive.Backdrop.Props) {
   return (
     <SheetPrimitive.Backdrop
       data-slot="sheet-overlay"
       className={cn(
         "fixed inset-0 z-50 bg-black/40 data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0",
-        className
+        className,
       )}
       {...props}
     />
@@ -55,12 +52,11 @@ const sheetVariants = cva(
     defaultVariants: {
       side: "right",
     },
-  }
+  },
 );
 
 interface SheetContentProps
-  extends SheetPrimitive.Popup.Props,
-    VariantProps<typeof sheetVariants> {}
+  extends SheetPrimitive.Popup.Props, VariantProps<typeof sheetVariants> {}
 
 function SheetContent({
   side = "right",
@@ -95,7 +91,7 @@ function SheetHeader({
       data-slot="sheet-header"
       className={cn(
         "flex flex-col space-y-2 text-center sm:text-left",
-        className
+        className,
       )}
       {...props}
     />
@@ -111,17 +107,14 @@ function SheetFooter({
       data-slot="sheet-footer"
       className={cn(
         "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-        className
+        className,
       )}
       {...props}
     />
   );
 }
 
-function SheetTitle({
-  className,
-  ...props
-}: SheetPrimitive.Title.Props) {
+function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"

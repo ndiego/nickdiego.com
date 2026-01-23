@@ -15,7 +15,11 @@ const alignmentClasses: Record<Alignment, string> = {
   right: "justify-end",
 };
 
-export function LinkButton({ href, children, align = "left" }: LinkButtonProps) {
+export function LinkButton({
+  href,
+  children,
+  align = "left",
+}: LinkButtonProps) {
   const isExternal = href.startsWith("http");
 
   return (
