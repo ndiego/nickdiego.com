@@ -7,7 +7,7 @@ export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-6 md:py-12 space-y-24">
+    <div className="max-w-2xl mx-auto px-6 py-6 md:py-12 space-y-16 md:space-y-24">
       <section className="flex flex-col sm:flex-row gap-8 items-center">
         <div>
           <h1 className="text-4xl font-medium mb-4">Hi there</h1>
@@ -30,7 +30,7 @@ export default function HomePage() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-medium mb-6">Latest posts</h2>
+        <h2 className="text-2xl font-medium mb-6">Latest</h2>
 
         {posts.length > 0 ? (
           <div className="space-y-8 mb-8">
