@@ -10,13 +10,10 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@base-ui/react": "^1.1.0",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.1.2",
-    "@radix-ui/react-dialog": "^1.1.15",
-    "@radix-ui/react-separator": "^1.1.8",
-    "@radix-ui/react-slot": "^1.2.4",
-    "@radix-ui/react-tooltip": "^1.2.8",
     "@types/mdast": "^4.0.4",
     "@vercel/og": "^0.8.6",
     "class-variance-authority": "^0.7.1",

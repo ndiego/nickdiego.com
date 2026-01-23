@@ -7,9 +7,12 @@ This guide covers setting up and running the project locally.
 - **Framework**: Next.js 16 (App Router)
 - **Content**: MDX with next-mdx-remote
 - **Styling**: Tailwind CSS v4 with shadcn/ui color system
+- **UI Primitives**: Base UI (@base-ui/react) - headless components for shadcn/ui
 - **Syntax Highlighting**: Shiki (GitHub light/dark themes)
 - **Icons**: Lucide React
 - **Theme**: next-themes for dark mode
+
+> **Note**: This project uses Base UI instead of Radix UI for headless UI primitives. Base UI is the more future-proof approach and provides a single package (`@base-ui/react`) instead of multiple Radix packages. When adding new shadcn/ui components, ensure they use Base UI primitives.
 
 ## Commands
 

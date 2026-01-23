@@ -43,3 +43,9 @@ src/
 - **Code blocks**: Use fenced code blocks with info string options, not `<CodeBlock>` JSX directly.
 - **Static UI**: Prefer direct JSX over array mapping for navigation, links, etc.
 - **Styling**: Use shadcn/ui semantic colors (bg-muted, text-foreground, border-border).
+- **UI Primitives**: This project uses Base UI (`@base-ui/react`) instead of Radix UI. When adding new shadcn/ui components, use Base UI primitives. Key API patterns:
+  - Use `Backdrop` instead of `Overlay`
+  - Use `Popup` instead of `Content`
+  - Use `Positioner` for positioning (separate from Popup)
+  - Use `data-[open]`/`data-[closed]` for animations instead of `data-[state=...]`
+  - Use `render` prop for polymorphism: `<Trigger render={<Button />} />`
