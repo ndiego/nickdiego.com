@@ -54,7 +54,7 @@ export default function SpeakingPage() {
     <div className="max-w-2xl mx-auto px-6 py-6 md:py-12">
       <h1 className="text-3xl font-medium mb-4">Speaking</h1>
 
-      <p className="text-muted-foreground mb-12">
+      <p className="text-copy mb-12">
         Past conference talks, live streams, podcasts, and presentations.
       </p>
 
