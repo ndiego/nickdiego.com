@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 import { getAllPosts } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import Image from "next/image";
@@ -13,9 +13,8 @@ export default function HomePage() {
           <h1 className="text-4xl font-medium mb-4">Hi there</h1>
           <p className="text-copy leading-relaxed">
             I&apos;m Nick—a Product Marketing Manager at Automattic, WordPress
-            Core contributor, and hobby web developer. This site&apos;s
-            dedicated to my current WordPress projects and explorations into
-            related technologies. Have a look around.
+            Core contributor, and developer. This site's dedicated to my current projects,  
+            work with AI, and personal updates. Reach out at <Link href="https://x.com/nickmdiego">@nickmdiego</Link>.
           </p>
         </div>
         <div className="flex hidden sm:block flex-shrink-0">
