@@ -53,6 +53,9 @@ export function Tweet({ id }: TweetProps) {
   }, [id]);
 
   return (
-    <div ref={containerRef} className="my-8 flex justify-center [&>*]:!my-0" />
+    <div
+      ref={containerRef}
+      className="my-8 flex justify-center rounded-md border border-border overflow-hidden bg-card [&>*]:!my-0"
+    />
   );
 }

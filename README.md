@@ -1,10 +1,13 @@
 # nickdiego.com
 
-My personal website built with Next.js 16 and MDX. The source code is public so others can see how a modern blog with rich content authoring works in practice.
+This repository contains the source for my personal website, built with Next.js 16 and MDX. It was previously powered by WordPress and has since been migrated to a fully MDX-based setup, inspired by Lee Rob's [post](https://leerob.com/agents) on how Cursor moved their documentation to MDX.
+
+> [!NOTE]
+> This codebase is quite experimental. I'm using it to explore new agentic workflows, so expect things to change frequently and break occasionally.
 
 **Live site:** [nickdiego.com](https://nickdiego.com)
 
-## What Makes This Interesting
+## How it works
 
 The core of this site is a flexible MDX-based blog system. Posts are written in MDX (Markdown + JSX) with custom components for rich content:
 
