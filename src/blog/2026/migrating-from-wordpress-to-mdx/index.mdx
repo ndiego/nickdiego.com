@@ -1,9 +1,97 @@
 ---
 title: "Migrating from WordPress to MDX"
 date: 2026-01-24
-excerpt: ""
+excerpt: "Why I moved my personal blog from WordPress to MDX, and how flat file structures unlock powerful AI workflows."
 categories:
-  - Category
+  - AI
+  - Next.js
 ---
 
-Start writing here...
+I typed `/new-post` in Claude Code and answered three questions—title, slug, images or no images. Ten seconds later, I had a new MDX file with frontmatter ready to go. I'm writing in it right now.
+
+This is what I wanted. This is why I migrated.
+
+Lee Robinson [wrote something](https://leerob.com/agents) recently that stuck with me: "The cost of abstractions with AI is very high." He was talking about moving Cursor's docs from a headless CMS to MDX files. The idea resonated immediately.
+
+I've spent the last decade building with WordPress, and I still think it's the right choice for a lot of projects. But for my personal blog, the abstraction was getting in the way.
+
+## What I was fighting
+
+In WordPress, everything lives behind layers. Content sits in the database, media files land in `wp-content/uploads`, and custom functionality requires plugins. Want syntax highlighting? You're building a block, bundling it, installing it, activating it. The block editor is genuinely great for visual work, but it's a lot of machinery between you and the words.
+
+AI can't see through those layers easily. When I ask Claude to help me write, it can't read my other posts for context. When I want to add a component, it can't see my existing patterns. So I decided to rip it all out.
+
+## The new setup
+
+The whole site is about 4,200 lines of TypeScript—Next.js 16, MDX for content, Tailwind for styling, and Shiki for code blocks. Posts are just files:
+
+```
+src/blog/
+├── 2024/
+│   ├── simple-post.mdx
+│   └── post-with-images/
+│       ├── index.mdx
+│       └── screenshot.png
+└── 2025/
+    └── another-post.mdx
+```
+
+Posts with images get a folder. Posts without get a single file. Images sit next to the content that uses them. No media library, no attachment IDs.
+
+I can drop `<Video>`, `<Tweet>`, or `<GHRepoCard>` directly into any post. Code blocks get syntax highlighting automatically. Light and dark themes just work.
+
+## Why this works with AI
+
+Flat files change everything. Claude can read my components, grep for patterns, and see how I've solved problems before. There's no database to query, no REST API to navigate, no PHP-JavaScript bridge to cross. It just sees the code.
+
+When I wanted a code block component with copy buttons and collapsible sections, I described what I wanted. Claude read my existing components, matched the patterns, and built it. The whole thing took maybe ten minutes.
+
+In WordPress, that's a plugin. Or at minimum, a custom block with its own build process. Here, it's just a React component.
+
+## Teaching Claude about the project
+
+I have a `CLAUDE.md` file at the root. Claude Code reads it automatically. Mine points to a `docs/` folder with the real details—how content works, what components exist, styling conventions, the stuff that would take forever to re-explain every session.
+
+The key conventions matter most. Things like "use Base UI instead of Radix" and "this project uses React Compiler, so don't add useMemo manually." Small details that prevent Claude from fighting the codebase. There's still a lot more that I can add here. It's an iterative process.
+
+## Skills
+
+This is where it gets fun.
+
+Claude Code lets you create "skills"—reusable prompts you invoke with a slash command. I've built a few and plan to add more:
+
+**`/new-post`** asks for title, slug, and whether I need images, then creates the right file structure with frontmatter already filled in. I can pass `branch` to work on a dedicated git branch instead of using draft mode.
+
+**`/commit`** looks at my changes, groups them logically, and writes the commit messages. I can pass `all` to commit everything or `push` to push when done.
+
+I'm also pulling in community skills—`/web-design-guidelines` reviews UI code against best practices, and `/vercel-react-best-practices` catches React performance issues. The ecosystem is still early, but it's growing. Check out [Skills.sh](https://skills.sh/) for inspiration.
+
+## The workflow now
+
+I type `/new-post`, answer the questions, and start writing. When I want help, I ask for it—Claude can see everything, suggest edits, add examples, fix my grammar. When I'm done, I run `/commit`, merge to main, and it's live.
+
+No browser tabs, no block editor, no media library uploads. Everything happens in the editor and everything is version controlled.
+
+## What I'm still figuring out
+
+There are gaps. I don't have comments yet—probably wont. Search is just browser find for now. Scheduling doesn't exist; posts go live when I merge to main, which is fine for a personal blog but wouldn't work for a team.
+
+Some of this might be overengineered, some might be underengineered. The space is moving fast and I'm still learning what works.
+
+## Was it worth it?
+
+The migration took a weekend—export from WordPress, convert to MDX, fix the code blocks, update image paths. Then another week of tweaking the design and adding features.
+
+Now I have a site that loads fast, costs nearly nothing to host, and actually works the way I think. I can ask Claude to help me write and it has all the context it needs. I can build features in minutes instead of hours.
+
+More than anything, I enjoy writing here again. That's the part I didn't expect.
+
+## Check it out
+
+The entire site is open source. You can browse the code, see how the skills work, and steal whatever's useful:
+
+<GHRepoCard repo="ndiego/nickdiego.com" />
+
+Fair warning: this is experimental and changes almost daily. I'm actively tweaking the setup, adding new skills, and figuring out what works as I go. If you check back in a month, things will probably look different.
+
+If you're thinking about a similar migration, I'd love to hear about it. And if you have ideas for how to make this setup better, even better. Reach out at @nickmdiego.
