@@ -85,3 +85,26 @@ Available options in the info string:
 - `showLineNumbers={false}` - Hides line numbers
 
 **Important:** Do NOT use `<CodeBlock>` as a JSX component directly in MDX—the MDX compiler strips indentation from JSX expressions.
+
+### Callouts
+
+Use GitHub-style alerts for callouts. These automatically transform into `<Notice>` components:
+
+```md
+> [!NOTE]
+> General information the reader should know.
+
+> [!TIP]
+> Helpful suggestions or best practices.
+
+> [!IMPORTANT]
+> Key information to highlight.
+
+> [!WARNING]
+> Potential issues to be aware of.
+
+> [!CAUTION]
+> Critical warnings about dangerous actions.
+```
+
+This syntax follows [GitHub's alert convention](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) and is easier to write than JSX. For more control, you can also use the `<Notice>` component directly—see [components.md](./components.md#notice).
