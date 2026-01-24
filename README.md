@@ -1,106 +1,109 @@
 # nickdiego.com
 
-A personal blog built with Next.js 14, MDX, and Tailwind CSS.
+My personal website built with Next.js 16 and MDX. The source code is public so others can see how a modern blog with rich content authoring works in practice.
+
+**Live site:** [nickdiego.com](https://nickdiego.com)
+
+## What Makes This Interesting
+
+The core of this site is a flexible MDX-based blog system. Posts are written in MDX (Markdown + JSX) with custom components for rich content:
+
+```
+src/blog/
+├── 2024/
+│   ├── simple-post.mdx              # Simple post as single file
+│   └── post-with-images/            # Post with colocated assets
+│       ├── index.mdx
+│       ├── screenshot.png
+│       └── diagram.svg
+└── 2025/
+    └── ...
+```
+
+Each post has frontmatter for metadata:
+
+```yaml
+---
+title: Building a Custom Block
+date: 2024-03-15
+excerpt: A deep dive into WordPress block development
+categories: [WordPress, Block Editor]
+featuredImage: ./cover.png
+---
+```
+
+### Custom MDX Components
+
+Beyond standard Markdown, posts can use custom components:
+
+- **Code blocks** with syntax highlighting, line numbers, copy button, and collapsible sections
+- **Images** with captions, responsive sizing, and automatic optimization
+- **GitHub repo cards** showing live star/fork counts
+- **WordPress plugin cards** with ratings and install counts
+- **YouTube and video embeds** with Cloudflare Stream support
+- **Notice callouts** (note, tip, warning, etc.)
+
+Example usage in a post:
+
+~~~mdx
+Here's a code block with a filename header:
+
+```tsx title="Button.tsx"
+export function Button({ children }) {
+  return <button className="btn">{children}</button>
+}
+```
+
+<GHRepoCard repo="WordPress/gutenberg" />
+
+<Notice type="tip">
+  This is a helpful tip for readers.
+</Notice>
+~~~
+
+## Tech Stack
+
+- **Next.js 16** with App Router
+- **React 19** with React Compiler (automatic memoization)
+- **MDX** via @next/mdx and next-mdx-remote
+- **Tailwind CSS v4** with shadcn/ui components
+- **Shiki** for syntax highlighting
+- **Base UI** for accessible primitives
 
 ## Getting Started
 
 ```bash
+# Install dependencies
 npm install
-npm run dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+```
 
 ## Project Structure
 
 ```
 src/
-├── app/                    # Next.js App Router pages
-│   ├── about/
-│   ├── contact/
-│   ├── posts/
-│   │   └── [slug]/         # Dynamic post pages
-│   ├── projects/
-│   ├── speaking/
-│   ├── feed.xml/           # RSS feed
-│   ├── sitemap.ts          # Sitemap
-│   ├── layout.tsx          # Root layout
-│   └── page.tsx            # Home page
-├── components/             # React components
-│   ├── Footer.tsx
-│   ├── GitHubStats.tsx     # Server component for GitHub repo stats
-│   ├── Header.tsx
-│   ├── Notice.tsx          # MDX component for callouts
-│   ├── PostCard.tsx
-│   └── ThemeToggle.tsx     # Dark mode toggle
-├── content/
-│   └── posts/              # MDX blog posts
-│       └── *.mdx
-└── lib/
-    └── posts.ts            # Post utilities
+├── app/           # Next.js pages and API routes
+├── blog/          # MDX blog posts organized by year
+├── components/    # React components (ui/ for shadcn)
+├── lib/           # Utilities (post fetching, syntax highlighting)
+└── mdx-components.tsx  # MDX component registry
 ```
 
-## Adding Blog Posts
+## Documentation
 
-Create a new `.mdx` file in `src/content/posts/`:
+Detailed docs are in the [`docs/`](docs/) folder:
 
-```mdx
----
-title: My Post Title
-date: 2025-01-15
-excerpt: A brief description of the post.
-categories:
-  - Category1
-  - Category2
----
-
-Your post content here...
-
-<Notice type="info">
-  Use custom components like Notice and GitHubStats in your MDX.
-</Notice>
-
-<GitHubStats repo="username/repo" />
-```
-
-## Setup Checklist
-
-- [ ] Add your avatar image to `public/avatar.jpg`
-- [ ] Update social links in `src/components/Footer.tsx`
-- [ ] Update nav items in `src/components/Header.tsx` if needed
-- [ ] Configure newsletter form (Formspree, Buttondown, etc.)
-- [ ] Configure contact form (Formspree, server action, etc.)
-- [ ] Migrate posts from WordPress to MDX files
-- [ ] Deploy to Vercel
-
-## Custom MDX Components
-
-### Notice
-
-```mdx
-<Notice type="info">Info message</Notice>
-<Notice type="warning">Warning message</Notice>
-<Notice type="success">Success message</Notice>
-<Notice type="error">Error message</Notice>
-```
-
-### GitHubStats
-
-```mdx
-<GitHubStats repo="ndiego/block-visibility" />
-```
-
-Displays star and fork counts for any public GitHub repository.
-
-## Tech Stack
-
-- **Framework**: Next.js 14 (App Router)
-- **Styling**: Tailwind CSS
-- **Typography**: Geist (by Vercel)
-- **Content**: MDX with gray-matter
-- **Dark Mode**: next-themes
-- **Deployment**: Vercel (recommended)
+- [Getting Started](docs/getting-started.md) – Tech stack, commands, project structure
+- [Content Authoring](docs/content-authoring.md) – Writing blog posts with MDX
+- [Components](docs/components.md) – Custom MDX components reference
+- [Styling](docs/styling.md) – Tailwind CSS v4 and color system
+- [Design Patterns](docs/design-patterns.md) – Code conventions
 
 ## License
 
-MIT
+The code is available for reference and learning. Feel free to use it as inspiration for your own projects.
