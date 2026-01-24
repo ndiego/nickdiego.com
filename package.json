@@ -15,6 +15,7 @@
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.1.2",
     "@types/mdast": "^4.0.4",
+    "@vercel/analytics": "^1.6.1",
     "@vercel/og": "^0.8.6",
     "babel-plugin-react-compiler": "^1.0.0",
     "class-variance-authority": "^0.7.1",
