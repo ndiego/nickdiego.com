@@ -107,4 +107,9 @@ Detailed docs are in the [`docs/`](docs/) folder:
 
 ## License
 
-The code is available for reference and learning. Feel free to use it as inspiration for your own projects.
+This project uses a dual license:
+
+- **Blog posts and documentation** are licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
+- **Code** is licensed under the [MIT License](LICENSE)
+
+See [LICENSE](LICENSE) for details.
