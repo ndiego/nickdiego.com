@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Nick Diego",
   title: "Nick Diego",
   description:
-    "WordPress Developer, Core Contributor, and Developer Advocate sharing insights on building for the web.",
+    "Founder, developer, and WordPress Core Contributor sharing insights on building for the web.",
   url: "https://nickdiego.com",
   author: {
     name: "Nick Diego",
