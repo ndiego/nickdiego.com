@@ -1,6 +1,6 @@
 import { Link } from "@/components/ui/link";
 import { getAllPosts } from "@/lib/posts";
-import { PostCard } from "@/components/PostCard";
+import { PostCard } from "@/components/post-card";
 import Image from "next/image";
 
 export default function HomePage() {
@@ -48,10 +48,7 @@ export default function HomePage() {
         )}
 
         <div className="flex justify-end">
-          <Link
-            href="/writing"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link href="/writing" variant="muted" className="text-sm">
             View all →
           </Link>
         </div>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 import { getCategorySlug } from "@/lib/categories";
 
 interface CategoryNavProps {
@@ -20,7 +20,8 @@ export function CategoryNav({ categories, desktopSidebar }: CategoryNavProps) {
               <li key={cat}>
                 <Link
                   href={`/writing/category/${getCategorySlug(cat)}`}
-                  className="block py-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  variant="muted"
+                  className="block py-1 text-sm"
                 >
                   {cat}
                 </Link>
@@ -40,6 +41,7 @@ export function CategoryNav({ categories, desktopSidebar }: CategoryNavProps) {
           <Link
             key={cat}
             href={`/writing/category/${getCategorySlug(cat)}`}
+            variant="unstyled"
             className="px-3 py-1.5 text-sm border border-border rounded-full text-foreground hover:bg-neutral-50 dark:hover:bg-muted/50 transition-colors"
           >
             {cat}

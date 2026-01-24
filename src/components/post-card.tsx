@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 import type { PostMeta } from "@/lib/posts";
 import { getCategorySlug } from "@/lib/categories";
 import { dateFormatter } from "@/lib/utils";
@@ -11,6 +11,7 @@ export function PostCard({ post }: { post: PostMeta }) {
     <article className="relative rounded-md border border-border p-6 transition-colors hover:bg-muted/50">
       <Link
         href={postUrl}
+        variant="unstyled"
         className="absolute inset-0 z-0"
         aria-hidden="true"
         tabIndex={-1}
@@ -23,7 +24,8 @@ export function PostCard({ post }: { post: PostMeta }) {
               <span key={cat}>
                 <Link
                   href={`/writing/category/${getCategorySlug(cat)}`}
-                  className="hover:text-foreground transition-colors pointer-events-auto"
+                  variant="muted"
+                  className="pointer-events-auto"
                 >
                   {cat}
                 </Link>
@@ -37,7 +39,7 @@ export function PostCard({ post }: { post: PostMeta }) {
         </div>
 
         <h2 className="text-lg font-medium text-balance leading-tight max-w-[90%]">
-          <Link href={postUrl} className="pointer-events-auto">
+          <Link href={postUrl} variant="unstyled" className="pointer-events-auto">
             {post.title}
           </Link>
         </h2>

@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 import { getAllCategories, getPostsByCategory } from "@/lib/posts";
 import {
   getCategoryFromSlug,
   getCategorySlug,
   categoryMeta,
 } from "@/lib/categories";
-import { PostCard } from "@/components/PostCard";
+import { PostCard } from "@/components/post-card";
 import { siteConfig } from "@/lib/site";
 
 interface Props {
@@ -76,10 +76,7 @@ export default async function CategoryPage({ params }: Props) {
             <p className="mt-2 text-muted-foreground">{description}</p>
           )}
         </div>
-        <Link
-          href="/writing"
-          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >
+        <Link href="/writing" variant="muted" className="text-sm">
           ← All posts
         </Link>
       </div>

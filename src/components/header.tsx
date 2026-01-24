@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import {
@@ -20,6 +20,7 @@ export function Header() {
         <Link
           href="/"
           className="flex items-center gap-4 hover:opacity-70 transition-opacity"
+          variant="unstyled"
         >
           <Image
             src="/images/avatar.png"
@@ -33,28 +34,16 @@ export function Header() {
 
         {/* Desktop navigation */}
         <nav className="hidden sm:flex items-center gap-5">
-          <Link
-            href="/about"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link href="/about" variant="muted" className="text-sm">
             About
           </Link>
-          <Link
-            href="/writing"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link href="/writing" variant="muted" className="text-sm">
             Writing
           </Link>
-          <Link
-            href="/projects"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link href="/projects" variant="muted" className="text-sm">
             Projects
           </Link>
-          <Link
-            href="/speaking"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link href="/speaking" variant="muted" className="text-sm">
             Speaking
           </Link>
         </nav>
@@ -73,87 +62,71 @@ export function Header() {
           />
           <SheetContent side="right">
             <SheetTitle className="text-base font-medium">
-              <Link href="/" onClick={() => setOpen(false)}>
+              <Link href="/" onClick={() => setOpen(false)} variant="unstyled">
                 Nick Diego
               </Link>
             </SheetTitle>
             <nav className="flex flex-col gap-2 mt-8">
-              <Link
-                href="/about"
-                onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href="/about" onClick={() => setOpen(false)} variant="muted">
                 About
               </Link>
-              <Link
-                href="/writing"
-                onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href="/writing" onClick={() => setOpen(false)} variant="muted">
                 Writing
               </Link>
-              <Link
-                href="/projects"
-                onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href="/projects" onClick={() => setOpen(false)} variant="muted">
                 Projects
               </Link>
-              <Link
-                href="/speaking"
-                onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href="/speaking" onClick={() => setOpen(false)} variant="muted">
                 Speaking
               </Link>
             </nav>
 
             <div className="flex flex-col gap-2 mt-8 pt-8 border-t border-border">
-              <a
+              <Link
                 href="https://x.com/nickmdiego"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                variant="muted"
               >
                 X
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://github.com/ndiego"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                variant="muted"
               >
                 GitHub
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://linkedin.com/in/nickmdiego"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                variant="muted"
               >
                 LinkedIn
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://bsky.app/profile/nickdiego.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                variant="muted"
               >
                 Bluesky
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://profiles.wordpress.org/ndiego"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                variant="muted"
               >
                 WordPress
-              </a>
+              </Link>
             </div>
           </SheetContent>
         </Sheet>

@@ -3,6 +3,7 @@
 import { Mic2, Video, Headphones, Users } from "lucide-react";
 import type { Talk, TalkCategory } from "@/data/talks";
 import { dateFormatter } from "@/lib/utils";
+import { Link } from "@/components/ui/link";
 
 const categoryIcons: Record<TalkCategory, React.ReactNode> = {
   conference: <Mic2 className="size-4" />,
@@ -65,9 +66,14 @@ export function TalkCard({ talk }: { talk: Talk }) {
 
       <h3 className="text-lg font-medium text-balance max-w-[90%] leading-tight">
         {talkUrl ? (
-          <a href={talkUrl} target="_blank" rel="noopener noreferrer">
+          <Link
+            href={talkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="unstyled"
+          >
             {talk.title}
-          </a>
+          </Link>
         ) : (
           talk.title
         )}

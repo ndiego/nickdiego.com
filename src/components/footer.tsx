@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ThemeToggle } from "./ThemeToggle";
+import { Link } from "@/components/ui/link";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Footer() {
   return (
@@ -11,34 +11,22 @@ export function Footer() {
               <h3 className="font-medium mb-4">Explore</h3>
               <ul className="text-sm">
                 <li>
-                  <Link
-                    href="/about"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
-                  >
+                  <Link href="/about" variant="muted" className="block py-1">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/writing"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
-                  >
+                  <Link href="/writing" variant="muted" className="block py-1">
                     Writing
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/projects"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
-                  >
+                  <Link href="/projects" variant="muted" className="block py-1">
                     Projects
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/speaking"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
-                  >
+                  <Link href="/speaking" variant="muted" className="block py-1">
                     Speaking
                   </Link>
                 </li>
@@ -49,54 +37,59 @@ export function Footer() {
               <h3 className="font-medium mb-4">Connect</h3>
               <ul className="text-sm">
                 <li>
-                  <a
+                  <Link
                     href="https://x.com/nickmdiego"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
+                    variant="muted"
+                    className="block py-1"
                   >
                     X
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="https://github.com/ndiego"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
+                    variant="muted"
+                    className="block py-1"
                   >
                     GitHub
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="https://linkedin.com/in/nickmdiego"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
+                    variant="muted"
+                    className="block py-1"
                   >
                     LinkedIn
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="https://bsky.app/profile/nickdiego.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
+                    variant="muted"
+                    className="block py-1"
                   >
                     Bluesky
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="https://profiles.wordpress.org/ndiego"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
+                    variant="muted"
+                    className="block py-1"
                   >
                     WordPress
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
