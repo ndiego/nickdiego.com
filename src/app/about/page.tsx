@@ -38,7 +38,9 @@ export default function AboutPage() {
       </h1>
 
       <div className="space-y-6">
-        <p className="text-copy text-pretty leading-relaxed">Hi there, my name is Nick.</p>
+        <p className="text-copy text-pretty leading-relaxed">
+          Hi there, my name is Nick.
+        </p>
 
         <p className="text-copy text-pretty leading-relaxed">
           I&apos;m a Product Marketing Manager at Automattic, a WordPress Core

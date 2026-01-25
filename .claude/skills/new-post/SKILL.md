@@ -32,12 +32,14 @@ Ask the user the following questions one at a time:
 Based on the answers, create the appropriate structure:
 
 **With images:**
+
 ```
 src/blog/YYYY/slug/
 └── index.mdx
 ```
 
 **Without images:**
+
 ```
 src/blog/YYYY/slug.mdx
 ```
@@ -91,14 +93,12 @@ Once the file is created:
 
 1. Tell the user the file path
 
-**For default mode:**
-2. Remind them about the `draft: true` flag — remove it when ready to publish
+**For default mode:** 2. Remind them about the `draft: true` flag — remove it when ready to publish
 
-**For branch mode:**
-2. Tell them the branch name (`post/slug`)
-3. Remind them to merge the branch to main when ready to publish
+**For branch mode:** 2. Tell them the branch name (`post/slug`) 3. Remind them to merge the branch to main when ready to publish
 
 **If they chose "with images":**
+
 - Place images in the same folder as `index.mdx`
 - Use relative paths like `src="./image.png"`
 - Always include `width` and `height` props on `<Image>` components
