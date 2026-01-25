@@ -1,11 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
-import { ReactNode } from "react";
 
 type Alignment = "left" | "center" | "right";
 
 export interface LinkButtonProps {
   href: string;
-  children: ReactNode;
+  label: string;
   align?: Alignment;
 }
 
@@ -17,7 +16,7 @@ const alignmentClasses: Record<Alignment, string> = {
 
 export function LinkButton({
   href,
-  children,
+  label,
   align = "left",
 }: LinkButtonProps) {
   const isExternal = href.startsWith("http");
@@ -30,7 +29,7 @@ export function LinkButton({
         rel={isExternal ? "noopener noreferrer" : undefined}
         className="inline-flex items-center gap-1 rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium transition-opacity hover:opacity-80"
       >
-        {children}
+        {label}
         <ArrowUpRight className="size-4" />
       </a>
     </div>

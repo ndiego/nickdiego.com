@@ -71,16 +71,17 @@ The `./` prefix is automatically resolved to the correct API route at build time
 
 ### Props
 
-| Prop       | Required | Description                                                                       |
-| ---------- | -------- | --------------------------------------------------------------------------------- |
-| `src`      | Yes      | Path to the image                                                                 |
-| `alt`      | Yes      | Alt text for accessibility                                                        |
-| `width`    | Yes      | Original image width in pixels                                                    |
-| `height`   | Yes      | Original image height in pixels                                                   |
-| `size`     | No       | Size variant: `"default"` (full content width) or `"small"` (60% width, centered) |
-| `caption`  | No       | Caption displayed below the image (supports JSX)                                  |
-| `bordered` | No       | Add a border around the image                                                     |
-| `priority` | No       | Load image with priority (for above-the-fold images)                              |
+| Prop         | Required | Description                                                                       |
+| ------------ | -------- | --------------------------------------------------------------------------------- |
+| `src`        | Yes      | Path to the image                                                                 |
+| `alt`        | Yes      | Alt text for accessibility                                                        |
+| `width`      | Yes      | Original image width in pixels                                                    |
+| `height`     | Yes      | Original image height in pixels                                                   |
+| `size`       | No       | Size variant: `"default"` (full content width) or `"small"` (60% width, centered) |
+| `caption`    | No       | Caption displayed below the image (supports JSX)                                  |
+| `bordered`   | No       | Add a border around the image                                                     |
+| `priority`   | No       | Load image with priority (for above-the-fold images)                              |
+| `expandable` | No       | Enable click-to-expand lightbox preview                                           |
 
 ### Size Variants
 
@@ -107,6 +108,20 @@ The `./` prefix is automatically resolved to the correct API route at build time
       This is a caption with a <a href="https://example.com">link</a>.
     </>
   }
+/>
+```
+
+### Expandable Lightbox
+
+Add `expandable` to enable a click-to-expand lightbox. An expand icon appears on hover, and clicking opens the image in a fullscreen modal.
+
+```mdx
+<Image
+  src="./detailed-diagram.png"
+  alt="Architecture diagram"
+  width={1200}
+  height={800}
+  expandable
 />
 ```
 
@@ -283,16 +298,16 @@ Display a WordPress plugin card with live ratings and active install counts fetc
 Display a call-to-action button that links to internal or external URLs.
 
 ```mdx
-<LinkButton href="https://example.com">View the demo</LinkButton>
+<LinkButton href="https://example.com" label="View the demo" />
 ```
 
 ### Props
 
-| Prop       | Required | Default  | Description                             |
-| ---------- | -------- | -------- | --------------------------------------- |
-| `href`     | Yes      | —        | URL to link to                          |
-| `children` | Yes      | —        | Button text                             |
-| `align`    | No       | `"left"` | Alignment: `left`, `center`, or `right` |
+| Prop    | Required | Default  | Description                             |
+| ------- | -------- | -------- | --------------------------------------- |
+| `href`  | Yes      | —        | URL to link to                          |
+| `label` | Yes      | —        | Button text                             |
+| `align` | No       | `"left"` | Alignment: `left`, `center`, or `right` |
 
 ### Features
 
@@ -304,18 +319,11 @@ Display a call-to-action button that links to internal or external URLs.
 
 ```mdx
 {/* Left-aligned (default) */}
-
-<LinkButton href="/blog">Read more posts</LinkButton>
+<LinkButton href="/blog" label="Read more posts" />
 
 {/* Centered */}
-
-<LinkButton href="https://github.com/owner/repo" align="center">
-  View on GitHub
-</LinkButton>
+<LinkButton href="https://github.com/owner/repo" align="center" label="View on GitHub" />
 
 {/* Right-aligned */}
-
-<LinkButton href="/contact" align="right">
-  Get in touch
-</LinkButton>
+<LinkButton href="/contact" align="right" label="Get in touch" />
 ```
