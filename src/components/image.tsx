@@ -93,17 +93,14 @@ export function Image({
           >
             <X className="h-6 w-6" />
           </DialogClose>
-          <figure
-            className="pointer-events-auto max-w-full max-h-full flex flex-col items-center data-[open]:animate-in data-[closed]:animate-out data-[closed]:zoom-out-95 data-[open]:zoom-in-95"
-            style={{ width: Math.min(width, 1200) }}
-          >
+          <figure className="pointer-events-auto flex flex-col items-center data-[open]:animate-in data-[closed]:animate-out data-[closed]:zoom-out-95 data-[open]:zoom-in-95">
             <NextImage
               src={src}
               alt={alt}
               width={width}
               height={height}
               sizes="100vw"
-              className="w-full max-h-[calc(100vh-8rem)] h-auto rounded-md"
+              className="max-w-[min(100%,1200px)] max-h-[calc(100vh-8rem)] w-auto h-auto rounded-md"
             />
             {caption && (
               <figcaption className="mt-4 text-center text-sm text-white/80 [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:text-white [&_a]:transition-colors">
