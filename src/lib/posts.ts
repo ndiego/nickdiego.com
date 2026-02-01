@@ -211,6 +211,115 @@ export const getPostsByCategory = cache((category: string): PostMeta[] => {
   );
 });
 
+/**
+ * Convert MDX content to plain Markdown by transforming JSX components
+ * to their Markdown equivalents.
+ */
+function convertMdxToMarkdown(
+  content: string,
+  imageBasePath: string | null,
+): string {
+  let result = content;
+
+  // Image: <Image src="./foo.png" alt="description" ... /> → ![description](url)
+  result = result.replace(
+    /<Image\s+([^>]*?)\/>/g,
+    (_match: string, attrs: string) => {
+      const srcMatch = attrs.match(/src=["']([^"']+)["']/);
+      const altMatch = attrs.match(/alt=["']([^"']+)["']/);
+      let src = srcMatch?.[1] ?? "";
+      const alt = altMatch?.[1] ?? "";
+
+      // Resolve relative paths
+      if (src.startsWith("./") && imageBasePath) {
+        src = `${siteConfig.url}/api/blog-images/${imageBasePath}/${src.slice(2)}`;
+      }
+
+      return `![${alt}](${src})`;
+    },
+  );
+
+  // Video: <Video id="..." /> → [Watch video](cloudflare-url)
+  result = result.replace(/<Video\s+([^>]*?)\/>/g, (_match: string, attrs: string) => {
+    const idMatch = attrs.match(/id=["']([^"']+)["']/);
+    const id = idMatch?.[1] ?? "";
+    return `[Watch video](https://cloudflarestream.com/${id})`;
+  });
+
+  // YouTube: <YouTube id="..." /> → [Watch on YouTube](youtube-url)
+  result = result.replace(/<YouTube\s+([^>]*?)\/>/g, (_match: string, attrs: string) => {
+    const idMatch = attrs.match(/id=["']([^"']+)["']/);
+    const id = idMatch?.[1] ?? "";
+    return `[Watch on YouTube](https://www.youtube.com/watch?v=${id})`;
+  });
+
+  // Tweet: <Tweet id="..." /> → [View on X](x.com-url)
+  result = result.replace(/<Tweet\s+([^>]*?)\/>/g, (_match: string, attrs: string) => {
+    const idMatch = attrs.match(/id=["']([^"']+)["']/);
+    const id = idMatch?.[1] ?? "";
+    return `[View on X](https://x.com/i/status/${id})`;
+  });
+
+  // GHRepoCard: <GHRepoCard repo="..." title="..." description="..." /> → **[title](url)** - description
+  result = result.replace(
+    /<GHRepoCard\s+([^>]*?)\/>/g,
+    (_match: string, attrs: string) => {
+      const repoMatch = attrs.match(/repo=["']([^"']+)["']/);
+      const titleMatch = attrs.match(/title=["']([^"']+)["']/);
+      const descMatch = attrs.match(/description=["']([^"']+)["']/);
+      const repo = repoMatch?.[1] ?? "";
+      const title = titleMatch?.[1] ?? repo;
+      const description = descMatch?.[1] ?? "";
+
+      const link = `**[${title}](https://github.com/${repo})**`;
+      return description ? `${link} - ${description}` : link;
+    },
+  );
+
+  // WPPluginCard: <WPPluginCard slug="..." title="..." description="..." /> → **[title](url)** - description
+  result = result.replace(
+    /<WPPluginCard\s+([^>]*?)\/>/g,
+    (_match: string, attrs: string) => {
+      const slugMatch = attrs.match(/slug=["']([^"']+)["']/);
+      const titleMatch = attrs.match(/title=["']([^"']+)["']/);
+      const descMatch = attrs.match(/description=["']([^"']+)["']/);
+      const slug = slugMatch?.[1] ?? "";
+      const title = titleMatch?.[1] ?? slug;
+      const description = descMatch?.[1] ?? "";
+
+      const link = `**[${title}](https://wordpress.org/plugins/${slug}/)**`;
+      return description ? `${link} - ${description}` : link;
+    },
+  );
+
+  // LinkButton: <LinkButton href="..." label="..." /> → [label](href)
+  result = result.replace(
+    /<LinkButton\s+([^>]*?)\/>/g,
+    (_match: string, attrs: string) => {
+      const hrefMatch = attrs.match(/href=["']([^"']+)["']/);
+      const labelMatch = attrs.match(/label=["']([^"']+)["']/);
+      const href = hrefMatch?.[1] ?? "";
+      const label = labelMatch?.[1] ?? href;
+      return `[${label}](${href})`;
+    },
+  );
+
+  // Notice: <Notice type="...">content</Notice> → > **Type:** content
+  result = result.replace(
+    /<Notice(?:\s+type=["']([^"']+)["'])?\s*>([\s\S]*?)<\/Notice>/g,
+    (_match: string, type: string | undefined, innerContent: string) => {
+      const noticeType = type ?? "note";
+      const label =
+        noticeType.charAt(0).toUpperCase() + noticeType.slice(1).toLowerCase();
+      // Convert inner content to blockquote lines
+      const lines = innerContent.trim().split("\n");
+      return lines.map((line, i) => (i === 0 ? `> **${label}:** ${line}` : `> ${line}`)).join("\n");
+    },
+  );
+
+  return result;
+}
+
 export const getPostMarkdown = cache((slug: string): string | null => {
   const mdxFiles = getMdxFilesRecursively(blogDirectory);
   const fullPath = mdxFiles.find((file) => getSlugFromPath(file) === slug);
@@ -221,6 +330,10 @@ export const getPostMarkdown = cache((slug: string): string | null => {
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
+  const imageBasePath = getImageBasePath(fullPath);
+
+  // Convert MDX components to plain Markdown
+  const markdownContent = convertMdxToMarkdown(content, imageBasePath);
 
   // Build YAML frontmatter
   const dateStr = data.date
@@ -248,5 +361,5 @@ export const getPostMarkdown = cache((slug: string): string | null => {
   frontmatter.push(`url: /${slug}`);
   frontmatter.push("---");
 
-  return frontmatter.join("\n") + "\n\n" + content.trim();
+  return frontmatter.join("\n") + "\n\n" + markdownContent.trim();
 });

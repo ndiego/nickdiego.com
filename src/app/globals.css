@@ -167,6 +167,7 @@ h2:hover .heading-anchor::before,
 h3:hover .heading-anchor::before,
 h4:hover .heading-anchor::before {
   content: "#";
+  font-weight: 400;
   @apply absolute -left-6 text-muted-foreground;
 }
 
