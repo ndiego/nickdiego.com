@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `${siteConfig.url}/${slug}`;
   const ogImage = post.meta.featuredImage
     ? post.meta.featuredImage
-    : `${siteConfig.url}/api/og?title=${encodeURIComponent(post.meta.title)}&subtitle=${encodeURIComponent(post.meta.excerpt)}`;
+    : `${siteConfig.url}/api/og?title=${encodeURIComponent(post.meta.title)}`;
 
   return {
     title: post.meta.title,
