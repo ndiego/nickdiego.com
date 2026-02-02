@@ -34,32 +34,27 @@ export default function AboutPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-6 md:py-12">
       <h1 className="text-[var(--text-heading)] text-3xl font-medium mb-8">
-        About
+        Hi, I'm Nick.
       </h1>
 
       <div className="space-y-6">
         <p className="text-copy text-pretty leading-relaxed">
-          Hi there, my name is Nick.
+          I&apos;m a developer and WordPress core contributor with experience
+          building and maintaining a range of tools and products. After many
+          years working professionally on WordPress across developer relations
+          and product marketing, I&apos;m now focused on a new project.
         </p>
 
         <p className="text-copy text-pretty leading-relaxed">
-          I&apos;m a Product Marketing Manager at Automattic, a WordPress Core
-          contributor, a developer, and a “retired” hospitality marketer. I
-          currently live in Minneapolis, Minnesota, with my wife, our dog
-          Willie, and a growing number of rescued cats.
-        </p>
-
-        <p className="text-copy text-pretty leading-relaxed">
-          Here, I share my web development projects, AI workflows, code
-          snippets, WordPress tutorials, and whatever else I&apos;m currently
-          working on.
+          This site is where I share ongoing work, AI workflows, code snippets,
+          WordPress tutorials, and personal updates along the way.
         </p>
 
         <p className="text-copy text-pretty leading-relaxed">
           For more on my WordPress plugins, check out the{" "}
-          <Link href="/projects">projects</Link> page. You can also find me at{" "}
+          <Link href="/projects">projects</Link> page. You can find me at{" "}
           <Link href="https://x.com/nickmdiego">@nickmdiego</Link> or through
-          the social channels below.
+          the social links below.
         </p>
       </div>
     </div>
