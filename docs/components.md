@@ -319,11 +319,18 @@ Display a call-to-action button that links to internal or external URLs.
 
 ```mdx
 {/* Left-aligned (default) */}
+
 <LinkButton href="/blog" label="Read more posts" />
 
 {/* Centered */}
-<LinkButton href="https://github.com/owner/repo" align="center" label="View on GitHub" />
+
+<LinkButton
+  href="https://github.com/owner/repo"
+  align="center"
+  label="View on GitHub"
+/>
 
 {/* Right-aligned */}
+
 <LinkButton href="/contact" align="right" label="Get in touch" />
 ```

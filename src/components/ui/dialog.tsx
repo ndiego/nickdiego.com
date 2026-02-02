@@ -22,7 +22,10 @@ function DialogPortal({ ...props }: DialogPrimitive.Portal.Props) {
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
 }
 
-function DialogOverlay({ className, ...props }: DialogPrimitive.Backdrop.Props) {
+function DialogOverlay({
+  className,
+  ...props
+}: DialogPrimitive.Backdrop.Props) {
   return (
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
@@ -57,7 +60,10 @@ function DialogContent({
   );
 }
 
-function DialogCloseButton({ className, ...props }: DialogPrimitive.Close.Props) {
+function DialogCloseButton({
+  className,
+  ...props
+}: DialogPrimitive.Close.Props) {
   return (
     <DialogPrimitive.Close
       className={cn(
@@ -108,7 +114,10 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      className={cn(
+        "text-lg font-semibold leading-none tracking-tight",
+        className,
+      )}
       {...props}
     />
   );

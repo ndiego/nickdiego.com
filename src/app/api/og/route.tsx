@@ -53,7 +53,6 @@ export async function GET(request: NextRequest) {
         fontFamily: "Geist",
       }}
     >
-
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={avatarData as unknown as string}

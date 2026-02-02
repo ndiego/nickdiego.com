@@ -240,25 +240,34 @@ function convertMdxToMarkdown(
   );
 
   // Video: <Video id="..." /> → [Watch video](cloudflare-url)
-  result = result.replace(/<Video\s+([^>]*?)\/>/g, (_match: string, attrs: string) => {
-    const idMatch = attrs.match(/id=["']([^"']+)["']/);
-    const id = idMatch?.[1] ?? "";
-    return `[Watch video](https://cloudflarestream.com/${id})`;
-  });
+  result = result.replace(
+    /<Video\s+([^>]*?)\/>/g,
+    (_match: string, attrs: string) => {
+      const idMatch = attrs.match(/id=["']([^"']+)["']/);
+      const id = idMatch?.[1] ?? "";
+      return `[Watch video](https://cloudflarestream.com/${id})`;
+    },
+  );
 
   // YouTube: <YouTube id="..." /> → [Watch on YouTube](youtube-url)
-  result = result.replace(/<YouTube\s+([^>]*?)\/>/g, (_match: string, attrs: string) => {
-    const idMatch = attrs.match(/id=["']([^"']+)["']/);
-    const id = idMatch?.[1] ?? "";
-    return `[Watch on YouTube](https://www.youtube.com/watch?v=${id})`;
-  });
+  result = result.replace(
+    /<YouTube\s+([^>]*?)\/>/g,
+    (_match: string, attrs: string) => {
+      const idMatch = attrs.match(/id=["']([^"']+)["']/);
+      const id = idMatch?.[1] ?? "";
+      return `[Watch on YouTube](https://www.youtube.com/watch?v=${id})`;
+    },
+  );
 
   // Tweet: <Tweet id="..." /> → [View on X](x.com-url)
-  result = result.replace(/<Tweet\s+([^>]*?)\/>/g, (_match: string, attrs: string) => {
-    const idMatch = attrs.match(/id=["']([^"']+)["']/);
-    const id = idMatch?.[1] ?? "";
-    return `[View on X](https://x.com/i/status/${id})`;
-  });
+  result = result.replace(
+    /<Tweet\s+([^>]*?)\/>/g,
+    (_match: string, attrs: string) => {
+      const idMatch = attrs.match(/id=["']([^"']+)["']/);
+      const id = idMatch?.[1] ?? "";
+      return `[View on X](https://x.com/i/status/${id})`;
+    },
+  );
 
   // GHRepoCard: <GHRepoCard repo="..." title="..." description="..." /> → **[title](url)** - description
   result = result.replace(
@@ -313,7 +322,9 @@ function convertMdxToMarkdown(
         noticeType.charAt(0).toUpperCase() + noticeType.slice(1).toLowerCase();
       // Convert inner content to blockquote lines
       const lines = innerContent.trim().split("\n");
-      return lines.map((line, i) => (i === 0 ? `> **${label}:** ${line}` : `> ${line}`)).join("\n");
+      return lines
+        .map((line, i) => (i === 0 ? `> **${label}:** ${line}` : `> ${line}`))
+        .join("\n");
     },
   );
 
