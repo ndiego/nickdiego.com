@@ -59,6 +59,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: post.meta.title,
       description: post.meta.excerpt,
+      site: siteConfig.author.twitter,
+      creator: siteConfig.author.twitter,
       images: [ogImage],
     },
   };

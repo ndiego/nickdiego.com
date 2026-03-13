@@ -106,6 +106,9 @@ export async function GET(request: NextRequest) {
           weight: 500,
         },
       ],
+      headers: {
+        "Cache-Control": "public, max-age=86400, s-maxage=604800",
+      },
     },
   );
 }
