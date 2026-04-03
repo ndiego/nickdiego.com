@@ -42,7 +42,15 @@ export default function AboutPage() {
           I&apos;m a developer and WordPress core contributor with experience
           building and maintaining a range of tools and products. After many
           years working professionally on WordPress across developer relations
-          and product marketing, I&apos;m now focused on a new project.
+          and product marketing, I&apos;m now focused on{" "}
+          <Link href="https://spellbinder.gg">Spellbinder.gg</Link>.
+        </p>
+
+        <p className="text-copy text-pretty leading-relaxed">
+          Spellbinder is a platform for Magic: The Gathering discovery,
+          analysis, deck building, and collection management. Built with
+          Next.js and powered by AI-driven workflows, it&apos;s where
+          I&apos;m channeling most of my energy right now.
         </p>
 
         <p className="text-copy text-pretty leading-relaxed">
@@ -51,8 +59,9 @@ export default function AboutPage() {
         </p>
 
         <p className="text-copy text-pretty leading-relaxed">
-          For more on my WordPress plugins, check out the{" "}
-          <Link href="/projects">projects</Link> page. You can find me at{" "}
+          For more on what I&apos;m working on, check out the{" "}
+          <Link href="/projects">projects</Link> page. If you&apos;d like to
+          reach out, you can find me at{" "}
           <Link href="https://x.com/nickmdiego">@nickmdiego</Link> or through
           the social links below.
         </p>
