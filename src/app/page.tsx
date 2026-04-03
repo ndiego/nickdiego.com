@@ -13,8 +13,11 @@ export default function HomePage() {
           <h1 className="text-4xl font-medium mb-4">Hi there</h1>
           <p className="text-copy leading-relaxed">
             I&apos;m Nick. I build things for the web, explore what&apos;s
-            possible with AI, and contribute to WordPress. This site is home to
-            my projects, experiments, and updates along the way. Reach out at{" "}
+            possible with AI, and contribute to WordPress. I&apos;m currently
+            focused on{" "}
+            <Link href="https://spellbinder.gg">Spellbinder.gg</Link>. This
+            site is home to my projects, experiments, and updates along the way.
+            Reach out at{" "}
             <Link href="https://x.com/nickmdiego">@nickmdiego</Link>.
           </p>
         </div>
