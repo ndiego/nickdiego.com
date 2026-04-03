@@ -7,7 +7,7 @@ import { Link } from "@/components/ui/link";
 import { Separator } from "@/components/ui/separator";
 
 const description =
-  "Open-source projects including WordPress plugins, tools, and more.";
+  "Projects including Spellbinder.gg, WordPress plugins, tools, and more.";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     url: "/projects",
     images: [
       {
-        url: "/api/og?title=Projects&subtitle=Open-source projects and tools",
+        url: "/api/og?title=Projects&subtitle=Projects and tools",
         width: 1200,
         height: 630,
         alt: "Projects by Nick Diego",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Projects",
     description,
-    images: ["/api/og?title=Projects&subtitle=Open-source projects and tools"],
+    images: ["/api/og?title=Projects&subtitle=Projects and tools"],
   },
   alternates: {
     canonical: "/projects",
@@ -49,8 +49,27 @@ export default function ProjectsPage() {
       <h1 className="text-3xl font-medium mb-4">Projects</h1>
 
       <p className="text-copy mb-12">
-        A collection of open-source projects I&apos;ve built and maintain.
+        A collection of projects I&apos;ve built and maintain.
       </p>
+
+      <section className="mb-12">
+        <h2 className="text-2xl font-medium mb-4">Spellbinder.gg</h2>
+        <p className="text-copy mb-6">
+          A platform for Magic: The Gathering discovery, analysis, deck
+          building, and collection management. The project is in active
+          development, so if you&apos;re a Magic fan, check it out at{" "}
+          <Link href="https://spellbinder.gg">Spellbinder.gg</Link>.
+        </p>
+        <Link href="https://spellbinder.gg">
+          <Image
+            src="/images/spellbinder-screenshot.png"
+            alt="Spellbinder.gg screenshot"
+            width={3000}
+            height={1000}
+            className="rounded-lg border border-border"
+          />
+        </Link>
+      </section>
 
       <h2 className="text-2xl font-medium mb-4">WordPress</h2>
       <p className="text-copy mb-12">
