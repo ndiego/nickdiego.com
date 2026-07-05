@@ -1,6 +1,8 @@
 # Content Authoring
 
-This guide covers writing blog posts and other content using MDX.
+This guide covers the mechanics of writing blog posts with MDX: file structure, frontmatter, images, code blocks, and callouts.
+
+For **how the writing should sound** (tone, structure, diction, and hard rules like never using em-dashes), use the [`voice` skill](../.claude/skills/voice/SKILL.md). Draft the words in Nick's voice first, then apply the mechanics below.
 
 ## Blog Posts
 
@@ -20,18 +22,39 @@ src/blog/2024/my-post/
 
 Reference images using relative paths (e.g., `src="./screenshot.png"`).
 
+### Image Best Practices
+
+Use the `<Image>` component for images in post content (see [components.md](./components.md#image) for all props).
+
+- **Always pass `width` and `height`** matching the image's real pixel dimensions. This reserves layout space and prevents cumulative layout shift. Get the dimensions with:
+
+  ```bash
+  sips -g pixelWidth -g pixelHeight ./screenshot.png
+  ```
+
+- **Write meaningful `alt` text** describing what the image shows. Leave `alt=""` only for purely decorative images.
+- **Colocate images** in the post's folder and reference them with `./`. Don't link to external image hosts for post content.
+- Prefer optimized formats (`.webp`, or `.png`/`.jpg`) and reasonably sized source files. Blog images are served at their source resolution, so avoid dropping in an oversized export.
+
 ### Frontmatter Schema
 
 ```yaml
 ---
-title: Post Title
+title: Post Title # sentence case; an optional "colon: subtitle" is fine
 date: YYYY-MM-DD
-excerpt: Short description
+excerpt: Short description # 1-2 complete sentences, in Nick's voice
 categories:
-  - Category
+  - Category # reuse existing categories where possible
 featuredImage: ./cover.png # optional, used for OpenGraph/social sharing
+draft: true # optional, hides the post outside development
 ---
 ```
+
+Notes:
+
+- **Reading time** is calculated automatically from the content. Don't add it to frontmatter.
+- **Author** is always Nick Diego. There is no author field.
+- **Categories** in use across the blog: Personal, Projects, Blocks, Extensibility, AI, Tutorials, Tools, Speaking. Prefer these over inventing new ones so the category pages stay meaningful.
 
 ### Featured Images
 
@@ -84,7 +107,7 @@ Available options in the info string:
 - `maxLines={8}` - Collapsible with expand button
 - `showLineNumbers={false}` - Hides line numbers
 
-**Important:** Do NOT use `<CodeBlock>` as a JSX component directly in MDX—the MDX compiler strips indentation from JSX expressions.
+**Important:** Do NOT use `<CodeBlock>` as a JSX component directly in MDX. The MDX compiler strips indentation from JSX expressions.
 
 ### Callouts
 
@@ -107,4 +130,4 @@ Use GitHub-style alerts for callouts. These automatically transform into `<Notic
 > Critical warnings about dangerous actions.
 ```
 
-This syntax follows [GitHub's alert convention](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) and is easier to write than JSX. For more control, you can also use the `<Notice>` component directly—see [components.md](./components.md#notice).
+This syntax follows [GitHub's alert convention](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) and is easier to write than JSX. For more control, you can also use the `<Notice>` component directly. See [components.md](./components.md#notice).
