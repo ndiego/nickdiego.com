@@ -66,6 +66,7 @@ export default function ProjectsPage() {
             alt="Spellbinder.gg screenshot"
             width={3000}
             height={1000}
+            sizes="(max-width: 672px) 100vw, 672px"
             className="rounded-lg border border-border"
           />
         </Link>

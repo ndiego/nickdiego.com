@@ -21,7 +21,7 @@ export default function HomePage() {
             <Link href="https://x.com/nickmdiego">@nickmdiego</Link>.
           </p>
         </div>
-        <div className="flex hidden sm:block flex-shrink-0">
+        <div className="hidden sm:block flex-shrink-0">
           <Image
             src="/images/avatar.png"
             alt="Nick Diego"
