@@ -1,4 +1,5 @@
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getAllCategories } from "@/lib/posts";
+import { getCategorySlug } from "@/lib/categories";
 import { siteConfig } from "@/lib/site";
 import type { MetadataRoute } from "next";
 
@@ -10,6 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
+  }));
+
+  const categoryUrls = getAllCategories().map((category) => ({
+    url: `${siteConfig.url}/writing/category/${getCategorySlug(category)}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
   }));
 
   const staticPages = [
@@ -25,5 +33,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }));
 
-  return [...staticPages, ...postUrls];
+  return [...staticPages, ...categoryUrls, ...postUrls];
 }

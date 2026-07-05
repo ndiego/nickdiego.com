@@ -17,7 +17,13 @@ export async function GET(
 ) {
   const { path: pathSegments } = await params;
   const imagePath = pathSegments.join("/");
-  const fullPath = path.join(process.cwd(), "src/blog", imagePath);
+  const blogRoot = path.join(process.cwd(), "src/blog");
+  const fullPath = path.resolve(blogRoot, imagePath);
+
+  // Prevent path traversal: the resolved path must stay within the blog dir
+  if (fullPath !== blogRoot && !fullPath.startsWith(blogRoot + path.sep)) {
+    return new NextResponse("Not found", { status: 404 });
+  }
 
   if (!fs.existsSync(fullPath)) {
     return new NextResponse("Not found", { status: 404 });

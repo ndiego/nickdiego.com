@@ -34,7 +34,7 @@ export default function AboutPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-6 md:py-12">
       <h1 className="text-[var(--text-heading)] text-3xl font-medium mb-8">
-        Hi, I'm Nick.
+        Hi, I&apos;m Nick.
       </h1>
 
       <div className="space-y-6">

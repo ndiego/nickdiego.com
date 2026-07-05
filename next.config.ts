@@ -25,6 +25,17 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        // The feed moved from /feed to /feed.xml; keep the old URL working
+        // for any readers that subscribed to it before the rename.
+        source: "/feed",
+        destination: "/feed.xml",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

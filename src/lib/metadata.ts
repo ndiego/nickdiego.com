@@ -32,7 +32,7 @@ export function generateMetadata({
   return {
     title: metaTitle,
     description: metaDescription,
-    metadataBase: new URL(siteConfig.url),
+    // metadataBase is established once in the root layout; no need to repeat it.
     alternates: {
       canonical: url,
     },

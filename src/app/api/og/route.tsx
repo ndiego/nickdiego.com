@@ -22,8 +22,10 @@ async function getFontData(): Promise<ArrayBuffer> {
   if (cachedFontData) {
     return cachedFontData;
   }
+  // Load the font from a bundled asset rather than a runtime network fetch,
+  // so OG generation doesn't depend on an external host being reachable.
   const data = await fetch(
-    "https://github.com/vercel/geist-font/raw/main/packages/next/dist/fonts/geist-sans/Geist-Medium.ttf",
+    new URL("./Geist-Medium.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
   cachedFontData = data;
   return data;
@@ -32,6 +34,7 @@ async function getFontData(): Promise<ArrayBuffer> {
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const title = searchParams.get("title") || siteConfig.name;
+  const subtitle = searchParams.get("subtitle") || undefined;
 
   // Fetch assets with caching for warm edge instances
   const [avatarData, fontData] = await Promise.all([
@@ -93,6 +96,18 @@ export async function GET(request: NextRequest) {
         >
           {title}
         </h1>
+        {subtitle && (
+          <span
+            style={{
+              fontSize: "32px",
+              color: "#a3a3a3",
+              maxWidth: "900px",
+              lineHeight: 1.3,
+            }}
+          >
+            {subtitle}
+          </span>
+        )}
       </div>
     </div>,
     {
