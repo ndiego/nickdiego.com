@@ -32,6 +32,7 @@ async function getFontData(): Promise<ArrayBuffer> {
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const title = searchParams.get("title") || siteConfig.name;
+  const subtitle = searchParams.get("subtitle") || undefined;
 
   // Fetch assets with caching for warm edge instances
   const [avatarData, fontData] = await Promise.all([
@@ -93,6 +94,18 @@ export async function GET(request: NextRequest) {
         >
           {title}
         </h1>
+        {subtitle && (
+          <span
+            style={{
+              fontSize: "32px",
+              color: "#a3a3a3",
+              maxWidth: "900px",
+              lineHeight: 1.3,
+            }}
+          >
+            {subtitle}
+          </span>
+        )}
       </div>
     </div>,
     {
