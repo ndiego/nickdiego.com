@@ -41,7 +41,7 @@ export function GET() {
     <description>${escapeXml(siteConfig.description)}</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <atom:link href="${siteConfig.url}/feed" rel="self" type="application/rss+xml"/>${items}
+    <atom:link href="${siteConfig.url}/feed.xml" rel="self" type="application/rss+xml"/>${items}
   </channel>
 </rss>`;
 
