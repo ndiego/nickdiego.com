@@ -22,8 +22,10 @@ async function getFontData(): Promise<ArrayBuffer> {
   if (cachedFontData) {
     return cachedFontData;
   }
+  // Load the font from a bundled asset rather than a runtime network fetch,
+  // so OG generation doesn't depend on an external host being reachable.
   const data = await fetch(
-    "https://github.com/vercel/geist-font/raw/main/packages/next/dist/fonts/geist-sans/Geist-Medium.ttf",
+    new URL("./Geist-Medium.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
   cachedFontData = data;
   return data;
