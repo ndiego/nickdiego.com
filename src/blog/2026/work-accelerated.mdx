@@ -1,0 +1,126 @@
+---
+title: "Work accelerated"
+date: 2026-09-04
+excerpt: "Seven months, the same twelve-hour days, and more than double the output. A look at the commit history of Spellbinder and what changed along the way."
+categories:
+  - Personal
+  - AI
+  - Projects
+draft: true
+---
+
+Since February I have been working about twelve hours a day, seven days a week, on my new project, [Spellbinder](https://www.spellbinder.gg). The effort has been consistent the entire time, aside from pockets of family vacation and a few out-of-town weddings. You can see the shape of it in my [GitHub contribution graph](https://github.com/ndiego).
+
+What you will also notice, and what I find fascinating, is that the output has not been consistent at all.
+
+I have leaned on AI as hard as I know how for this project, limited only by my own ability and by where the frontier models were at the time. I have only ever used Claude and Codex, always the latest models, always the latest methods I could find. And yet a good day in March meant around 50 commits, with the best day of the month landing at 58. In August the best day was 211. Three days that month cleared 130.
+
+Those were not small commits either. The typical commit got bigger over the same stretch.
+
+## The numbers
+
+I pulled these with a few lines of shell from the three repositories that make up Spellbinder: the app itself, the card scanner models, and a utilities repo for data pipelines. They cover my own non-merge commits, and "active days" means days with at least one commit, so vacation days do not drag the averages down. Lines changed is insertions plus deletions.
+
+<table className="w-full text-sm mb-6 text-copy">
+  <thead>
+    <tr className="border-b border-border text-left">
+      <th className="py-2 pr-4 font-medium">Month</th>
+      <th className="py-2 pr-4 font-medium text-right">Commits</th>
+      <th className="py-2 pr-4 font-medium text-right">Active days</th>
+      <th className="py-2 pr-4 font-medium text-right">Commits per day</th>
+      <th className="py-2 pr-4 font-medium text-right">Lines per commit (mean)</th>
+      <th className="py-2 font-medium text-right">Lines per commit (median)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="border-b border-border">
+      <td className="py-2 pr-4">February</td>
+      <td className="py-2 pr-4 text-right">808</td>
+      <td className="py-2 pr-4 text-right">28</td>
+      <td className="py-2 pr-4 text-right">28.9</td>
+      <td className="py-2 pr-4 text-right">237</td>
+      <td className="py-2 text-right">40</td>
+    </tr>
+    <tr className="border-b border-border">
+      <td className="py-2 pr-4">March</td>
+      <td className="py-2 pr-4 text-right">875</td>
+      <td className="py-2 pr-4 text-right">30</td>
+      <td className="py-2 pr-4 text-right">29.2</td>
+      <td className="py-2 pr-4 text-right">185</td>
+      <td className="py-2 text-right">35</td>
+    </tr>
+    <tr className="border-b border-border">
+      <td className="py-2 pr-4">April</td>
+      <td className="py-2 pr-4 text-right">242</td>
+      <td className="py-2 pr-4 text-right">19</td>
+      <td className="py-2 pr-4 text-right">12.7</td>
+      <td className="py-2 pr-4 text-right">318</td>
+      <td className="py-2 text-right">38</td>
+    </tr>
+    <tr className="border-b border-border">
+      <td className="py-2 pr-4">May</td>
+      <td className="py-2 pr-4 text-right">484</td>
+      <td className="py-2 pr-4 text-right">26</td>
+      <td className="py-2 pr-4 text-right">18.6</td>
+      <td className="py-2 pr-4 text-right">252</td>
+      <td className="py-2 text-right">59</td>
+    </tr>
+    <tr className="border-b border-border">
+      <td className="py-2 pr-4">June</td>
+      <td className="py-2 pr-4 text-right">1,075</td>
+      <td className="py-2 pr-4 text-right">30</td>
+      <td className="py-2 pr-4 text-right">35.8</td>
+      <td className="py-2 pr-4 text-right">260</td>
+      <td className="py-2 text-right">62</td>
+    </tr>
+    <tr className="border-b border-border">
+      <td className="py-2 pr-4">July</td>
+      <td className="py-2 pr-4 text-right">2,022</td>
+      <td className="py-2 pr-4 text-right">31</td>
+      <td className="py-2 pr-4 text-right">65.2</td>
+      <td className="py-2 pr-4 text-right">185</td>
+      <td className="py-2 text-right">77</td>
+    </tr>
+    <tr>
+      <td className="py-2 pr-4">August</td>
+      <td className="py-2 pr-4 text-right">1,922</td>
+      <td className="py-2 pr-4 text-right">28</td>
+      <td className="py-2 pr-4 text-right">68.6</td>
+      <td className="py-2 pr-4 text-right">193</td>
+      <td className="py-2 text-right">93</td>
+    </tr>
+  </tbody>
+</table>
+
+Two commits were removed from April and May before computing the means: a 117,000-line dump of test results, and a 155,000-line deletion when I retired the first version of the card scanner. Neither says anything about how I work. April also had only 19 active days, which is where most of the weddings landed.
+
+I checked whether the scanner work explained the spring dip, since most of it lived outside the main repo while I was training models. It does not. The scanner and utilities repos add fewer than 50 commits to any month, and the shape of the curve is the same with or without them.
+
+> [!NOTE]
+> The mean is a lousy statistic for commit size. A handful of large feature commits pull it up every month. The median is the honest number, and it is the one that moves in a straight line: 35 lines in March, 62 in June, 93 in August.
+
+## What the numbers say
+
+Commits per day were flat at about 29 from February through March. They dipped in April and May, climbed in June, and then more than doubled in July, where they have stayed. At the same time the typical commit nearly tripled in size. I am shipping more than twice as many commits, and each one carries more work.
+
+Same hours. Same person. Same rigor, or at least I like to think so.
+
+The obvious explanation is the models, and I think that is mostly right. [PLACEHOLDER: when you started using Fable and Codex Soul, and what specifically changed. The concrete moment matters here: the first task where it was clear the ceiling had moved.]
+
+But the models are only half of it. My workflow changed too, and it changed because the models could carry more of it. [PLACEHOLDER: the two or three workflow changes that actually mattered. Candidates: parallel agents in separate worktrees, letting an agent own a PR end to end through review, the review loop between Claude and Codex, standing project docs that agents read before touching a subsystem.]
+
+## What the numbers do not say
+
+Commits are a measure of output, not of value. They do not know whether a feature was worth building, or how long I sat with a design decision before any code got written.
+
+A lot of Spellbinder's time went into exactly those decisions. It is a deck database and collection manager for Magic: The Gathering, and the domain is unforgiving: card printings, formats, search syntax that thousands of players already have muscle memory for. No model makes those calls for you. Some months the slow parts were the important parts, and they leave no trace in a commit count.
+
+I also cannot separate the model from my own learning curve. Seven months in, I know this codebase and these tools far better than I did in February. Some of the acceleration is just that.
+
+Still, the shape of the curve is hard to argue with. The effort was constant. The output was not.
+
+## Where this leaves me
+
+The thing I keep coming back to is that the ceiling moved twice in seven months, and both times my job was to notice and rearrange how I work around it. I expect it to move again.
+
+If you want to see what all those commits added up to, Spellbinder is at [spellbinder.gg](https://www.spellbinder.gg). And if you are tracking something similar in your own work, I would genuinely like to compare notes. Find me on [X](https://x.com/nickmdiego) or [LinkedIn](https://www.linkedin.com/in/nickmdiego/).
