@@ -44,6 +44,17 @@ const getMdxFilesRecursively = cache((dir: string): string[] => {
 });
 
 /**
+ * Normalize a frontmatter date to an ISO string.
+ * YAML parses unquoted dates (e.g. `date: 2026-10-02`) into Date objects,
+ * which render as "[object Object]" when passed straight into metadata.
+ */
+function normalizeDate(value: unknown): string {
+  if (value instanceof Date) return value.toISOString();
+  if (typeof value === "string" && value) return new Date(value).toISOString();
+  return new Date().toISOString();
+}
+
+/**
  * Extract slug from MDX file path.
  * Handles both formats:
  * - src/blog/2024/my-post.mdx -> "my-post"
@@ -127,7 +138,7 @@ export const getAllPosts = cache((): PostMeta[] => {
       return {
         slug,
         title: data.title ?? "Untitled",
-        date: data.date ?? new Date().toISOString(),
+        date: normalizeDate(data.date),
         excerpt: data.excerpt ?? "",
         categories,
         readingTime: stats.text,
@@ -177,7 +188,7 @@ export const getPostBySlug = cache((slug: string) => {
     meta: {
       slug,
       title: data.title ?? "Untitled",
-      date: data.date ?? new Date().toISOString(),
+      date: normalizeDate(data.date),
       excerpt: data.excerpt ?? "",
       categories,
       readingTime: stats.text,

@@ -10,4 +10,7 @@ export const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
   year: "numeric",
+  // Frontmatter dates are parsed as midnight UTC. Format in UTC so the day
+  // doesn't shift when the build or dev server runs in another timezone.
+  timeZone: "UTC",
 });
