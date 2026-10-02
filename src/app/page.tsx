@@ -9,15 +9,18 @@ export default function HomePage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-6 md:py-12 space-y-16 md:space-y-24">
       <section className="flex flex-col sm:flex-row gap-8 items-center">
-        <div>
-          <h1 className="text-4xl font-medium mb-4">Hi there</h1>
+        <div className="space-y-4">
+          <h1 className="text-4xl font-medium">Hi there</h1>
           <p className="text-copy leading-relaxed">
-            I&apos;m Nick. I build things for the web, explore what&apos;s
-            possible with AI, and contribute to WordPress. I&apos;m currently
-            focused on{" "}
-            <Link href="https://spellbinder.gg">Spellbinder.gg</Link>. This
-            site is home to my projects, experiments, and updates along the way.
-            Reach out at{" "}
+            I&apos;m Nick. I build things for the web and explore what&apos;s
+            possible with AI. I work on the Growth &amp; Data team at{" "}
+            <Link href="https://automattic.com">Automattic</Link>, contribute to
+            WordPress, and build{" "}
+            <Link href="https://spellbinder.gg">Spellbinder</Link> on the side.
+          </p>
+          <p className="text-copy leading-relaxed">
+            This site is home to my projects, experiments, and updates along the
+            way. Reach out at{" "}
             <Link href="https://x.com/nickmdiego">@nickmdiego</Link>.
           </p>
         </div>
